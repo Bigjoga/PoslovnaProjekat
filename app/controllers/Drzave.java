@@ -14,6 +14,8 @@ public class Drzave extends Controller{
 			mode = "edit";
 		render(drzave,mode,selectedIndex);
 	    System.out.println("sada sam napisao nesto ");
+	    System.out.println("sada sam napisao nesto ");
+
 	}
 	
 	
