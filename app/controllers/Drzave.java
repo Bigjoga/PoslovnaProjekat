@@ -13,8 +13,6 @@ public class Drzave extends Controller{
 		if(mode == null || mode.equals(""))
 			mode = "edit";
 		render(drzave,mode,selectedIndex);
-	    System.out.println("sada sam napisao nesto ");
-	    System.out.println("sada sam napisao nesto ");
 
 	}
 	
