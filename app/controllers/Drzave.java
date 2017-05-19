@@ -13,14 +13,10 @@ public class Drzave extends Controller{
 		if(mode == null || mode.equals(""))
 			mode = "edit";
 		render(drzave,mode,selectedIndex);
-
 	}
-	
-	
 	
 	public static void create(Drzava drzava )
 	{
-		//System.out.println(drzava.naziv);
 		drzava.save();
 		show("add",drzava.id);
 	}
@@ -29,7 +25,6 @@ public class Drzave extends Controller{
 	{
 		drzava.save();
 		show("edit",drzava.id);
-		
 	}
 	
 	public static void filter(Drzava drzava)
@@ -45,7 +40,4 @@ public class Drzave extends Controller{
 		drz.delete();
 		show("edit", drz.id-1);
 	}
-	
-	
-
 }

@@ -36,10 +36,8 @@ public class NaseljenaMesta extends Controller{
 		String mode = "edit";
 		naseljenaMesta.clear();
 		naseljenaMesta.addAll(mestaZaPrikaz);
-		//render(drzave,mestaZaPrikaz,"edit",0);
 		Long idZaPrikaz = id;
-		renderTemplate("NaseljenaMesta/show.html",drzave,naseljenaMesta,mode,0,idZaPrikaz);
-		
+		renderTemplate("NaseljenaMesta/show.html",drzave,naseljenaMesta,mode,0,idZaPrikaz);	
 	}
 	
 	public static void create(NaseljenoMesto naseljenoMesto, Long drzava)
