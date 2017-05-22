@@ -2,14 +2,16 @@ package models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import play.db.jpa.Model;
 
 @Entity
 public class NaseljenoMesto extends Model{
-
-	@Column(nullable = false, length =3)
+	
+	
+	@Column(nullable = false, length =3 , unique=true)
 	public String oznaka;
 	@Column(nullable = false, length = 40)
 	public String naziv;
