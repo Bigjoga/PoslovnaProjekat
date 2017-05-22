@@ -26,8 +26,6 @@ public class Drzava extends Model{
 		this.oznaka = oznaka;
 		this.naziv = naziv;
 		this.naseljenaMesta = naseljenaMesta;
-		
-		System.out.println("sadsda");
 	}
 
 
