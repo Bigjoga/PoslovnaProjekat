@@ -12,5 +12,27 @@ public class PoslovniPartner extends Model {
 	
 	@OneToMany(mappedBy="poslovniPartner")
 	public List<StavkaIzvoda> stavkaIzvoda;
+	
+	@OneToMany(mappedBy="poslovniPartner")
+	public List<UlaznaFaktura>  ulaznaFaktura;
 
+	@OneToMany(mappedBy="poslovniPartner")
+	public List<RacunPoslovnogPartnera> racunPoslovnogPartnera;
+	
+	@OneToMany(mappedBy="poslovniPartner")
+	public List<IzlaznaFaktura> izlaznaFaktura;
+
+	public PoslovniPartner(List<StavkaIzvoda> stavkaIzvoda,
+			List<UlaznaFaktura> ulaznaFaktura,
+			List<RacunPoslovnogPartnera> racunPoslovnogPartnera,
+			List<IzlaznaFaktura> izlaznaFaktura) {
+		super();
+		this.stavkaIzvoda = stavkaIzvoda;
+		this.ulaznaFaktura = ulaznaFaktura;
+		this.racunPoslovnogPartnera = racunPoslovnogPartnera;
+		this.izlaznaFaktura = izlaznaFaktura;
+	}
+
+	//odradjeno
+	
 }
