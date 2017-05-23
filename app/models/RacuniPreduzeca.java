@@ -1,41 +1,38 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
-public class RacuniPreduzeca  extends Model{
-	
-	@Column(nullable = false, length=18, unique=true)
-	public String mojRacun;
-	
+@Entity
+public class RacuniPreduzeca extends Model {
+
+	@Column(unique=true, nullable=false, length=18)
+	public String mojracun;
 	
 	@ManyToOne
-	public Drzava drzava;
-	
-	@OneToMany(mappedBy="racuniPreduyeca")
-	public ArrayList<DnevnoStanje> dnevnoStanje;
+	public Banka2 banka2;
 	
 	@ManyToOne
 	public Preduzece preduzece;
+	
+	@OneToMany(mappedBy="recunipreduzeca")
+	public List <DnevnoStanje> dnevnoStanje;
 
-	public RacuniPreduzeca(String mojRacun, Drzava drzava,
-			ArrayList<DnevnoStanje> dnevnoStanje, Preduzece preduzece) {
+	public RacuniPreduzeca(String mojracun, Banka2 banka2, Preduzece preduzece,
+			List<DnevnoStanje> dnevnoStanje) {
 		super();
-		this.mojRacun = mojRacun;
-		this.drzava = drzava;
-		this.dnevnoStanje = dnevnoStanje;
+		this.mojracun = mojracun;
+		this.banka2 = banka2;
 		this.preduzece = preduzece;
+		this.dnevnoStanje = dnevnoStanje;
 	}
-
 	
-
-
+	//odradjeno
 	
-	
-
 }

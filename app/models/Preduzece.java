@@ -1,28 +1,30 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
-import org.dom4j.rule.Mode;
 
 import play.db.jpa.Model;
 
-public class Preduzece extends Model{
+@Entity
+public class Preduzece extends Model {
 	
 	@OneToMany(mappedBy="preduzece")
-	public ArrayList<PoslovnaGodina>  poslovnaGodina;
-	
-	@OneToMany(mappedBy="preduzece")
-	public ArrayList<RacuniPreduzeca>  racuniPreduzeca;
+	public List<RacuniPreduzeca>  racuniPreduzeca;
 
-	
-	public Preduzece(ArrayList<PoslovnaGodina> poslovnaGodina,
-			ArrayList<RacuniPreduzeca> racuniPreduzeca) {
+	@OneToMany(mappedBy="preduzece")
+	public List<PoslovnaGodina> poslovnagodina;
+
+	public Preduzece(List<RacuniPreduzeca> racuniPreduzeca,
+			List<PoslovnaGodina> poslovnagodina) {
 		super();
-		this.poslovnaGodina = poslovnaGodina;
 		this.racuniPreduzeca = racuniPreduzeca;
+		this.poslovnagodina = poslovnagodina;
 	}
 
+	
+	
+	//odradjeno
 	
 }
