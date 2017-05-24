@@ -32,7 +32,4 @@ public class RacuniPreduzeca extends Model {
 		this.preduzece = preduzece;
 		this.dnevnoStanje = dnevnoStanje;
 	}
-	
-	//odradjeno
-	
 }

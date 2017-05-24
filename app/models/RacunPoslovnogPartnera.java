@@ -12,21 +12,21 @@ public class RacunPoslovnogPartnera  extends Model{
 	@ManyToOne
 	public PoslovniPartner poslovniPartner;
 	
-	@Column(length=18, unique=true,nullable=false)
-	public String racun;
+	@Column(nullable=false, length = 18, unique=true)
+	public String brojRacun;
+	
+	@Column(nullable=false)
 	public boolean aktivan;
 	
 	@ManyToOne
 	public Banka1 banka1;
 
 	public RacunPoslovnogPartnera(PoslovniPartner poslovniPartner,
-			String racun, boolean aktivan, Banka1 banka1) {
+			String brojRacun, boolean aktivan, Banka1 banka1) {
 		super();
 		this.poslovniPartner = poslovniPartner;
-		this.racun = racun;
+		this.brojRacun = brojRacun;
 		this.aktivan = aktivan;
 		this.banka1 = banka1;
 	}
-	
-	//odradjeno
 }

@@ -2,6 +2,7 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,8 +24,13 @@ public class StavkaIzvoda extends Model{
 	@OneToMany(mappedBy="stavkaIzvoda")
 	public List<ZatvaranjeIzlazneFakture> zatvaranjeIzlazneFakture;
 	
+	@Column(nullable = false, length=17, unique=true)
 	public Float iznos;
+	
+	@Column(nullable = false, length=17)
 	public Float preostaliIznos;
+	
+	
 	public StavkaIzvoda(List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFakture,
 			models.DnevnoStanje dnevnoStanje, PoslovniPartner poslovniPartner,
 			List<ZatvaranjeIzlazneFakture> zatvaranjeIzlazneFakture,
@@ -37,7 +43,5 @@ public class StavkaIzvoda extends Model{
 		this.iznos = iznos;
 		this.preostaliIznos = preostaliIznos;
 	}
-	
-	//odradjeno
-	
+
 }

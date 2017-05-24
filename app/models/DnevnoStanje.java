@@ -3,6 +3,7 @@ package models;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -17,11 +18,22 @@ public class DnevnoStanje extends Model {
 	@ManyToOne
 	public RacuniPreduzeca recunipreduzeca;
 	
+	@Column(nullable = false, length=10)
 	public Date datumIzvoda;
+	
+	@Column(nullable = false, length=20)
 	public Float prethodnoStanje;
-	public Float prometUkorist;
-	public Float prometNaTeret;
+	
+	@Column(length=20)
+	public Float stanjeUKorist;
+	
+	@Column(length=20)
+	public Float stanjeNaTeret;
+	
+	@Column(nullable = false, length=20)
 	public Float novoStanje;
+	
+	@Column(length=20)
 	public Bool rezervisano;
 	
 	@OneToMany(mappedBy="DnevnoStanje")
@@ -34,16 +46,10 @@ public class DnevnoStanje extends Model {
 		this.recunipreduzeca = recunipreduzeca;
 		this.datumIzvoda = datumIzvoda;
 		this.prethodnoStanje = prethodnoStanje;
-		this.prometUkorist = prometUkorist;
-		this.prometNaTeret = prometNaTeret;
+		this.stanjeUKorist = prometUkorist;
+		this.stanjeNaTeret = prometNaTeret;
 		this.novoStanje = novoStanje;
 		this.rezervisano = rezervisano;
 		this.stavkaIzvoda = stavkaIzvoda;
 	}
-
-	
-	
-	//odradjeno
-	
-
 }

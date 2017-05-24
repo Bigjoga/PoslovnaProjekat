@@ -32,7 +32,4 @@ public class PoslovniPartner extends Model {
 		this.racunPoslovnogPartnera = racunPoslovnogPartnera;
 		this.izlaznaFaktura = izlaznaFaktura;
 	}
-
-	//odradjeno
-	
 }

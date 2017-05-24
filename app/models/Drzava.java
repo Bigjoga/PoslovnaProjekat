@@ -11,7 +11,7 @@ import play.db.jpa.Model;
 @Entity
 public class Drzava extends Model{
 	
-	@Column(nullable = false, length=3)
+	@Column(nullable = false, length=3, unique=true)
 	public String oznaka;
 	@Column(nullable = false, length=40)
 	public String naziv;

@@ -12,23 +12,21 @@ public class StaSePlaca extends Model {
 	@ManyToOne
 	public UlaznaFaktura ulaznaFaktura;
 
-	public Float iznos;
+	@Column(nullable = false, length=17)
+	public Float iznosZaPlacanje;
 	
-	@Column(length=18)
+	@Column(nullable = false, length=18)
 	public String saKogRacuna;
 	
 	@ManyToOne
 	public PredlogPlacanja predlogPlacanja;
 
-	public StaSePlaca(UlaznaFaktura ulaznaFaktura, Float iznos,
+	public StaSePlaca(UlaznaFaktura ulaznaFaktura, Float iznosZaPlacanje,
 			String saKogRacuna, PredlogPlacanja predlogPlacanja) {
 		super();
 		this.ulaznaFaktura = ulaznaFaktura;
-		this.iznos = iznos;
+		this.iznosZaPlacanje = iznosZaPlacanje;
 		this.saKogRacuna = saKogRacuna;
 		this.predlogPlacanja = predlogPlacanja;
 	}
-	
-	//odradjeno
-	
 }
