@@ -1,0 +1,100 @@
+#{extends 'standardForm.html' /}
+#{set title:'Banka1' /}
+
+<script>
+
+function sync(item){
+	sifra = item.find(".sifra").html()
+    naziv = item.find(".naziv").html()
+    id = item.find(".id").html()
+    $("#banka1_sifra").val(oznaka);
+    $("#banka1_naziv").val(naziv);
+    $("#banka1_id").val(id);
+}
+/*
+function remove(id)
+{
+	$(location).attr('href','/Drzave/delete?id='+id);
+}
+
+function nextform(id)
+{
+	$(location).attr('href','/NaseljenaMesta/nextMehanizam?id='+id);
+}
+*/
+</script>
+
+
+
+<p>
+<ul>
+  <li><a href="@{Drzave.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{Drzave.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{Bank1.show("add",null)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+
+
+
+<h1>Banka 1</h1>
+
+<table class="TabelaForme">
+	<tr class = "header">
+	   <th>Sifra</th> 
+	   <th>Naziv</th>
+	</tr>
+#{list items:banka1, as:'bank1'}
+	<tr #{if banka1.id == selectedIndex} class = "highlighted" #{/if}>
+		<td class = "sifra">${bank1.sifra}</td>
+		<td class = "naziv">${bank1.naziv}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${bank1.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+	<p>
+	
+		#{set 'action'}
+		  #{if mode == 'add'}
+		    @{Bank1.create()}
+		  #{/if}
+		  
+		#{/set}
+	
+		<form action=${action} method="post">
+		
+				#{field 'banka1.id'}
+					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				
+				<p>
+				#{field 'banka1.sifra'}
+					<label for = "${field.id}">Sifra</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'banka1.naziv'}
+					<label for = "${field.id}">Naziv</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<div id = "formActions">
+					<input type = "submit" value = "Potvrda" style="margin-left:6em"/>
+					<a href = "#" style="margin-left:1em">Rollback</a>
+				</div>			
+				 
+		</form>
+	</p>
+</div>
+

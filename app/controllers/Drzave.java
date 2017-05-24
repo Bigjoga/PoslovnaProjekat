@@ -17,6 +17,7 @@ public class Drzave extends Controller{
 	
 	public static void create(Drzava drzava )
 	{
+		
 		drzava.save();
 		show("add",drzava.id);
 	}

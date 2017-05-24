@@ -12,7 +12,7 @@ import play.db.jpa.Model;
 public class Banka1  extends Model{
 	
 	@Column(length=6, nullable=false, unique=true)
-	public Number sifra;
+	public Integer sifra;
 	
 	@Column(length=30)
 	public String naziv;
@@ -20,7 +20,7 @@ public class Banka1  extends Model{
 	@OneToMany(mappedBy="banka1")
 	public List <RacunPoslovnogPartnera> racunPoslovnogPartnera;
 
-	public Banka1(Number sifra, String naziv,
+	public Banka1(Integer sifra, String naziv,
 			List<RacunPoslovnogPartnera> racunPoslovnogPartnera) {
 		super();
 		this.sifra = sifra;
