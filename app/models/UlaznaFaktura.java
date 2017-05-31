@@ -20,9 +20,6 @@ public class UlaznaFaktura extends Model {
 	@ManyToOne
 	public PoslovnaGodina poslovnaGodina;
 	
-	@OneToMany(mappedBy="ulaznaFaktura")
-	public List<StaSePlaca>  staSePlaca;
-	
 	@ManyToOne
 	public PoslovniPartner poslovniPartner;
 	
@@ -51,7 +48,7 @@ public class UlaznaFaktura extends Model {
 	public Float preostaliIznos;
 	
 	public UlaznaFaktura(List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFaktude,
-			PoslovnaGodina poslovnaGodina, List<StaSePlaca> staSePlaca,
+			PoslovnaGodina poslovnaGodina,
 			PoslovniPartner poslovniPartner, String brojFakture,
 			Date datumFakture, Date datumValute, Number ukupanRabat,
 			Float ukupanIznosBezPDV, Number ukupanPDV,
@@ -60,7 +57,6 @@ public class UlaznaFaktura extends Model {
 		super();
 		this.zatvaranjeUlazneFaktude = zatvaranjeUlazneFaktude;
 		this.poslovnaGodina = poslovnaGodina;
-		this.staSePlaca = staSePlaca;
 		this.poslovniPartner = poslovniPartner;
 		this.brojFakture = brojFakture;
 		this.datumFakture = datumFakture;
