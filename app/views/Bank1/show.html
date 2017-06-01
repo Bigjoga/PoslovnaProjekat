@@ -1,5 +1,5 @@
 #{extends 'standardForm.html' /}
-#{set title:'Banka1' /}
+#{set title:'Banka' /}
 
 <script>
 
@@ -7,29 +7,30 @@ function sync(item){
 	sifra = item.find(".sifra").html()
     naziv = item.find(".naziv").html()
     id = item.find(".id").html()
-    $("#banka1_sifra").val(oznaka);
+    $("#banka1_sifra").val(sifra);
     $("#banka1_naziv").val(naziv);
     $("#banka1_id").val(id);
 }
-/*
+
 function remove(id)
 {
-	$(location).attr('href','/Drzave/delete?id='+id);
+	$(location).attr('href','/Bank1/delete?id='+id);
 }
+
 
 function nextform(id)
 {
-	$(location).attr('href','/NaseljenaMesta/nextMehanizam?id='+id);
+	$(location).attr('href','/Racuni/nextMehanizam?id='+id);
 }
-*/
+
 </script>
 
 
 
 <p>
 <ul>
-  <li><a href="@{Drzave.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
-  <li><a href="@{Drzave.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Bank1.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{Bank1.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
   <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
   <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
@@ -45,7 +46,7 @@ function nextform(id)
 
 
 
-<h1>Banka 1</h1>
+<h1>Banka</h1>
 
 <table class="TabelaForme">
 	<tr class = "header">
@@ -68,7 +69,12 @@ function nextform(id)
 		  #{if mode == 'add'}
 		    @{Bank1.create()}
 		  #{/if}
-		  
+		  #{else}
+		    @{Bank1.edit()}
+		  #{/else}
+		  #{else}
+		    @{Bank1.filter()}
+		  #{/else}
 		#{/set}
 	
 		<form action=${action} method="post">

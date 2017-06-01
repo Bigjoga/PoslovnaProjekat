@@ -21,14 +21,11 @@ public class Racun  extends Model{
 	@OneToMany(mappedBy="racun")
 	public List<DnevnoStanje>  DnevnoStanje;
 
-	public Racun(Integer iDracuna, Banka1 banka1,
+	public Racun(Integer IDracuna, Banka1 banka1,
 			List<DnevnoStanje> dnevnoStanje) {
 		super();
-		IDracuna = iDracuna;
+		this.IDracuna = IDracuna;
 		this.banka1 = banka1;
 		this.DnevnoStanje = dnevnoStanje;
 	}
-	
-	//odradjeno
-
 }

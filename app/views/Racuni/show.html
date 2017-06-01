@@ -1,5 +1,5 @@
 #{extends 'standardForm.html' /}
-#{set title:'Naseljena mesta' /}
+#{set title:'Racuni' /}
 
 #{set 'prikazani'}
 	idZaPrikaz
@@ -22,78 +22,54 @@ function GetURLParameter(sParam)
 	    }
 	}
 
-
-
-
 $(document).ready(function(){
 	var zaPrikazivanjeStoTreba = 0;
-	//alert(GetURLParameter('id'));
-	//zaPrikazivanjeStoTreba = GetURLParameter('id');
-	//alert(zaPrikazivanjeStoTreba)
 	$("#drzavaPickup").click(function(){
 		id = $(".highlighted").find(".dr_id").html();
 		$("select").val(id);
 		$('#drzaveModal').modal('toggle');
-		alert("ovo je id " + id);
 	});
-	
 });
 
-
-
 function sync(item){
-	oznaka = item.find(".nm_oznaka").html()
-    naziv = item.find(".nm_naziv").html()
-    postanskiBroj = item.find(".nm_postanskiBroj").html()
-    id = item.find(".nm_id").html()
-    $("#naseljenoMesto_oznaka").val(oznaka);
-    $("#naseljenoMesto_naziv").val(naziv);
-    $("#naseljenoMesto_postanskiBroj").val(postanskiBroj);
-    $("#naseljenoMesto_id").val(id);
-}
-
-function remove(id)
-{
-	alert(id);
-	$(location).attr('href','/NaseljenaMesta/delete?id='+id);
-	
+	IDracuna = item.find(".IDracuna").html()
+    id = item.find(".id").html()
+    $("#racun_IDracuna").val(IDracuna);
+    $("#racun_id").val(id);
 }
 
 </script>
 
 <p>
 <ul>
-  <li><a href="@{NaseljenaMesta.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
-  <li><a href="@{NaseljenaMesta.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Racuni.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{Racuni.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
   <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
   <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a  id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
   <li><a  id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a  id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a  id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
-  <li><a href="@{NaseljenaMesta.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="@{Racuni.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
   <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
 
 <div class = "container-fluid">
-<h1>Naseljena mesta</h1>
+<h1>Racuni</h1>
 
 <table class="TabelaForme">
 	<tr class = "header">
-	   <th>Oznaka</th> 
-	   <th>Naziv</th>
-	   <th width="20%">Poštanski broj</th>
-	   <th>Država</th>
+	   <th>ID racuna</th> 
+	   <th>Banka</th>
 	</tr>
-#{list items:naseljenaMesta, as:'naseljenoMesto'}
-	<tr #{if naseljenoMesto.id == selectedIndex} class = "highlighted" #{/if}>
-		<td class = "nm_oznaka">${naseljenoMesto.oznaka}</td>
-		<td class = "nm_naziv">${naseljenoMesto.naziv}</td>
-		<td class = "nm_postanskiBroj">${naseljenoMesto.postanskiBroj}</td>
-		<td class = "drzava">${naseljenoMesto.drzava.naziv}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${naseljenoMesto.id}</td>
+	
+#{list items:racuni, as:'racun'}
+	<tr #{if racun.id == selectedIndex} class = "highlighted" #{/if}>
+		<td class = "IDracuna">${racun.IDracuna}</td>
+		<td class = "banka1">${racun.banka1.naziv}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${racun.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -101,15 +77,9 @@ function remove(id)
 
 #{set 'action'}
     #{if mode == 'add'}
-        @{NaseljenaMesta.create()}
+        @{Racuni.create()}
     #{/if}
-    #{elseif mode == 'edit'}
-        @{NaseljenaMesta.edit()}
-    #{/elseif}
-    #{else}
-       @{NaseljenaMesta.filter()}
-    #{/else}
-  #{/set}
+#{/set}
   
 
 
@@ -120,38 +90,26 @@ function remove(id)
 	
 		<form action = "${action}">
 		
-				#{field 'naseljenoMesto.id'}
+				#{field 'racun.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
 				<p>
-				#{field 'naseljenoMesto.oznaka'}
-					<label for = "${field.id}">Oznaka</label>
+				#{field 'racun.IDracuna'}
+					<label for = "${field.id}">ID Racuna</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'naseljenoMesto.naziv'}
-					<label for = "${field.id}">Naziv</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'naseljenoMesto.postanskiBroj'}
-					<label for = "${field.id}">Poštanski broj</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'drzava'}
-					<label for = "${field.id}">Država</label>
+				#{field 'banka1'}
+					<label for = "${field.id}">Banka</label>
 					<select name = "${field.name}" id = "${field.id}"/>
-					#{list items:drzave, as:'drzava'}
-					<option value = "${drzava.id}">${drzava.naziv}</option>
+					#{list items:banka1, as:'banka1'}
+					<option value = "banka1.id">${banka1.naziv}</option>
 					#{/list}
 					</select>
 					
-					 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#drzaveModal">...	</button>
+					 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#drzaveModal">...</button>
 					 
 					 <script>
 					 	//alert(zaPrikazivanjeStoTreba);
@@ -175,19 +133,19 @@ function remove(id)
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Države
+      	Banka
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">
 		<tr class = "header">
-		   <th>Oznaka</th> 
+		   <th>Sifra</th> 
 		   <th>Naziv</th>
 		</tr>
-		#{list items:drzave, as:'drzava'}
+		#{list items:banka1, as:'bank1'}
 		<tr>
-			<td class = "oznaka">${drzava.oznaka}</td>
-			<td class = "naziv">${drzava.naziv}</td>
-			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${drzava.id}</td>
+			<td class = "oznaka">${bank1.sifra}</td>
+			<td class = "naziv">${bank1.naziv}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${bank1.id}</td>
 		</tr>
 		#{/list}
 		</table>

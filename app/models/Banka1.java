@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import play.db.jpa.Model;
 
 @Entity
-public class Banka1  extends Model{
+public class Banka1 extends Model{
 	
 	@Column(length=3, nullable=false, unique=true)
 	public Integer sifra;
@@ -32,10 +32,5 @@ public class Banka1  extends Model{
 		this.racunPoslovnogPartnera = racunPoslovnogPartnera;
 		this.racun = racun;
 	}
-	
-	
-	
 
-	//odradjenooooo
-	
 }
