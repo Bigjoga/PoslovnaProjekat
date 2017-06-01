@@ -11,8 +11,8 @@ import play.db.jpa.Model;
 @Entity
 public class ZatvaranjeUlazneFakture extends Model {
 
-	//@Column(nullable = false, length=10, unique=true)
-	//public String idUlazneFakture;
+	@Column(nullable = false, unique=true)
+	public Integer idUlazneFakture;
 	
 	@Column(nullable = false, length=10)
 	public Date datum;
@@ -26,12 +26,15 @@ public class ZatvaranjeUlazneFakture extends Model {
 	@ManyToOne
 	public UlaznaFaktura ulaznaFaktura;
 
-	public ZatvaranjeUlazneFakture(Date datum, Float iznos,
-			StavkaIzvoda stavkaIzvoda, UlaznaFaktura ulaznaFaktura) {
+	public ZatvaranjeUlazneFakture(Integer idUlazneFakture, Date datum,
+			Float iznos, StavkaIzvoda stavkaIzvoda, UlaznaFaktura ulaznaFaktura) {
 		super();
+		this.idUlazneFakture = idUlazneFakture;
 		this.datum = datum;
 		this.iznos = iznos;
 		this.stavkaIzvoda = stavkaIzvoda;
 		this.ulaznaFaktura = ulaznaFaktura;
 	}
+
+	
 }

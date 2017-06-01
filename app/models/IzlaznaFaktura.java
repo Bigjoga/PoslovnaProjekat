@@ -20,6 +20,9 @@ public class IzlaznaFaktura  extends Model{
 
 	@ManyToOne
 	public PoslovniPartner poslovniPartner;
+	
+	@ManyToOne 
+	public PoslovnaGodina poslovnaGodina;
 
 	@Column(nullable = false, length=5)
 	public Integer brojFakture;
@@ -45,22 +48,19 @@ public class IzlaznaFaktura  extends Model{
 	@Column(nullable = false, length=20)
 	public Float preostaliIznos;
 	
-	
+	@Column(nullable = false, length=25, unique=true)
+	public String IDfakture;
+
 	public IzlaznaFaktura(
 			List<ZatvaranjeIzlazneFakture> zatvaranjeIzlazneFakture,
-			PoslovniPartner poslovniPartner, 
-			Integer brojFakture,
-			Date datumFakture,
-			Date datumValute,
-			Float ukupanRabat,
-			Float ukupanIznosBezPDV,
-			Float ukupanPDV,
-			Float ukupnoZaPlacanje,
-			Float preostaliIznos)
-	{
+			PoslovniPartner poslovniPartner, PoslovnaGodina poslovnaGodina,
+			Integer brojFakture, Date datumFakture, Date datumValute,
+			Float ukupanRabat, Float ukupanIznosBezPDV, Float ukupanPDV,
+			Float ukupnoZaPlacanje, Float preostaliIznos, String iDfakture) {
 		super();
 		this.zatvaranjeIzlazneFakture = zatvaranjeIzlazneFakture;
 		this.poslovniPartner = poslovniPartner;
+		this.poslovnaGodina = poslovnaGodina;
 		this.brojFakture = brojFakture;
 		this.datumFakture = datumFakture;
 		this.datumValute = datumValute;
@@ -69,5 +69,11 @@ public class IzlaznaFaktura  extends Model{
 		this.ukupanPDV = ukupanPDV;
 		this.ukupnoZaPlacanje = ukupnoZaPlacanje;
 		this.preostaliIznos = preostaliIznos;
+		IDfakture = iDfakture;
 	}
+
+	
+	
+	
+	
 }

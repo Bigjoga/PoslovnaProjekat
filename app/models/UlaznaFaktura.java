@@ -47,13 +47,14 @@ public class UlaznaFaktura extends Model {
 	@Column(nullable = false, length=17)
 	public Float preostaliIznos;
 	
+	@Column(nullable = false, length=25, unique=true)
+	public String IDfakture;
+
 	public UlaznaFaktura(List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFaktude,
-			PoslovnaGodina poslovnaGodina,
-			PoslovniPartner poslovniPartner, String brojFakture,
-			Date datumFakture, Date datumValute, Number ukupanRabat,
-			Float ukupanIznosBezPDV, Number ukupanPDV,
-			Float ukupnoZaPlacanje, Float preostaliIznos) 
-	{
+			PoslovnaGodina poslovnaGodina, PoslovniPartner poslovniPartner,
+			String brojFakture, Date datumFakture, Date datumValute,
+			Number ukupanRabat, Float ukupanIznosBezPDV, Number ukupanPDV,
+			Float ukupnoZaPlacanje, Float preostaliIznos, String iDfakture) {
 		super();
 		this.zatvaranjeUlazneFaktude = zatvaranjeUlazneFaktude;
 		this.poslovnaGodina = poslovnaGodina;
@@ -66,5 +67,8 @@ public class UlaznaFaktura extends Model {
 		this.ukupanPDV = ukupanPDV;
 		this.ukupnoZaPlacanje = ukupnoZaPlacanje;
 		this.preostaliIznos = preostaliIznos;
+		IDfakture = iDfakture;
 	}
+	
+	
 }

@@ -14,8 +14,8 @@ public class ZatvaranjeIzlazneFakture extends Model {
 	@ManyToOne
 	public StavkaIzvoda stavkaIzvoda;
 	
-	//@Column(nullable = false, length=10, unique=true)
-	//public String idIzlazneFakture;
+	@Column(nullable = false,  unique=true)
+	public Integer idIzlazneFakture;
 	
 	@Column(nullable = false, length=10)
 	public Date datum ;
@@ -26,14 +26,16 @@ public class ZatvaranjeIzlazneFakture extends Model {
 	@ManyToOne
 	public IzlaznaFaktura izlaznaFaktura;
 
-	public ZatvaranjeIzlazneFakture(StavkaIzvoda stavkaIzvoda, 
-			String idIzlazneFakture, Date datum,
-			Float iznos, IzlaznaFaktura izlaznaFaktura) {
+	public ZatvaranjeIzlazneFakture(StavkaIzvoda stavkaIzvoda,
+			Integer idIzlazneFakture, Date datum, Float iznos,
+			IzlaznaFaktura izlaznaFaktura) {
 		super();
 		this.stavkaIzvoda = stavkaIzvoda;
-		//this.idIzlazneFakture = idIzlazneFakture;
+		this.idIzlazneFakture = idIzlazneFakture;
 		this.datum = datum;
 		this.iznos = iznos;
 		this.izlaznaFaktura = izlaznaFaktura;
 	}
+
+	
 }

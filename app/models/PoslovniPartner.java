@@ -3,6 +3,7 @@ package models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
@@ -21,6 +22,9 @@ public class PoslovniPartner extends Model {
 	
 	@OneToMany(mappedBy="poslovniPartner")
 	public List<IzlaznaFaktura> izlaznaFaktura;
+	
+	@ManyToOne
+	public Preduzece preduzece;
 
 	public PoslovniPartner(List<StavkaIzvoda> stavkaIzvoda,
 			List<UlaznaFaktura> ulaznaFaktura,

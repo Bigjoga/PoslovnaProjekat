@@ -16,7 +16,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 public class DnevnoStanje extends Model {
 	
 	@ManyToOne
-	public RacuniPreduzeca recunipreduzeca;
+	public Racun racun;
 	
 	@Column(nullable = false, length=10)
 	public Date datumIzvoda;
@@ -39,17 +39,25 @@ public class DnevnoStanje extends Model {
 	@OneToMany(mappedBy="DnevnoStanje")
 	public List<StavkaIzvoda>  stavkaIzvoda;
 
-	public DnevnoStanje(RacuniPreduzeca recunipreduzeca, Date datumIzvoda,
-			Float prethodnoStanje, Float prometUkorist, Float prometNaTeret,
-			Float novoStanje, Bool rezervisano, List<StavkaIzvoda> stavkaIzvoda) {
+	public DnevnoStanje(Racun racun, Date datumIzvoda, Float prethodnoStanje,
+			Float stanjeUKorist, Float stanjeNaTeret, Float novoStanje,
+			Bool rezervisano, List<StavkaIzvoda> stavkaIzvoda) {
 		super();
-		this.recunipreduzeca = recunipreduzeca;
+		this.racun = racun;
 		this.datumIzvoda = datumIzvoda;
 		this.prethodnoStanje = prethodnoStanje;
-		this.stanjeUKorist = prometUkorist;
-		this.stanjeNaTeret = prometNaTeret;
+		this.stanjeUKorist = stanjeUKorist;
+		this.stanjeNaTeret = stanjeNaTeret;
 		this.novoStanje = novoStanje;
 		this.rezervisano = rezervisano;
 		this.stavkaIzvoda = stavkaIzvoda;
 	}
+	
+	
+
+	
+
+	
+	
+	//odradjeno
 }
