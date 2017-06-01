@@ -36,6 +36,6 @@ public class Banka1  extends Model{
 	
 	
 
-	//odradjeno
+	//odradjenooooo
 	
 }

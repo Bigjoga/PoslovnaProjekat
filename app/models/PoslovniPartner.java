@@ -29,11 +29,16 @@ public class PoslovniPartner extends Model {
 	public PoslovniPartner(List<StavkaIzvoda> stavkaIzvoda,
 			List<UlaznaFaktura> ulaznaFaktura,
 			List<RacunPoslovnogPartnera> racunPoslovnogPartnera,
-			List<IzlaznaFaktura> izlaznaFaktura) {
+			List<IzlaznaFaktura> izlaznaFaktura, Preduzece preduzece) {
 		super();
 		this.stavkaIzvoda = stavkaIzvoda;
 		this.ulaznaFaktura = ulaznaFaktura;
 		this.racunPoslovnogPartnera = racunPoslovnogPartnera;
 		this.izlaznaFaktura = izlaznaFaktura;
+		this.preduzece = preduzece;
 	}
+
+	
+	
+	
 }
