@@ -52,12 +52,4 @@ public class DnevnoStanje extends Model {
 		this.rezervisano = rezervisano;
 		this.stavkaIzvoda = stavkaIzvoda;
 	}
-	
-	
-
-	
-
-	
-	
-	//odradjeno
 }
