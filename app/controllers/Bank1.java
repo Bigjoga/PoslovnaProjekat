@@ -16,10 +16,10 @@ public class Bank1 extends Controller{
 		render(banka1,mode,selectedIndex);
 	}
 	
-	public static void create(Banka1 banka1)
+	public static void create(Banka1 banka11)
 	{
-		banka1.save();
-		show("add",banka1.id);
+		banka11.save();
+		show("add",banka11.id);
 	}	
 	
 	public static void delete(Long id)

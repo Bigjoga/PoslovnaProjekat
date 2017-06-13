@@ -25,8 +25,8 @@ public class Preduzece extends Model {
 	@Column(nullable = false, length=20)
 	public String kontakt;
 	
-	@Column(nullable = false, length=25)
-	public String Sifra;
+	@Column(nullable = false, length=25 ,unique=true)
+	public String sifra;
 	
 	@OneToMany(mappedBy="preduzece")
 	public List<PoslovniPartner>  poslovniPartner;
@@ -39,7 +39,7 @@ public class Preduzece extends Model {
 		this.naziv = naziv;
 		this.adresa = adresa;
 		this.kontakt = kontakt;
-		Sifra = sifra;
+		this.sifra = sifra;
 		this.poslovniPartner = poslovniPartner;
 	}
 	

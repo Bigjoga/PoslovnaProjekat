@@ -1,21 +1,25 @@
 #{extends 'standardForm.html' /}
-#{set title:'Države' /}
+#{set title:'Preduzeca' /}
 
 <script>
 
 function sync(item){
-	oznaka = item.find(".oznaka").html()
+	
     naziv = item.find(".naziv").html()
+    adresa = item.find(".adresa").html()
+    kontakt = item.find(".kontakt").html()
+    sifra = item.find(".sifra").html()
     id = item.find(".id").html()
-    $("#drzava_naziv").val(naziv);
-    $("#drzava_oznaka").val(oznaka);
-    
-    $("#drzava_id").val(id);
+    $("#pred_naziv").val(naziv);
+    $("#pred_adresa").val(adresa);
+    $("#pred_kontakt").val(kontakt);
+    $("#pred_sifra").val(sifra);
+    $("#pred_id").val(id);
 }
 
 function remove(id)
 {
-	$(location).attr('href','/Drzave/delete?id='+id);
+	$(location).attr('href','/Preduzeca/delete?id='+id);
 }
 
 function nextform(id)
@@ -29,15 +33,15 @@ function nextform(id)
 
 <p>
 <ul>
-  <li><a href="@{Drzave.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
-  <li><a href="@{Drzave.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Preduzeca.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{Preduzeca.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
   <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
   <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
-  <li><a href="@{Drzave.show("add",null)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="@{Preduzeca.show("add",null)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
   <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
@@ -46,55 +50,74 @@ function nextform(id)
 
 
 
-<h1>Države</h1>
+<h1>Preduzeca</h1>
 
 <table class="TabelaForme">
 	<tr class = "header">
-	   <th>Oznaka</th> 
+	   <th>Sifra</th> 
 	   <th>Naziv</th>
+	   <th>Adresa</th>
+	   <th>Kontakt</th>
 	</tr>
-#{list items:drzave, as:'drzava'}
-	<tr #{if drzava.id == selectedIndex} class = "highlighted" #{/if}>
-		<td class = "oznaka">${drzava.oznaka}</td>
-		<td class = "naziv">${drzava.naziv}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${drzava.id}</td>
+#{list items:preduzeceee, as:'pred'}
+	<tr #{if pred.id == selectedIndex} class = "highlighted" #{/if}>
+		<td class = "sifra">${pred.sifra}</td>
+		<td class = "naziv">${pred.naziv}</td>
+		<td class = "adresa">${pred.adresa}</td>
+		<td class = "kontakt">${pred.kontakt}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${pred.id}</td>
 	</tr>
 #{/list}
 </table>
 
 <div class = "panel">
 	<p>
-	
+
 		#{set 'action'}
 		  #{if mode == 'add'}
-		    @{Drzave.create()}
+		    @{Preduzeca.create()}
 		  #{/if}
 		  #{elseif mode == 'edit'}
-		    @{Drzave.edit()}
+		    @{Preduzeca.edit()}
 		  #{/elseif}
 		  #{else}
-		    @{Drzave.filter()}
+		    @{Preduzeca.filter()}
 		  #{/else}
 		#{/set}
-	
+
+
 		<form action=${action} method="post">
 		
-				#{field 'drzava.id'}
+				#{field 'pred.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
 				<p>
-				#{field 'drzava.oznaka'}
-					<label for = "${field.id}">Oznaka</label>
+				#{field 'pred.sifra'}
+					<label for = "${field.id}">Sifra</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
+				
 				<p>
-				#{field 'drzava.naziv'}
+				#{field 'pred.naziv'}
 					<label for = "${field.id}">Naziv</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
+				<p>
+				#{field 'pred.adresa'}
+					<label for = "${field.id}">Adresa</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'pred.kontakt'}
+					<label for = "${field.id}">Kontakt</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				
 				<div id = "formActions">
 					<input type = "submit" value = "Potvrda" style="margin-left:6em"/>
 					<a href = "#" style="margin-left:1em">Rollback</a>
