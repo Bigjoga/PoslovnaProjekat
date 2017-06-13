@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -21,16 +22,16 @@ public class Banka1 extends Model{
 	public List <RacunPoslovnogPartnera> racunPoslovnogPartnera;
 
 	@OneToMany(mappedBy="banka1")
-	public List<Racun> racun;
+	public Collection<Racun> racuni;
 
 	public Banka1(Integer sifra, String naziv,
 			List<RacunPoslovnogPartnera> racunPoslovnogPartnera,
-			List<Racun> racun) {
+			Collection<Racun> racuni) {
 		super();
 		this.sifra = sifra;
 		this.naziv = naziv;
 		this.racunPoslovnogPartnera = racunPoslovnogPartnera;
-		this.racun = racun;
+		this.racuni = racuni;
 	}
 
 }

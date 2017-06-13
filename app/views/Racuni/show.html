@@ -38,6 +38,13 @@ function sync(item){
     $("#racun_id").val(id);
 }
 
+function remove(id)
+{
+	alert(id);
+	$(location).attr('href','/Racuni/delete?id='+id);
+	
+}
+
 </script>
 
 <p>
@@ -79,6 +86,12 @@ function sync(item){
     #{if mode == 'add'}
         @{Racuni.create()}
     #{/if}
+    #{elseif mode == 'edit'}
+        @{Racuni.edit()}
+    #{/elseif}
+    #{else}
+       @{Racuni.filter()}
+    #{/else}
 #{/set}
   
 
@@ -105,7 +118,7 @@ function sync(item){
 					<label for = "${field.id}">Banka</label>
 					<select name = "${field.name}" id = "${field.id}"/>
 					#{list items:banka1, as:'banka1'}
-					<option value = "banka1.id">${banka1.naziv}</option>
+					<option value = "${banka1.id}">${banka1.naziv}</option>
 					#{/list}
 					</select>
 					

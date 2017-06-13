@@ -43,6 +43,7 @@ public class NaseljenaMesta extends Controller{
 	public static void create(NaseljenoMesto naseljenoMesto, Long drzava)
 	{
 		Drzava drzavax = Drzava.findById(drzava);
+		System.out.println("Drzava je -------> " + drzava);
 		naseljenoMesto.drzava=drzavax;
 		naseljenoMesto.save();
 		show("add",naseljenoMesto.id);

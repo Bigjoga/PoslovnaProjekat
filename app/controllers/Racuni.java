@@ -3,6 +3,8 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.prism.RenderTarget;
+
 import models.Banka1;
 import models.Racun;
 import play.mvc.Controller;
@@ -42,9 +44,32 @@ public class Racuni extends Controller{
 	public static void create(Racun racun, Long banka1)
 	{
 		Banka1 banka = Banka1.findById(banka1);
+		System.out.println("Banka je --------> " + banka.sifra);
 		racun.banka1=banka;
 		racun.save();
 		show("add",racun.id);
 	}	
 	
+	public static void edit(Racun racun, Long banka1)
+	{
+		Banka1 banka = Banka1.findById(banka1);
+		racun.banka1=banka;
+		racun.save();
+		show("add",racun.id);
+	}
+	
+	
+	public static void filter(Racun racun)
+	{
+		List<Racun> racuni = Racun.find("byIDracunaLike", "%"+racun.IDracuna+"%").fetch();
+		String mode = "edit";
+		renderTemplate("Racuni/show.html", racuni, mode);
+	}
+	
+	public static void delete(Long id)
+	{
+		Racun rac = Racun.findById(id);
+		rac.delete();
+		show("edit",rac.id-1);
+	}
 }
