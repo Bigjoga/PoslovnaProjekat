@@ -1,5 +1,5 @@
 #{extends 'standardForm.html' /}
-#{set title:'Racuni' /}
+#{set title:'Naseljena mesta' /}
 
 #{set 'prikazani'}
 	idZaPrikaz
@@ -22,26 +22,44 @@ function GetURLParameter(sParam)
 	    }
 	}
 
+
+
+
 $(document).ready(function(){
 	var zaPrikazivanjeStoTreba = 0;
+	//alert(GetURLParameter('id'));
+	//zaPrikazivanjeStoTreba = GetURLParameter('id');
+	//alert(zaPrikazivanjeStoTreba)
 	$("#drzavaPickup").click(function(){
 		id = $(".highlighted").find(".dr_id").html();
 		$("select").val(id);
 		$('#drzaveModal').modal('toggle');
+		
 	});
+	
 });
 
+
+
 function sync(item){
-	IDracuna = item.find(".IDracuna").html()
-    id = item.find(".id").html()
-    $("#racun_IDracuna").val(IDracuna);
-    $("#racunnn_id").val(id);
+	idodgodine = item.find(".idodgodine").html()
+    godina = item.find(".godina").html()
+    zakljucena = item.find(".zakljucena").html()
+    
+    
+    id = item.find(".nm_id").html()
+    
+    $("#poslovnaGodina_IDgodine").val(idodgodine);
+    $("#poslovnaGodina_godina").val(godina);
+    $("#poslovnaGodina_zakljucena").val(zakljucena);
+    
+    $("#naseljenoMesto_id").val(id);
 }
 
 function remove(id)
 {
-	alert(id);
-	$(location).attr('href','/Racuni/delete?id='+id);
+	
+	$(location).attr('href','/PoslovneGodine/delete?id='+id);
 	
 }
 
@@ -49,34 +67,37 @@ function remove(id)
 
 <p>
 <ul>
-  <li><a href="@{Racuni.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
-  <li><a href="@{Racuni.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{PoslovneGodine.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{PoslovneGodine.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
   <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
   <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a  id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
   <li><a  id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a  id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a  id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
-  <li><a href="@{Racuni.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="@{PoslovneGodine.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
   <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
 
 <div class = "container-fluid">
-<h1>Racuni</h1>
+<h1>Poslovne godine</h1>
 
 <table class="TabelaForme">
 	<tr class = "header">
-	   <th>ID racuna</th> 
-	   <th>Banka</th>
+	   <th>ID</th> 
+	   <th>Godina</th>
+	   <th>Zakljucena</th>
+	   <th>Preduzece</th>
 	</tr>
-	
-#{list items:racuni, as:'racun'}
-	<tr #{if racun.id == selectedIndex} class = "highlighted" #{/if}>
-		<td class = "IDracuna">${racun.IDracuna}</td>
-		<td class = "banka1">${racun.banka1.naziv}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${racun.id}</td>
+#{list items:poslovneGodine, as:'poslovnaGodinaa'}
+	<tr #{if poslovnaGodinaa.id == selectedIndex} class = "highlighted" #{/if}>
+		<td class = "idodgodine">${poslovnaGodinaa.IDgodine}</td>
+		<td class = "godina">${poslovnaGodinaa.godina}</td>
+		<td class = "zakljucena">${poslovnaGodinaa.zakljucena}</td>
+		<td class = "preduzece">${poslovnaGodinaa.preduzece.naziv}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${poslovnaGodinaa.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -84,15 +105,13 @@ function remove(id)
 
 #{set 'action'}
     #{if mode == 'add'}
-        @{Racuni.create()}
+        @{PoslovneGodine.create()}
     #{/if}
     #{elseif mode == 'edit'}
-        @{Racuni.edit()}
+        @{PoslovneGodine.edit()}
     #{/elseif}
-    #{else}
-       @{Racuni.filter()}
-    #{/else}
-#{/set}
+    
+  #{/set}
   
 
 
@@ -103,26 +122,38 @@ function remove(id)
 	
 		<form action = "${action}">
 		
-				#{field 'racun.id'}
+				#{field 'poslovnaGodina.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
 				<p>
-				#{field 'racun.IDracuna'}
-					<label for = "${field.id}">ID Racuna</label>
+				#{field 'poslovnaGodina.IDgodine'}
+					<label for = "${field.id}">ID</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'banka1'}
-					<label for = "${field.id}">Banka</label>
+				#{field 'poslovnaGodina.godina'}
+					<label for = "${field.id}">Godina</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'poslovnaGodina.zakljucena'}
+					<label for = "${field.id}">Zakljucena</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'preduzece'}
+					<label for = "${field.id}">Preduzece</label>
 					<select name = "${field.name}" id = "${field.id}"/>
-					#{list items:banka1, as:'banka1'}
-					<option value = "${banka1.id}">${banka1.naziv}</option>
+					#{list items:preduzece, as:'preduzeca'}
+					<option value = "${preduzeca.id}">${preduzeca.naziv}</option>
 					#{/list}
 					</select>
 					
-					 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#drzaveModal">...</button>
+					 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#drzaveModal">...	</button>
 					 
 					 <script>
 					 	//alert(zaPrikazivanjeStoTreba);
@@ -146,19 +177,19 @@ function remove(id)
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Banka
+      	Države
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">
 		<tr class = "header">
-		   <th>Sifra</th> 
+		   <th>Oznaka</th> 
 		   <th>Naziv</th>
 		</tr>
-		#{list items:banka1, as:'bank1'}
+		#{list items:drzave, as:'drzava'}
 		<tr>
-			<td class = "oznaka">${bank1.sifra}</td>
-			<td class = "naziv">${bank1.naziv}</td>
-			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${bank1.id}</td>
+			<td class = "oznaka">${drzava.oznaka}</td>
+			<td class = "naziv">${drzava.naziv}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${drzava.id}</td>
 		</tr>
 		#{/list}
 		</table>

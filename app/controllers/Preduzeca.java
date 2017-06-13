@@ -18,10 +18,10 @@ public class Preduzeca  extends Controller{
 		render(preduzeceee,mode,selectedIndex);
 	}
 	
-	public static void create(Preduzece pred)
+	public static void create(Preduzece preddd)
 	{
-		pred.save();
-		show("add",pred.id);
+		preddd.save();
+		show("add",preddd.id);
 	}	
 	
 	public static void edit(Preduzece pred)

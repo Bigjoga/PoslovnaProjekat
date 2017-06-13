@@ -42,11 +42,14 @@ $(document).ready(function(){
 
 
 function sync(item){
-	oznaka = item.find(".nm_oznaka").html()
+	oznakaa = item.find(".nm_oznakaa").html()
     naziv = item.find(".nm_naziv").html()
     postanskiBroj = item.find(".nm_postanskiBroj").html()
     id = item.find(".nm_id").html()
-    $("#naseljenoMesto_oznaka").val(oznaka);
+    
+    
+    
+    $("#naseljenoMesto_oznaka").val(oznakaa);
     $("#naseljenoMesto_naziv").val(naziv);
     $("#naseljenoMesto_postanskiBroj").val(postanskiBroj);
     $("#naseljenoMesto_id").val(id);
@@ -89,7 +92,7 @@ function remove(id)
 	</tr>
 #{list items:naseljenaMesta, as:'naseljenoMesto'}
 	<tr #{if naseljenoMesto.id == selectedIndex} class = "highlighted" #{/if}>
-		<td class = "nm_oznaka">${naseljenoMesto.oznaka}</td>
+		<td class = "nm_oznakaa">${naseljenoMesto.oznaka}</td>
 		<td class = "nm_naziv">${naseljenoMesto.naziv}</td>
 		<td class = "nm_postanskiBroj">${naseljenoMesto.postanskiBroj}</td>
 		<td class = "drzava">${naseljenoMesto.drzava.naziv}</td>
