@@ -17,13 +17,8 @@ public class Preduzeca extends Controller{
 			mode = "edit";
 		render(preduzeceee,mode,selectedId);
 	}
-<<<<<<< HEAD
-	/*
-	public static void create(Preduzece preddd)
-=======
-	
+
 	public static void create(Preduzece pred)
->>>>>>> 5b35f4b5e80964e128878733e4990ed7970cd27f
 	{
 		pred.save();
 		show("add",pred.id);
@@ -39,20 +34,13 @@ public class Preduzeca extends Controller{
 	{
 		Preduzece pred = Preduzece.findById(id);
 		pred.delete();
-		show("edit", pred.id-1);
+		show("edit",pred.id-1);
 	}
 	
 	public static void filter(Preduzece pred)
 	{
-		List<Preduzece> preduzeceee = Preduzece.find("bySifraLikeAndNazivLikeAndAdresaLikeAndKontaktLike", 
-				"%"+pred.sifra+"%", "%"+pred.naziv+"%" , "%"+pred.adresa+"%" , "%"+pred.kontakt+"%").fetch();
+		List<Preduzece> preduzeceee = Preduzece.find("bySifraLikeAndNazivLike", "%"+pred.sifra+"%", "%"+pred.naziv+"%").fetch();
 		String mode = "edit";
-		renderTemplate("Preduzeca/show.html", preduzeceee, mode );
+		renderTemplate("Preduzeca/show.html", preduzeceee, mode);
 	}
-	*/
-	public static void create(Preduzece preddd)
-	{
-		preddd.save();
-		show("add",preddd.id);
-	}	
 }
