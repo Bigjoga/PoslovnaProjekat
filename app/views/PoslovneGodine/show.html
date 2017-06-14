@@ -9,54 +9,53 @@
 
 
 function GetURLParameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++)
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam)
-        {
-            return sParameterName[1];
-        }
-    }
-}
-
-
-
-
+	{
+	    var sPageURL = window.location.search.substring(1);
+	    var sURLVariables = sPageURL.split('&');
+	    for (var i = 0; i < sURLVariables.length; i++)
+	    {
+	        var sParameterName = sURLVariables[i].split('=');
+	        if (sParameterName[0] == sParam)
+	        {
+	            return sParameterName[1];
+	        }
+	    }
+	}
+	
 $(document).ready(function(){
 	var zaPrikazivanjeStoTreba = 0;
-	//alert(GetURLParameter('id'));
-	//zaPrikazivanjeStoTreba = GetURLParameter('id');
-	//alert(zaPrikazivanjeStoTreba)
 	$("#drzavaPickup").click(function(){
 		id = $(".highlighted").find(".dr_id").html();
 		$("select").val(id);
 		$('#drzaveModal').modal('toggle');
-		
 	});
-	
 });
 
 function sync(item){
 	idgodine = item.find(".idgodine").html()
     godina = item.find(".godina").html()
-    zakljucena = item.find(".zakljucena").html()
+	zakljucena = item.find(".zakljucena").html()
 	predval = item.find(".preduzece").attr("value");
-	
     id = item.find(".id").html()
     
     $("#poslovnaGodina_IDgodine").val(idgodine);
     $("#poslovnaGodina_godina").val(godina);
     $("#poslovnaGodina_zakljucena").val(zakljucena);
-    
     $("#preduzece").val(predval);
+    $("#poslovnaGodina_id").val(id);
 }
 
 function remove(id)
-{	
-	$(location).attr('href','/PoslovneGodine/delete?id='+id);	
+{
+	var answer = confirm("Are you sure you want to delete?");
+	if(answer)
+		{
+			$(location).attr('href','/PoslovneGodine/delete?id='+id);
+		}
+	else
+		{
+		
+		}
 }
 
 </script>
@@ -78,7 +77,7 @@ function remove(id)
 </p>
 
 <div class = "container-fluid">
-<h1>Poslovne godine</h1>
+<h1>Poslovne Godine</h1>
 
 <table class="TabelaForme">
 	<tr class = "header">
@@ -106,11 +105,7 @@ function remove(id)
     #{else mode == 'edit'}
         @{PoslovneGodine.edit()}
     #{/else}
-    
   #{/set}
-  
-
-
 
   
 <div class = "panel">
@@ -124,7 +119,7 @@ function remove(id)
 				
 				<p>
 				#{field 'poslovnaGodina.IDgodine'}
-					<label for = "${field.id}">ID</label>
+					<label for = "${field.id}">ID Godine</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
@@ -173,19 +168,23 @@ function remove(id)
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Države
+      	Preduzeca koja se nalaze u bazi su:
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">
 		<tr class = "header">
-		   <th>Oznaka</th> 
-		   <th>Naziv</th>
+		   <th>Naziv</th> 
+		   <th>Adresa</th>
+		   <th>Kontakt</th> 
+		   <th>Sifra</th>
 		</tr>
-		#{list items:drzave, as:'drzava'}
+		#{list items:preduzece, as:'preduzeca'}
 		<tr>
-			<td class = "oznaka">${drzava.oznaka}</td>
-			<td class = "naziv">${drzava.naziv}</td>
-			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${drzava.id}</td>
+			<td class = "naziv">${preduzeca.naziv}</td>
+			<td class = "adresa">${preduzeca.adresa}</td>
+			<td class = "kontakt">${preduzeca.kontakt}</td>
+			<td class = "sifra">${preduzeca.sifra}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${preduzeca.id}</td>
 		</tr>
 		#{/list}
 		</table>

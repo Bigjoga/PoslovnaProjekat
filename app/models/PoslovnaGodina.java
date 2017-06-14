@@ -31,11 +31,11 @@ public class PoslovnaGodina extends Model {
 	public List<IzlaznaFaktura>  izlaznaFaktura;
 
 	
-	public PoslovnaGodina(Integer iDgodine, Integer godina, Boolean zakljucena,
+	public PoslovnaGodina(Integer IDgodine, Integer godina, Boolean zakljucena,
 			Preduzece preduzece, List<UlaznaFaktura> ulaznaFaktura,
 			List<IzlaznaFaktura> izlaznaFaktura) {
 		super();
-		IDgodine = iDgodine;
+		this.IDgodine = IDgodine;
 		this.godina = godina;
 		this.zakljucena = zakljucena;
 		this.preduzece = preduzece;

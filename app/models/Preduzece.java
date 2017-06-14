@@ -30,6 +30,8 @@ public class Preduzece extends Model {
 	
 	@OneToMany(mappedBy="preduzece")
 	public List<PoslovniPartner>  poslovniPartner;
+	
+	
 
 	public Preduzece(List<PoslovnaGodina> poslovnagodina, String naziv,
 			String adresa, String kontakt, String sifra,
