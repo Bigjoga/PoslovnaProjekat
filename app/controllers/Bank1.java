@@ -20,7 +20,7 @@ public class Bank1 extends Controller{
 	}
 	/*
 	public static void nextMehanizam(Long id)
-	{	
+	{	 
 		NaseljenoMesto naseljenoMesto = NaseljenoMesto.findById(id);
 		List<NaseljenoMesto> naseljenaMesta = NaseljenoMesto.findAll();
 		List<Banka1> bank1 = Banka1.findAll();
