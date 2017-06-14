@@ -73,18 +73,6 @@ function nextform(id)
 <div class = "panel">
 	<p>
 
-		#{set 'action'}
-		  #{if mode == 'add'}
-		    @{Preduzeca.create()}
-		  #{/if}
-		  #{elseif mode == 'edit'}
-		    @{Preduzeca.edit()}
-		  #{/elseif}
-		  #{else}
-		    @{Preduzeca.filter()}
-		  #{/else}
-		#{/set}
-
 
 		<form action=${action} method="post">
 		

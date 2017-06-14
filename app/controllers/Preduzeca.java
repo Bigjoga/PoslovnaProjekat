@@ -10,14 +10,14 @@ import play.mvc.Controller;
 
 public class Preduzeca  extends Controller{
 
-	public static void show(String mode, Long selectedIndex)
+	public static void show(String mode, Long selectedId)
 	{
 		List<Preduzece> preduzeceee = Preduzece.findAll();
 		if(mode == null || mode.equals(""))
 			mode = "edit";
-		render(preduzeceee,mode,selectedIndex);
+		render(preduzeceee,mode,selectedId);
 	}
-	
+	/*
 	public static void create(Preduzece preddd)
 	{
 		preddd.save();
@@ -44,5 +44,10 @@ public class Preduzeca  extends Controller{
 		String mode = "edit";
 		renderTemplate("Preduzeca/show.html", preduzeceee, mode );
 	}
-	
+	*/
+	public static void create(Preduzece preddd)
+	{
+		preddd.save();
+		show("add",preddd.id);
+	}	
 }
