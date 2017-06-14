@@ -120,25 +120,25 @@ function remove(id)
 				<p>
 				#{field 'poslovnaGodina.IDgodine'}
 					<label for = "${field.id}">ID Godine</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input style="margin-left: 50px; type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
 				#{field 'poslovnaGodina.godina'}
 					<label for = "${field.id}">Godina</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input style="margin-left: 50px; type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
 				#{field 'poslovnaGodina.zakljucena'}
 					<label for = "${field.id}">Zakljucena</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input style="margin-left: 50px; type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
 				#{field 'preduzece'}
 					<label for = "${field.id}">Preduzece</label>
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select style="margin-left: 50px; name = "${field.name}" id = "${field.id}"/>
 					#{list items:preduzece, as:'preduzeca'}
 					<option value = "${preduzeca.id}">${preduzeca.naziv}</option>
 					#{/list}
@@ -168,7 +168,7 @@ function remove(id)
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Preduzeca koja se nalaze u bazi su:
+      	Preduzeca koja se nalaze u sistemu su:
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">

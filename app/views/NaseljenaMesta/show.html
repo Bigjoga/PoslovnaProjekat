@@ -144,25 +144,25 @@ function nextform(id)
 				<p>
 				#{field 'naseljenoMesto.oznaka'}
 					<label for = "${field.id}">Oznaka</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input style="margin-left: 50px; type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
 				#{field 'naseljenoMesto.naziv'}
 					<label for = "${field.id}">Naziv</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input style="margin-left: 50px; type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
 				#{field 'naseljenoMesto.postanskiBroj'}
-					<label for = "${field.id}">Poštanski broj</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<label for = "${field.id}">Postanski broj</label>
+					<input style="margin-left: 50px; type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
 				#{field 'drzava'}
-					<label for = "${field.id}">Država</label>
-					<select name = "${field.name}" id = "${field.id}"/>
+					<label for = "${field.id}">Drzava</label>
+					<select style="margin-left: 50px; name = "${field.name}" id = "${field.id}"/>
 					#{list items:drzave, as:'drzava'}
 					<option value = "${drzava.id}">${drzava.naziv}</option>
 					#{/list}
@@ -192,7 +192,7 @@ function nextform(id)
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Države
+      	Drzave koje se nalaze u sistemu:
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">
