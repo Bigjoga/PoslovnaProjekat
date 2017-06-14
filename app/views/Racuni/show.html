@@ -7,20 +7,19 @@
 
 <script>
 
-
 function GetURLParameter(sParam)
-	{
-	    var sPageURL = window.location.search.substring(1);
-	    var sURLVariables = sPageURL.split('&');
-	    for (var i = 0; i < sURLVariables.length; i++)
-	    {
-	        var sParameterName = sURLVariables[i].split('=');
-	        if (sParameterName[0] == sParam)
-	        {
-	            return sParameterName[1];
-	        }
-	    }
-	}
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
 
 $(document).ready(function(){
 	var zaPrikazivanjeStoTreba = 0;
@@ -33,16 +32,25 @@ $(document).ready(function(){
 
 function sync(item){
 	IDracuna = item.find(".IDracuna").html()
+	bankval = item.find(".banka1").attr("value");
     id = item.find(".id").html()
+    
     $("#racun_IDracuna").val(IDracuna);
-    $("#racunnn_id").val(id);
+    $("#banka1").val(bankval)
+    $("#racun_id").val(id);
 }
 
 function remove(id)
 {
-	alert(id);
-	$(location).attr('href','/Racuni/delete?id='+id);
-	
+	var answer = confirm("Are you sure you want to delete?");
+	if(answer)
+		{
+			$(location).attr('href','/Racuni/delete?id='+id);
+		}
+	else
+		{
+		
+		}
 }
 
 </script>
@@ -73,9 +81,9 @@ function remove(id)
 	</tr>
 	
 #{list items:racuni, as:'racun'}
-	<tr #{if racun.id == selectedIndex} class = "highlighted" #{/if}>
+	<tr #{if racun.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
 		<td class = "IDracuna">${racun.IDracuna}</td>
-		<td class = "banka1">${racun.banka1.naziv}</td>
+		<td value="${racun.banka1.id}" class = "banka1">${racun.banka1.naziv}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${racun.id}</td>
 	</tr>
 #{/list}
@@ -93,10 +101,6 @@ function remove(id)
        @{Racuni.filter()}
     #{/else}
 #{/set}
-  
-
-
-
   
 <div class = "panel">
 	<p>
@@ -146,7 +150,7 @@ function remove(id)
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Banka
+      	Banke koji se nalaze u sistemu:
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">
@@ -154,11 +158,11 @@ function remove(id)
 		   <th>Sifra</th> 
 		   <th>Naziv</th>
 		</tr>
-		#{list items:banka1, as:'bank1'}
+		#{list items:banka1, as:'ban'}
 		<tr>
-			<td class = "oznaka">${bank1.sifra}</td>
-			<td class = "naziv">${bank1.naziv}</td>
-			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${bank1.id}</td>
+			<td class = "sifra">${ban.sifra}</td>
+			<td class = "naziv">${ban.naziv}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${ban.id}</td>
 		</tr>
 		#{/list}
 		</table>

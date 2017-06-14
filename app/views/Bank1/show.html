@@ -1,5 +1,9 @@
 #{extends 'standardForm.html' /}
-#{set title:'Banka' /}
+#{set title:'Banke' /}
+
+#{set 'prikazani'}
+	idZaPrikaz
+	#{/set}
 
 <script>
 
@@ -20,23 +24,27 @@ function GetURLParameter(sParam)
 function sync(item){
 	sifra = item.find(".sifra").html()
     naziv = item.find(".naziv").html()
+    nasmestval = item.find(".naseljenoMesto").attr("value");
     id = item.find(".id").html()
-    $("#banka1_sifra").val(sifra);
-    $("#banka1_naziv").val(naziv);
-    $("#banka1_id").val(id);
+    
+    $("#bank1_sifra").val(sifra);
+    $("#bank1_naziv").val(naziv);
+    $("#naseljenoMesto").val(nasmestval);
+    $("#bank1_id").val(id);
 }
 
 function remove(id)
 {
-	$(location).attr('href','/Bank1/delete?id='+id);
+	var answer = confirm("Are you sure you want to delete?");
+	if(answer)
+		{
+			$(location).attr('href','/Bank1/delete?id='+id);
+		}
+	else
+		{
+		
+		}
 }
-
-
-function nextform(id)
-{
-	$(location).attr('href','/Racuni/nextMehanizam?id='+id);
-}
-
 </script>
 
 
@@ -57,7 +65,7 @@ function nextform(id)
 </ul>
 </p>
 
-<h1>Banka</h1>
+<h1>Banke</h1>
 
 <table class="TabelaForme">
 	<tr class = "header">
@@ -66,17 +74,15 @@ function nextform(id)
 	   <th>Naseljeno mesto</th>
 	</tr>
 #{list items:banka1, as:'bank1'}
-	<tr #{if banka1.id == selectedIndex} class = "highlighted" #{/if}>
+	<tr #{if bank1.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
 		<td class = "sifra">${bank1.sifra}</td>
 		<td class = "naziv">${bank1.naziv}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${banka1.id}</td>
+		<td value="${bank1.naseljenoMesto.id}" class = "naseljenoMesto">${bank1.naseljenoMesto.naziv}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${bank1.id}</td>
 	</tr>
 #{/list}
 </table>
 
-<div class = "panel">
-	<p>
-	
 		#{set 'action'}
 		  #{if mode == 'add'}
 		    @{Bank1.create()}
@@ -88,21 +94,24 @@ function nextform(id)
 		    @{Bank1.filter()}
 		  #{/else}
 		#{/set}
+
+<div class = "panel">
+	<p>
 	
 		<form action=${action} method="post">
 		
-				#{field 'banka1.id'}
+				#{field 'bank1.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
 				<p>
-				#{field 'banka1.sifra'}
+				#{field 'bank1.sifra'}
 					<label for = "${field.id}">Sifra</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'banka1.naziv'}
+				#{field 'bank1.naziv'}
 					<label for = "${field.id}">Naziv</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
@@ -133,4 +142,35 @@ function nextform(id)
 		</form>
 	</p>
 </div>
-
+<!-- Modal -->
+  <div class="modal fade" id="drzaveModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Naseljena mesta koja se nalaze u bazi su:
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Oznaka</th> 
+		   <th>Naziv</th>
+		   <th>Postanski broj</th> 
+		</tr>
+		#{list items:naseljenoMesto, as:'naseljenaMesta'}
+		<tr>
+			<td class = "oznaka">${naseljenaMesta.oznaka}</td>
+			<td class = "naziv">${naseljenaMesta.naziv}</td>
+			<td class = "postanskiBroj">${naseljenaMesta.postanskiBroj}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${naseljenaMesta.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "drzavaPickup" type = "button" value = "izbor"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+</div>

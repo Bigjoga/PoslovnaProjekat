@@ -57,7 +57,6 @@ public class NaseljenaMesta extends Controller{
 			}
 		}
 		Drzava drzavax = Drzava.findById(drzava);
-		//System.out.println("Drzava je -------> " + drzava);
 		naseljenoMesto.drzava=drzavax;
 		naseljenoMesto.save();
 		show("add",naseljenoMesto.id);
@@ -79,8 +78,6 @@ public class NaseljenaMesta extends Controller{
 				show("add",null);
 			}
 		}
-		//naseljenoMesto.save();
-		//show("edit",naseljenoMesto.id);
 		Drzava drzavax = Drzava.findById(drzava);
 		naseljenoMesto.drzava=drzavax;
 		naseljenoMesto.save();

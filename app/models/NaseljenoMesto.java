@@ -1,9 +1,12 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -21,15 +24,16 @@ public class NaseljenoMesto extends Model{
 	@ManyToOne
 	public Drzava drzava;
 	
-	@ManyToOne
-	public NaseljenoMesto naseljenoMesto;
+	@OneToMany(mappedBy= "naseljenoMesto")
+	public List<Banka1> banka1;
 
 	public NaseljenoMesto(String oznaka, String naziv, String postanskiBroj,
-			Drzava drzava) {
+			Drzava drzava, List<Banka1> banka1) {
 		super();
 		this.oznaka = oznaka;
 		this.naziv = naziv;
 		this.postanskiBroj = postanskiBroj;
 		this.drzava = drzava;
+		this.banka1 = banka1;
 	}
 }
