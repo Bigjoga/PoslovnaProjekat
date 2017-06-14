@@ -8,7 +8,7 @@ import models.Preduzece;
 import models.Racun;
 import play.mvc.Controller;
 
-public class Preduzeca  extends Controller{
+public class Preduzeca extends Controller{
 
 	public static void show(String mode, Long selectedId)
 	{
@@ -17,11 +17,16 @@ public class Preduzeca  extends Controller{
 			mode = "edit";
 		render(preduzeceee,mode,selectedId);
 	}
+<<<<<<< HEAD
 	/*
 	public static void create(Preduzece preddd)
+=======
+	
+	public static void create(Preduzece pred)
+>>>>>>> 5b35f4b5e80964e128878733e4990ed7970cd27f
 	{
-		preddd.save();
-		show("add",preddd.id);
+		pred.save();
+		show("add",pred.id);
 	}	
 	
 	public static void edit(Preduzece pred)
