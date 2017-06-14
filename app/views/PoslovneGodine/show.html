@@ -1,5 +1,5 @@
 #{extends 'standardForm.html' /}
-#{set title:'Naseljena mesta' /}
+#{set title:'Poslovna godina' /}
 
 #{set 'prikazani'}
 	idZaPrikaz
@@ -9,18 +9,18 @@
 
 
 function GetURLParameter(sParam)
-	{
-	    var sPageURL = window.location.search.substring(1);
-	    var sURLVariables = sPageURL.split('&');
-	    for (var i = 0; i < sURLVariables.length; i++)
-	    {
-	        var sParameterName = sURLVariables[i].split('=');
-	        if (sParameterName[0] == sParam)
-	        {
-	            return sParameterName[1];
-	        }
-	    }
-	}
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
 
 
 
@@ -39,28 +39,24 @@ $(document).ready(function(){
 	
 });
 
-
-
 function sync(item){
-	idodgodine = item.find(".idodgodine").html()
+	idgodine = item.find(".idgodine").html()
     godina = item.find(".godina").html()
     zakljucena = item.find(".zakljucena").html()
+	predval = item.find(".preduzece").attr("value");
+	
+    id = item.find(".id").html()
     
-    
-    id = item.find(".nm_id").html()
-    
-    $("#poslovnaGodina_IDgodine").val(idodgodine);
+    $("#poslovnaGodina_IDgodine").val(idgodine);
     $("#poslovnaGodina_godina").val(godina);
     $("#poslovnaGodina_zakljucena").val(zakljucena);
     
-    $("#naseljenoMesto_id").val(id);
+    $("#preduzece").val(predval);
 }
 
 function remove(id)
-{
-	
-	$(location).attr('href','/PoslovneGodine/delete?id='+id);
-	
+{	
+	$(location).attr('href','/PoslovneGodine/delete?id='+id);	
 }
 
 </script>
@@ -86,18 +82,18 @@ function remove(id)
 
 <table class="TabelaForme">
 	<tr class = "header">
-	   <th>ID</th> 
+	   <th>ID godine</th> 
 	   <th>Godina</th>
 	   <th>Zakljucena</th>
 	   <th>Preduzece</th>
 	</tr>
-#{list items:poslovneGodine, as:'poslovnaGodinaa'}
-	<tr #{if poslovnaGodinaa.id == selectedIndex} class = "highlighted" #{/if}>
-		<td class = "idodgodine">${poslovnaGodinaa.IDgodine}</td>
-		<td class = "godina">${poslovnaGodinaa.godina}</td>
-		<td class = "zakljucena">${poslovnaGodinaa.zakljucena}</td>
-		<td class = "preduzece">${poslovnaGodinaa.preduzece.naziv}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${poslovnaGodinaa.id}</td>
+#{list items:poslovneGodine, as:'poslovnaGodina'}
+	<tr #{if poslovnaGodina.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
+		<td class = "idgodine">${poslovnaGodina.IDgodine}</td>
+		<td class = "godina">${poslovnaGodina.godina}</td>
+		<td class = "zakljucena">${poslovnaGodina.zakljucena}</td>
+		<td value="${poslovnaGodina.preduzece.id}" class = "preduzece">${poslovnaGodina.preduzece.naziv}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${poslovnaGodina.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -107,9 +103,9 @@ function remove(id)
     #{if mode == 'add'}
         @{PoslovneGodine.create()}
     #{/if}
-    #{elseif mode == 'edit'}
+    #{else mode == 'edit'}
         @{PoslovneGodine.edit()}
-    #{/elseif}
+    #{/else}
     
   #{/set}
   

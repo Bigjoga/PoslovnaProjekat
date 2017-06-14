@@ -3,6 +3,20 @@
 
 <script>
 
+function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
+
 function sync(item){
 	sifra = item.find(".sifra").html()
     naziv = item.find(".naziv").html()
@@ -43,21 +57,19 @@ function nextform(id)
 </ul>
 </p>
 
-
-
-
 <h1>Banka</h1>
 
 <table class="TabelaForme">
 	<tr class = "header">
 	   <th>Sifra</th> 
 	   <th>Naziv</th>
+	   <th>Naseljeno mesto</th>
 	</tr>
 #{list items:banka1, as:'bank1'}
 	<tr #{if banka1.id == selectedIndex} class = "highlighted" #{/if}>
 		<td class = "sifra">${bank1.sifra}</td>
 		<td class = "naziv">${bank1.naziv}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${bank1.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${banka1.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -93,6 +105,24 @@ function nextform(id)
 				#{field 'banka1.naziv'}
 					<label for = "${field.id}">Naziv</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'naseljenoMesto'}
+					<label for = "${field.id}">Naseljeno mesto</label>
+					<select name = "${field.name}" id = "${field.id}"/>
+					#{list items:naseljenoMesto, as:'naseljenaMesta'}
+					<option value = "${naseljenaMesta.id}">${naseljenaMesta.naziv}</option>
+					#{/list}
+					</select>
+					
+					 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#drzaveModal">...	</button>
+					 
+					 <script>
+					 	//alert(zaPrikazivanjeStoTreba);
+					 	//document.getElementById('${field.id}').selectedIndex=zaPrikazivanjeStoTreba;
+					 	document.getElementById('${field.id}').selectedIndex=GetURLParameter('id')-1;
+					 </script>
 				#{/}
 				</p>
 				<div id = "formActions">

@@ -9,13 +9,13 @@ import models.NaseljenoMesto;
 
 public class NaseljenaMesta extends Controller{
 
-	public static void show(String mode, Long selectedId)
+	public static void show(String mode, Long selectedIndex)
 	{
 		List<Drzava> drzave = Drzava.findAll();
 		List<NaseljenoMesto> naseljenaMesta = NaseljenoMesto.findAll();
 		if(mode == null || mode.equals(""))
 			mode = "edit";
-		render(drzave,naseljenaMesta,mode,selectedId);
+		render(drzave,naseljenaMesta,mode,selectedIndex);
 	}
 	
 	public static void nextMehanizam(Long id)
@@ -42,8 +42,22 @@ public class NaseljenaMesta extends Controller{
 	
 	public static void create(NaseljenoMesto naseljenoMesto, Long drzava)
 	{
+		validation.required(naseljenoMesto.oznaka);
+		validation.required(naseljenoMesto.naziv);
+		validation.required(naseljenoMesto.postanskiBroj);
+		validation.maxSize(naseljenoMesto.oznaka, 3);
+		validation.maxSize(naseljenoMesto.naziv, 40);
+		validation.maxSize(naseljenoMesto.postanskiBroj, 5);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		Drzava drzavax = Drzava.findById(drzava);
-		System.out.println("Drzava je -------> " + drzava);
+		//System.out.println("Drzava je -------> " + drzava);
 		naseljenoMesto.drzava=drzavax;
 		naseljenoMesto.save();
 		show("add",naseljenoMesto.id);
@@ -51,11 +65,26 @@ public class NaseljenaMesta extends Controller{
 	
 	public static void edit(NaseljenoMesto naseljenoMesto, Long drzava)
 	{
+		validation.required(naseljenoMesto.oznaka);
+		validation.required(naseljenoMesto.naziv);
+		validation.required(naseljenoMesto.postanskiBroj);
+		validation.maxSize(naseljenoMesto.oznaka, 3);
+		validation.maxSize(naseljenoMesto.naziv, 40);
+		validation.maxSize(naseljenoMesto.postanskiBroj, 5);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
+		//naseljenoMesto.save();
+		//show("edit",naseljenoMesto.id);
 		Drzava drzavax = Drzava.findById(drzava);
 		naseljenoMesto.drzava=drzavax;
 		naseljenoMesto.save();
 		show("edit",naseljenoMesto.id);
-		
 	}
 	
 	public static void filter(NaseljenoMesto naseljenoMesto)

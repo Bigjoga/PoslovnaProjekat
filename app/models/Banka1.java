@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
@@ -23,15 +24,21 @@ public class Banka1 extends Model{
 
 	@OneToMany(mappedBy="banka1")
 	public Collection<Racun> racuni;
+	
+	//@OneToMany(mappedBy="banka1")
+	//public List<NaseljenoMesto> naseljenoMesto;
+	@ManyToOne	
+	public NaseljenoMesto naseljenoMesto;
 
 	public Banka1(Integer sifra, String naziv,
 			List<RacunPoslovnogPartnera> racunPoslovnogPartnera,
-			Collection<Racun> racuni) {
+			Collection<Racun> racuni){//, List<NaseljenoMesto> naseljenoMesto) {
 		super();
 		this.sifra = sifra;
 		this.naziv = naziv;
 		this.racunPoslovnogPartnera = racunPoslovnogPartnera;
 		this.racuni = racuni;
+		//this.naseljenoMesto = naseljenoMesto;
 	}
 
 }

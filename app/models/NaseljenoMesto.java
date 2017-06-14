@@ -18,10 +18,11 @@ public class NaseljenoMesto extends Model{
 	@Column(nullable = false, length = 5)
 	public String postanskiBroj;
 	
-	
 	@ManyToOne
 	public Drzava drzava;
-
+	
+	@ManyToOne
+	public NaseljenoMesto naseljenoMesto;
 
 	public NaseljenoMesto(String oznaka, String naziv, String postanskiBroj,
 			Drzava drzava) {

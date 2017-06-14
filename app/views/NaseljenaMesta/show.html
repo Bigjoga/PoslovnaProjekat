@@ -34,32 +34,45 @@ $(document).ready(function(){
 		id = $(".highlighted").find(".dr_id").html();
 		$("select").val(id);
 		$('#drzaveModal').modal('toggle');
-		alert("ovo je id " + id);
 	});
-	
 });
 
-
-
 function sync(item){
-	oznakaa = item.find(".nm_oznakaa").html()
+	oznaka = item.find(".nm_oznaka").html()
     naziv = item.find(".nm_naziv").html()
+    //var smthn = highlighted;
+	//console.log(item.find(".drzava").attr("value"))
+	drzval = item.find(".drzava").attr("value");
+    //drzava = item.find(".drzava").html();
+	//console.log(drzava)
     postanskiBroj = item.find(".nm_postanskiBroj").html()
-    id = item.find(".nm_id").html()
-    
-    
-    
-    $("#naseljenoMesto_oznaka").val(oznakaa);
+    id = item.find(".id").html()
+    $("#naseljenoMesto_oznaka").val(oznaka);
     $("#naseljenoMesto_naziv").val(naziv);
     $("#naseljenoMesto_postanskiBroj").val(postanskiBroj);
     $("#naseljenoMesto_id").val(id);
+    //console.log(drzava.val());
+    $("#drzava").val(drzval);
 }
 
 function remove(id)
 {
-	alert(id);
-	$(location).attr('href','/NaseljenaMesta/delete?id='+id);
+	var answer = confirm("Are you sure you want to delete?");
+	if(answer)
+		{
+			$(location).attr('href','/NaseljenaMesta/delete?id='+id);
+		}
+	else
+		{
+		
+		}
 	
+	
+}
+
+function nextform(id)
+{
+	$(location).attr('href','/Klijenti/nextMehanizam?id='+id);
 }
 
 </script>
@@ -91,11 +104,11 @@ function remove(id)
 	   <th>Država</th>
 	</tr>
 #{list items:naseljenaMesta, as:'naseljenoMesto'}
-	<tr #{if naseljenoMesto.id == selectedIndex} class = "highlighted" #{/if}>
-		<td class = "nm_oznakaa">${naseljenoMesto.oznaka}</td>
+	<tr #{if naseljenoMesto.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
+		<td class = "nm_oznaka">${naseljenoMesto.oznaka}</td>
 		<td class = "nm_naziv">${naseljenoMesto.naziv}</td>
 		<td class = "nm_postanskiBroj">${naseljenoMesto.postanskiBroj}</td>
-		<td class = "drzava">${naseljenoMesto.drzava.naziv}</td>
+		<td value="${naseljenoMesto.drzava.id}" class = "drzava">${naseljenoMesto.drzava.naziv}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${naseljenoMesto.id}</td>
 	</tr>
 #{/list}
@@ -115,7 +128,10 @@ function remove(id)
   #{/set}
   
 
-
+					#{ifErrors}
+					   <h6>Greska pri unosu</h6>
+					   <br>
+					#{/ifErrors}
 
   
 <div class = "panel">

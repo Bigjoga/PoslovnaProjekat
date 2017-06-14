@@ -30,11 +30,10 @@ public class PoslovneGodine  extends Controller{
 	
 	public static void edit(PoslovnaGodina poslovnaGodina, Long preduzece)
 	{
-		Preduzece pred = Preduzece.findById(preduzece);
-		poslovnaGodina.preduzece=pred;
+		Preduzece preduceq = Preduzece.findById(preduzece);
+		poslovnaGodina.preduzece = preduceq;
 		poslovnaGodina.save();
 		show("edit",poslovnaGodina.id);
-		
 	}
 	
 	public static void delete(Long id)

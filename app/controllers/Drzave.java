@@ -17,7 +17,17 @@ public class Drzave extends Controller{
 	
 	public static void create(Drzava drzava )
 	{
-		
+		validation.required(drzava.oznaka);
+		validation.required(drzava.naziv);
+		validation.maxSize(drzava.oznaka, 3);
+		validation.maxSize(drzava.naziv, 40);
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		drzava.save();
 		show("add",drzava.id);
 	}

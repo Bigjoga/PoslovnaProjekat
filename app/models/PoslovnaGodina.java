@@ -42,7 +42,4 @@ public class PoslovnaGodina extends Model {
 		this.ulaznaFaktura = ulaznaFaktura;
 		this.izlaznaFaktura = izlaznaFaktura;
 	}
-
-	//odradjeno
-	
 }
