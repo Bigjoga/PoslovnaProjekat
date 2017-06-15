@@ -163,8 +163,8 @@ function nextform(id)
 				#{field 'drzava'}
 					<label for = "${field.id}">Drzava</label>
 					<select style="margin-left: 50px; name = "${field.name}" id = "${field.id}"/>
-					#{list items:drzave, as:'drzava'}
-					<option value = "${drzava.id}">${drzava.naziv}</option>
+					#{list items:drzave, as:'drz'}
+					<option value = "${drz.id}">${drz.naziv}</option>
 					#{/list}
 					</select>
 					

@@ -38,18 +38,18 @@ function GetURLParameter(sParam)
 	
 		<form action = "${action}">
 		
-				#{field 'radnik.id'}
+				#{field 'korisnik.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
 				<p>
-				#{field 'radnik.email'}
+				#{field 'korisnik.email'}
 					<label for = "${field.id}">Email</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'radnik.sifra'}
+				#{field 'korisnik.sifra'}
 					<label for = "${field.id}">Sifra</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}

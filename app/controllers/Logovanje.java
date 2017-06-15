@@ -16,6 +16,11 @@ public class Logovanje extends Controller{
 	
 	public static void login(Korisnik korisnik)
 	{
+		
+		System.out.println("------------------>" + korisnik.email);
+		System.out.println("------------------>" + korisnik.sifra);
+		
+		/*
 		List<Korisnik> kor = Korisnik.findAll();
 		boolean nasao = false;
 		
@@ -32,8 +37,24 @@ public class Logovanje extends Controller{
 				return;
 			}
 		}
+		*/
 		
+		if(korisnik.email.equals("gaja") && korisnik.sifra.equals("gaja")){
+			
+			String mode = "add";
+			renderTemplate("Drzave/show.html", mode);
+		}
+		
+		else {
+			
+			String mode = "logovanje";
+			renderTemplate("Logovanje/show.html", mode);
+			
+		}
+		
+		/*
 		String mode = "logovanje";
 		renderTemplate("Logovanje/show.html", mode);
+		*/
 	}
 }
