@@ -56,6 +56,7 @@ public class NaseljenaMesta extends Controller{
 				show("add",null);
 			}
 		}
+		//System.out.println("CREATE: " + naseljenoMesto.naziv + "||" + naseljenoMesto.id);
 		Drzava drzavax = Drzava.findById(drzava);
 		naseljenoMesto.drzava=drzavax;
 		naseljenoMesto.save();
@@ -86,7 +87,7 @@ public class NaseljenaMesta extends Controller{
 	
 	public static void filter(NaseljenoMesto naseljenoMesto)
 	{
-		List<NaseljenoMesto> naseljenaMesta = NaseljenoMesto.find("byOznakaLikeAndNazivLike", "%"+naseljenoMesto.oznaka+"%", "%"+naseljenoMesto.naziv+"%").fetch();
+		List<NaseljenoMesto> naseljenaMesta = NaseljenoMesto.find("byOznakaLikeAndNazivLikeAndPostanskiBrojLike", "%"+naseljenoMesto.oznaka+"%", "%"+naseljenoMesto.naziv+"%", "%"+naseljenoMesto.postanskiBroj+"%").fetch();
 		String mode = "edit";
 		renderTemplate("NaseljenaMesta/show.html", naseljenaMesta, mode );
 	}
