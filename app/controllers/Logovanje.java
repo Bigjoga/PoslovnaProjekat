@@ -20,9 +20,12 @@ public class Logovanje extends Controller{
 		System.out.println("------------------>" + korisnik.email);
 		System.out.println("------------------>" + korisnik.sifra);
 		
-		/*
+		
 		List<Korisnik> kor = Korisnik.findAll();
 		boolean nasao = false;
+		String mode;
+		
+		System.out.println("----------------------->> " + kor.get(0).email);
 		
 		for(Korisnik k : kor)
 		{
@@ -33,28 +36,17 @@ public class Logovanje extends Controller{
 				session.put("radnik_sifra", k.sifra);
 				session.put("radnik_id", k.id);
 				
-				String mode = "";
+			    mode = "add";
+			    renderTemplate("Drzave/show.html", mode);
 				return;
 			}
-		}
-		*/
-		
-		if(korisnik.email.equals("gaja") && korisnik.sifra.equals("gaja")){
-			
-			String mode = "add";
-			renderTemplate("Drzave/show.html", mode);
+			else{
+				
+				mode = "add";
+			    renderTemplate("Logovanje/show.html", mode);
+			}
 		}
 		
-		else {
-			
-			String mode = "logovanje";
-			renderTemplate("Logovanje/show.html", mode);
-			
-		}
 		
-		/*
-		String mode = "logovanje";
-		renderTemplate("Logovanje/show.html", mode);
-		*/
 	}
 }
