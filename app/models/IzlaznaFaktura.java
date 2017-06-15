@@ -13,7 +13,7 @@ import com.mysql.fabric.xmlrpc.base.Data;
 import play.db.jpa.Model;
 
 @Entity
-public class IzlaznaFaktura  extends Model{
+public class IzlaznaFaktura extends Model{
 	
 	@OneToMany(mappedBy="izlaznaFaktura")
 	public List<ZatvaranjeIzlazneFakture> zatvaranjeIzlazneFakture;
