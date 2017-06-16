@@ -36,7 +36,7 @@ function sync(item){
     id = item.find(".id").html()
     
     $("#posGod").val(posgodval);
-    $("#posPart").val(pospartval);
+    $("#posPar").val(pospartval);
     $("#ulfak_brojFakt").val(brojFakt);
     $("#ulfak_datFakt").val(datFakt);
     $("#ulfak_datVal").val(datVal);
@@ -132,38 +132,98 @@ function remove(id)
 	
 		<form action=${action} method="post">
 		
-				#{field 'bank1.id'}
+				#{field 'ulfak.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
 				<p>
-				#{field 'bank1.sifra'}
-					<label for = "${field.id}">Sifra</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'bank1.naziv'}
-					<label for = "${field.id}">Naziv</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'naseljenoMesto'}
-					<label for = "${field.id}">Naseljeno mesto</label>
+				#{field 'posGod'}
+					<label for = "${field.id}">Poslovna godina</label>
 					<select name = "${field.name}" id = "${field.id}"/>
-					#{list items:naseljenoMesto, as:'naseljenaMesta'}
-					<option value = "${naseljenaMesta.id}">${naseljenaMesta.naziv}</option>
+					#{list items:posGod, as:'posGodine'}
+					<option value = "${posGodine.id}">${posGodine.naziv}</option>
 					#{/list}
 					</select>
 					
-					 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#drzaveModal">...	</button>
+					 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#posgodModal">...	</button>
 					 
 					 <script>
 					 	//alert(zaPrikazivanjeStoTreba);
 					 	//document.getElementById('${field.id}').selectedIndex=zaPrikazivanjeStoTreba;
 					 	document.getElementById('${field.id}').selectedIndex=GetURLParameter('id')-1;
 					 </script>
+				#{/}
+				</p>
+				<p>
+				#{field 'posPar'}
+					<label for = "${field.id}">Poslovni partner</label>
+					<select name = "${field.name}" id = "${field.id}"/>
+					#{list items:posPar, as:'posPartneri'}
+					<option value = "${posPartneri.id}">${posPartneri.naziv}</option>
+					#{/list}
+					</select>
+					
+					 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#posparModal">...	</button>
+					 
+					 <script>
+					 	//alert(zaPrikazivanjeStoTreba);
+					 	//document.getElementById('${field.id}').selectedIndex=zaPrikazivanjeStoTreba;
+					 	document.getElementById('${field.id}').selectedIndex=GetURLParameter('id')-1;
+					 </script>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.brojFakt'}
+					<label for = "${field.id}">Broj fakture</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.datFakt'}
+					<label for = "${field.id}">Datum fakture</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.datVal'}
+					<label for = "${field.id}">Datum Valute</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.ukRabat'}
+					<label for = "${field.id}">Ukupan rabat</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.ukIzBezPDV'}
+					<label for = "${field.id}">Ukupan iznos bez PDV</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.ukPDV'}
+					<label for = "${field.id}">Ukupan PDV</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.ukZaPlacanje'}
+					<label for = "${field.id}">Ukupno za palacanje</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.preostIznos'}
+					<label for = "${field.id}">Preostali iznos</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'ulfak.IDfakt'}
+					<label for = "${field.id}">ID fakture</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<div id = "formActions">
@@ -175,26 +235,53 @@ function remove(id)
 	</p>
 </div>
 <!-- Modal -->
-  <div class="modal fade" id="drzaveModal" role="dialog">
+  <div class="modal fade" id="posgodModal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Naseljena mesta koja se nalaze u bazi su:
+      	Poslovni partneri koji se nalaze u bazi su:
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">
 		<tr class = "header">
-		   <th>Oznaka</th> 
-		   <th>Naziv</th>
-		   <th>Postanski broj</th> 
+		   <th>ID godine</th> 
+		   <th>Godina</th>
+		   <th>Zakljucena</th> 
 		</tr>
-		#{list items:naseljenoMesto, as:'naseljenaMesta'}
+		#{list items:poslovnaGodina, as:'poslovnaGodina'}
 		<tr>
-			<td class = "oznaka">${naseljenaMesta.oznaka}</td>
-			<td class = "naziv">${naseljenaMesta.naziv}</td>
-			<td class = "postanskiBroj">${naseljenaMesta.postanskiBroj}</td>
-			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${naseljenaMesta.id}</td>
+			<td class = "IDgodine">${poslovnaGodina.IDgodine}</td>
+			<td class = "godina">${poslovnaGodina.godina}</td>
+			<td class = "zakljucena">${poslovnaGodina.zakljucena}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${poslovnaGodina.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "drzavaPickup" type = "button" value = "izbor"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+   
+  <div class="modal fade" id="posparModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Poslovne godine koje se nalaze u bazi su:
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Naziv preduzeca</th>
+		</tr>
+		#{list items:poslovniPartner, as:'poslovniPartner'}
+		<tr>
+			<td class = "preduzece">${poslovniPartner.preduzece}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${poslovniPartner.id}</td>
 		</tr>
 		#{/list}
 		</table>
