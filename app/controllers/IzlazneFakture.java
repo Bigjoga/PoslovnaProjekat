@@ -5,6 +5,7 @@ import java.util.List;
 
 import models.PoslovniPartner;
 import models.IzlaznaFaktura;
+import models.PoslovnaGodina;
 import play.mvc.Controller;
 
 public class IzlazneFakture extends Controller {
@@ -12,10 +13,11 @@ public class IzlazneFakture extends Controller {
 	public static void show(String mode, Long selectedIndex)
 	{
 		List<PoslovniPartner> poslovniPartner = PoslovniPartner.findAll();
+		List<PoslovnaGodina> poslovnaGodina = PoslovnaGodina.findAll();
 		List<IzlaznaFaktura> izlaznaFaktura = IzlaznaFaktura.findAll();		
 		if(mode == null || mode.equals(""))
 			mode = "edit";
-		render(izlaznaFaktura,poslovniPartner,mode,selectedIndex);
+		render(izlaznaFaktura,poslovniPartner,mode,selectedIndex,poslovnaGodina);
 	}
 	
 	public static void nextMehanizam(Long id)

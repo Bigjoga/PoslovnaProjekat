@@ -15,7 +15,7 @@ import play.db.jpa.Model;
 public class UlaznaFaktura extends Model {
 	
 	@OneToMany(mappedBy="ulaznaFaktura")
-	public List<ZatvaranjeUlazneFakture>zatvaranjeUlazneFaktude;
+	public List<ZatvaranjeUlazneFakture>zatvaranjeUlazneFakture;
 
 	@ManyToOne
 	public PoslovnaGodina poslovnaGodina;
@@ -32,14 +32,14 @@ public class UlaznaFaktura extends Model {
 	@Column(nullable = false)
 	public Date datumValute;
 	
-	@Column(nullable = false, length=3)
-	public Number ukupanRabat;
+	@Column(nullable = false, length=3)		// bilo Number umesto Float
+	public Float ukupanRabat;
 	
 	@Column(nullable = false, length=17)
 	public Float ukupanIznosBezPDV;
 	
-	@Column(nullable = false, length=3)
-	public Number ukupanPDV;
+	@Column(nullable = false, length=3)		// bilo Number umesto Float
+	public Float ukupanPDV;
 	
 	@Column(nullable = false, length=17)
 	public Float ukupnoZaPlacanje;
@@ -50,13 +50,13 @@ public class UlaznaFaktura extends Model {
 	@Column(nullable = false, length=25, unique=true)
 	public String IDfakture;
 
-	public UlaznaFaktura(List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFaktude,
+	public UlaznaFaktura(List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFakture,
 			PoslovnaGodina poslovnaGodina, PoslovniPartner poslovniPartner,
 			String brojFakture, Date datumFakture, Date datumValute,
-			Number ukupanRabat, Float ukupanIznosBezPDV, Number ukupanPDV,
+			Float ukupanRabat, Float ukupanIznosBezPDV, Float ukupanPDV,
 			Float ukupnoZaPlacanje, Float preostaliIznos, String iDfakture) {
 		super();
-		this.zatvaranjeUlazneFaktude = zatvaranjeUlazneFaktude;
+		this.zatvaranjeUlazneFakture = zatvaranjeUlazneFakture;
 		this.poslovnaGodina = poslovnaGodina;
 		this.poslovniPartner = poslovniPartner;
 		this.brojFakture = brojFakture;

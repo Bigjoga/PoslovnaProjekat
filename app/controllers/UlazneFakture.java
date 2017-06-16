@@ -3,6 +3,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.PoslovnaGodina;
 import models.PoslovniPartner;
 import models.UlaznaFaktura;
 import play.mvc.Controller;
@@ -12,10 +13,11 @@ public class UlazneFakture extends Controller {
 	public static void show(String mode, Long selectedIndex)
 	{
 		List<PoslovniPartner> poslovniPartner = PoslovniPartner.findAll();
+		List<PoslovnaGodina> poslovnaGodina = PoslovnaGodina.findAll();
 		List<UlaznaFaktura> ulaznaFaktura = UlaznaFaktura.findAll();		
 		if(mode == null || mode.equals(""))
 			mode = "edit";
-		render(ulaznaFaktura,poslovniPartner,mode,selectedIndex);
+		render(ulaznaFaktura,poslovniPartner,mode,selectedIndex,poslovnaGodina);
 	}
 	
 	public static void nextMehanizam(Long id)
