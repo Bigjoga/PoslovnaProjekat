@@ -21,6 +21,19 @@ function GetURLParameter(sParam)
     }
 }
 
+$(document).ready(function(){
+	var zaPrikazivanjeStoTreba = 0;
+	//alert(GetURLParameter('id'));
+	//zaPrikazivanjeStoTreba = GetURLParameter('id');
+	//alert(zaPrikazivanjeStoTreba)
+	$("#drzavaPickup").click(function(){
+		id = $(".highlighted").find(".dr_id").html();
+		$("select").val(id);
+		$('#drzaveModal').modal('toggle');
+	});
+});
+
+
 function sync(item){
 	sifra = item.find(".sifra").html()
     naziv = item.find(".naziv").html()

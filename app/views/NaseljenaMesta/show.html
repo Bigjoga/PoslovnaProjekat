@@ -162,7 +162,9 @@ function nextform(id)
 				<p>
 				#{field 'drzava'}
 					<label for = "${field.id}">Drzava</label>
-					<select style="margin-left: 50px; name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" />
+<!-- 				ovako je izgledao gornji red ali tada nije radio!?!
+					<select style="margin-left: 50px; name = "${field.name}" id = "${field.id}"/> -->
 					#{list items:drzave, as:'drz'}
 					<option value = "${drz.id}">${drz.naziv}</option>
 					#{/list}

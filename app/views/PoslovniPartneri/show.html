@@ -114,7 +114,7 @@ function remove(id)
 				<p>
 				#{field 'preduzece'}
 					<label for = "${field.id}">Preduzeca</label>
-					<select style="margin-left: 50px; name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" />
 					#{list items:preduzeca, as:'pred'}
 					<option value = "${pred.id}">${pred.naziv}</option>
 					#{/list}
