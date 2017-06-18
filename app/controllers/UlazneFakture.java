@@ -44,10 +44,12 @@ public class UlazneFakture extends Controller {
 	}
 	
 	
-	public static void create(UlaznaFaktura ulFaktura, Long poslovniPartner)
+	public static void create(UlaznaFaktura ulFaktura, Long poslovniPartner, Long poslovnaGodina)
 	{
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
 		ulFaktura.poslovniPartner = partner;
+		PoslovnaGodina godina = PoslovnaGodina.findById(poslovnaGodina);
+		ulFaktura.poslovnaGodina = godina;
 		ulFaktura.save();
 		show("add",ulFaktura.id);
 	}	
