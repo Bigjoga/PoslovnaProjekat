@@ -20,12 +20,44 @@ public class Preduzeca extends Controller{
 
 	public static void create(Preduzece pred)
 	{
+		validation.required(pred.naziv);
+		validation.required(pred.adresa);
+		validation.required(pred.kontakt);
+		validation.required(pred.sifra);
+		validation.maxSize(pred.naziv, 30);
+		validation.maxSize(pred.adresa, 30);
+		validation.maxSize(pred.kontakt, 20);
+		validation.maxSize(pred.sifra, 25);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		pred.save();
 		show("add",pred.id);
 	}	
 	
 	public static void edit(Preduzece pred)
 	{
+		validation.required(pred.naziv);
+		validation.required(pred.adresa);
+		validation.required(pred.kontakt);
+		validation.required(pred.sifra);
+		validation.maxSize(pred.naziv, 30);
+		validation.maxSize(pred.adresa, 30);
+		validation.maxSize(pred.kontakt, 20);
+		validation.maxSize(pred.sifra, 25);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		pred.save();
 		show("edit",pred.id);
 	}

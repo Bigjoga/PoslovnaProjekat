@@ -23,7 +23,7 @@ public class PoslovniPartneri extends Controller{
 		poslovnipartner.preduzece=pred;
 		poslovnipartner.save();
 		show("add",poslovnipartner.id);
-	}
+	} 
 	
 	public static void edit(PoslovniPartner poslovnipartner, Long preduzece)
 	{

@@ -106,7 +106,10 @@ function remove(id)
         @{PoslovneGodine.edit()}
     #{/else}
   #{/set}
-
+					#{ifErrors}
+					   <h4>Greska pri unosu</h4>
+					   <br>
+					#{/ifErrors}
   
 <div class = "panel">
 	<p>

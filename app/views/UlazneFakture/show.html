@@ -51,28 +51,28 @@ $(document).ready(function(){
 function sync(item){
     posgodval = item.find(".poslovnaGodina").attr("value");
     pospartval = item.find(".poslovniPartner").attr("value");
-	brojFakt = item.find(".brojFakture").html()
-	datFakt = item.find(".datumFakture").html()
-	datVal = item.find(".datumValute").html()
-	ukRabat = item.find(".ukupanRabat").html()
-	ukIzBezPDV = item.find(".ukupanIznosBezPDV").html()
-	ukPDV = item.find(".ukupanPDV").html()
-	ukZaPlacanje = item.find(".ukupnoZaPlacanje").html()
-	preostIznos = item.find(".preostaliIznos").html()
-	IDfakt = item.find(".IDfakture").html()
+    brojFakture = item.find(".brojFakture").html()
+	datumFakture = item.find(".datumFakture").html()
+	datumValute = item.find(".datumValute").html()
+	ukupanRabat = item.find(".ukupanRabat").html()
+	ukupanIznosBezPDV = item.find(".ukupanIznosBezPDV").html()
+	ukupanPDV = item.find(".ukupanPDV").html()
+	ukupnoZaPlacanje = item.find(".ukupnoZaPlacanje").html()
+	preostaliIznos = item.find(".preostaliIznos").html()
+	IDfakture = item.find(".IDfakture").html()
     id = item.find(".id").html()
     
     $("#poslovnaGodina").val(posgodval);
     $("#poslovniPartner").val(pospartval);
-    $("#ulaznaFakturatura_brojFakture").val(brojFakt);// mora isto da se zove, ne znam zasto :D cek da vidim jo snesto
-    $("#ulaznaFaktura_datumFakture").val(datFakt);
-    $("#ulaznaFaktura_datumValute").val(datVal);
-    $("#ulaznaFaktura_ukupanRabat").val(ukRabat);
-    $("#ulaznaFaktura_ukupanIznosBezPDV").val(ukIzBezPDV);
-    $("#ulaznaFaktura_ukupanPDV").val(ukPDV);
-    $("#ulaznaFaktura_ukupnoZaPlacanje").val(ukZaPlacanje);
-    $("#ulaznaFaktura_preostaliIznos").val(preostIznos);
-    $("#ulaznaFaktura_IDfakture").val(IDfakt);
+    $("#ulaznaFakturatura_brojFakture").val(brojFakture);
+    $("#ulaznaFaktura_datumFakture").val(datumFakture);
+    $("#ulaznaFaktura_datumValute").val(datumValute);
+    $("#ulaznaFaktura_ukupanRabat").val(ukupanRabat);
+    $("#ulaznaFaktura_ukupanIznosBezPDV").val(ukupanIznosBezPDV);
+    $("#ulaznaFaktura_ukupanPDV").val(ukupanPDV);
+    $("#ulaznaFaktura_ukupnoZaPlacanje").val(ukupnoZaPlacanje);
+    $("#ulaznaFaktura_preostaliIznos").val(preostaliIznos);
+    $("#ulaznaFaktura_IDfakture").val(IDfakture);
     $("#ulaznaFaktura_id").val(id);
 }
 
@@ -201,55 +201,55 @@ function remove(id)
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.brojFakt'}
+				#{field 'ulaznaFaktura.brojFakture'}
 					<label for = "${field.id}">Broj fakture</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.datFakt'}
+				#{field 'ulaznaFaktura.datumFakture'}
 					<label for = "${field.id}">Datum fakture</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input type = "date" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.datVal'}
+				#{field 'ulaznaFaktura.datumValute'}
 					<label for = "${field.id}">Datum Valute</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input type = "date" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.ukRabat'}
+				#{field 'ulaznaFaktura.ukupanRabat'}
 					<label for = "${field.id}">Ukupan rabat</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.ukIzBezPDV'}
+				#{field 'ulaznaFaktura.ukupanIznosBezPDV'}
 					<label for = "${field.id}">Ukupan iznos bez PDV</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.ukPDV'}
+				#{field 'ulaznaFaktura.ukupanPDV'}
 					<label for = "${field.id}">Ukupan PDV</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.ukZaPlacanje'}
+				#{field 'ulaznaFaktura.ukupnoZaPlacanje'}
 					<label for = "${field.id}">Ukupno za palacanje</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.preostIznos'}
+				#{field 'ulaznaFaktura.preostaliIznos'}
 					<label for = "${field.id}">Preostali iznos</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.IDfakt'}
+				#{field 'ulaznaFaktura.IDfakture'}
 					<label for = "${field.id}">ID fakture</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}

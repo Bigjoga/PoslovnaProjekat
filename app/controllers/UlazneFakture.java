@@ -19,7 +19,7 @@ public class UlazneFakture extends Controller {
 			mode = "edit";
 		render(ulaznaFaktura,poslovniPartner,mode,selectedIndex,poslovnaGodina);
 	}
-	
+	/*
 	public static void nextMehanizam(Long id)
 	{	 
 		PoslovniPartner poslovniPartner = PoslovniPartner.findById(id);
@@ -42,24 +42,24 @@ public class UlazneFakture extends Controller {
 		Long idZaPrikaz = id;
 		renderTemplate("UlazneFakture/show.html",poslovniPartneri,ulFaktura,mode,0,idZaPrikaz);	
 	}
+	*/
 	
-	
-	public static void create(UlaznaFaktura ulFaktura, Long poslovniPartner, Long poslovnaGodina)
+	public static void create(UlaznaFaktura ulaznaFaktura, Long poslovniPartner, Long poslovnaGodina)
 	{
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
-		ulFaktura.poslovniPartner = partner;
 		PoslovnaGodina godina = PoslovnaGodina.findById(poslovnaGodina);
-		ulFaktura.poslovnaGodina = godina;
-		ulFaktura.save();
-		show("add",ulFaktura.id);
+		ulaznaFaktura.poslovniPartner = partner;
+		ulaznaFaktura.poslovnaGodina = godina;
+		ulaznaFaktura.save();
+		show("add",ulaznaFaktura.id);
 	}	
 	
-	public static void edit(UlaznaFaktura ulFaktura, Long poslovniPartner)
+	public static void edit(UlaznaFaktura ulaznaFaktura, Long poslovniPartner)
 	{
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
-		ulFaktura.poslovniPartner = partner;
-		ulFaktura.save();
-		show("edit",ulFaktura.id);
+		ulaznaFaktura.poslovniPartner = partner;
+		ulaznaFaktura.save();
+		show("edit",ulaznaFaktura.id);
 	}
 	
 	public static void delete(Long id)

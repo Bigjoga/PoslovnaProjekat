@@ -21,6 +21,17 @@ public class PoslovneGodine  extends Controller{
 	
 	public static void create(PoslovnaGodina poslovnaGodina, Long preduzece)
 	{
+		validation.required(poslovnaGodina.IDgodine);
+		validation.required(poslovnaGodina.godina);
+		validation.required(poslovnaGodina.zakljucena);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		Preduzece pred = Preduzece.findById(preduzece);
 		System.out.println("Drzava je -------> " + preduzece);
 		poslovnaGodina.preduzece=pred;
@@ -30,10 +41,17 @@ public class PoslovneGodine  extends Controller{
 	
 	public static void edit(PoslovnaGodina poslovnaGodina, Long preduzece)
 	{
-		//Preduzece preduceq = Preduzece.findById(preduzece);
-		//poslovnaGodina.preduzece = preduceq;
-		//poslovnaGodina.save();
-		//show("edit",poslovnaGodina.id);
+		validation.required(poslovnaGodina.IDgodine);
+		validation.required(poslovnaGodina.godina);
+		validation.required(poslovnaGodina.zakljucena);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		Preduzece pred = Preduzece.findById(preduzece);
 		poslovnaGodina.preduzece = pred;
 		poslovnaGodina.save();

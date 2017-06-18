@@ -109,6 +109,11 @@ function remove(id)
 		  #{/else}
 		#{/set}
 
+					#{ifErrors}
+					   <h4>Greska pri unosu</h4>
+					   <br>
+					#{/ifErrors}
+
 <div class = "panel">
 	<p>
 	

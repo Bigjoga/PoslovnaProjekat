@@ -44,6 +44,18 @@ public class Bank1 extends Controller{
 	
 	public static void create(Banka1 bank1, Long naseljenoMesto)
 	{
+		validation.required(bank1.sifra);
+		validation.required(bank1.naziv);
+		validation.maxSize(bank1.sifra, 3);
+		validation.maxSize(bank1.naziv, 30);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		NaseljenoMesto naselje = NaseljenoMesto.findById(naseljenoMesto);
 		bank1.naseljenoMesto = naselje;
 		bank1.save();
@@ -52,6 +64,18 @@ public class Bank1 extends Controller{
 	
 	public static void edit(Banka1 bank1, Long naseljenoMesto)
 	{
+		validation.required(bank1.sifra);
+		validation.required(bank1.naziv);
+		validation.maxSize(bank1.sifra, 3);
+		validation.maxSize(bank1.naziv, 30);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		NaseljenoMesto naselje = NaseljenoMesto.findById(naseljenoMesto);
 		bank1.naseljenoMesto = naselje;
 		bank1.save();

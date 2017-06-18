@@ -98,6 +98,11 @@ function sync(item){
     #{/if}
 #{/set}
 
+					#{ifErrors}
+					   <h4>Greska pri unosu</h4>
+					   <br>
+					#{/ifErrors}
+
 <div class = "panel">
 	<p>
 	
@@ -110,7 +115,7 @@ function sync(item){
 				<p>
 				#{field 'dnevnoStanje.datumIzvoda'}
 					<label for = "${field.id}">Datum izvoda</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input type = "date" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>

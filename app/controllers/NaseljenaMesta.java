@@ -69,7 +69,7 @@ public class NaseljenaMesta extends Controller{
 		validation.required(naseljenoMesto.naziv);
 		validation.required(naseljenoMesto.postanskiBroj);
 		validation.maxSize(naseljenoMesto.oznaka, 3);
-		validation.maxSize(naseljenoMesto.naziv, 40);
+		validation.maxSize(naseljenoMesto.naziv, 10);
 		validation.maxSize(naseljenoMesto.postanskiBroj, 5);
 		
 		if (validation.hasErrors()) {

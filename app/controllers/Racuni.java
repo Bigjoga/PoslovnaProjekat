@@ -43,6 +43,18 @@ public class Racuni extends Controller{
 	
 	public static void create(Racun racun, Long banka1)
 	{
+		validation.required(racun.IDracuna);
+		validation.required(racun.datumOtvaranja);
+		validation.required(racun.datumZatvaranja);
+		validation.maxSize(racun.IDracuna, 18);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		Banka1 banka = Banka1.findById(banka1);
 		System.out.println("Banka je --------> " + banka.sifra);
 		racun.banka1=banka;
@@ -52,6 +64,18 @@ public class Racuni extends Controller{
 	
 	public static void edit(Racun racun, Long banka1)
 	{
+		validation.required(racun.IDracuna);
+		validation.required(racun.datumOtvaranja);
+		validation.required(racun.datumZatvaranja);
+		validation.maxSize(racun.IDracuna, 18);
+		
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		Banka1 banka = Banka1.findById(banka1);
 		racun.banka1=banka;
 		racun.save();
