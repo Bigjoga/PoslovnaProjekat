@@ -64,16 +64,16 @@ function sync(item){
     
     $("#poslovnaGodina").val(posgodval);
     $("#poslovniPartner").val(pospartval);
-    $("#ulfak_brojFakt").val(brojFakt);
-    $("#ulfak_datFakt").val(datFakt);
-    $("#ulfak_datVal").val(datVal);
-    $("#ulfak_ukRabat").val(ukRabat);
-    $("#ulfak_ukIzBezPDV").val(ukIzBezPDV);
-    $("#ulfak_ukPDV").val(ukPDV);
-    $("#ulfak_ukZaPlacanje").val(ukZaPlacanje);
-    $("#ulfak_preostIznos").val(preostIznos);
-    $("#ulfak_IDfakt").val(IDfakt);
-    $("#ulfak_id").val(id);
+    $("#ulaznaFakturatura_brojFakture").val(brojFakt);// mora isto da se zove, ne znam zasto :D cek da vidim jo snesto
+    $("#ulaznaFaktura_datumFakture").val(datFakt);
+    $("#ulaznaFaktura_datumValute").val(datVal);
+    $("#ulaznaFaktura_ukupanRabat").val(ukRabat);
+    $("#ulaznaFaktura_ukupanIznosBezPDV").val(ukIzBezPDV);
+    $("#ulaznaFaktura_ukupanPDV").val(ukPDV);
+    $("#ulaznaFaktura_ukupnoZaPlacanje").val(ukZaPlacanje);
+    $("#ulaznaFaktura_preostaliIznos").val(preostIznos);
+    $("#ulaznaFaktura_IDfakture").val(IDfakt);
+    $("#ulaznaFaktura_id").val(id);
 }
 
 function remove(id)
@@ -125,20 +125,20 @@ function remove(id)
 	   <th>Preostali iznos</th>
 	   <th>ID fakture</th>
 	</tr>
-#{list items:ulaznaFaktura, as:'ulfak'}
-	<tr #{if ulfak.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
-		<td value="${ulfak.poslovnaGodina.id}" class = "poslovnaGodina">${ulfak.poslovnaGodina.godina}</td>
-		<td value="${ulfak.poslovniPartner.id}" class = "poslovniPartner">${ulfak.poslovniPartner.preduzece}</td>
-		<td class = "brojFakture">${ulfak.brojFakt}</td>
-		<td class = "datumFakture">${ulfak.datFakt}</td>
-		<td class = "datumValute">${ulfak.datVal}</td>
-		<td class = "ukupanRabat">${ulfak.ukRabat}</td>
-		<td class = "ukupanIznosBezPDV">${ulfak.ukIzBezPDV}</td>
-		<td class = "ukupanPDV">${ulfak.ukPDV}</td>
-		<td class = "ukupnoZaPlacanje">${ulfak.ukZaPlacanje}</td>
-		<td class = "preostaliIznos">${ulfak.preostIznos}</td>
-		<td class = "IDfakture">${ulfak.IDfakt}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${ulfak.id}</td>
+#{list items:ulaznaFaktura, as:'ulaznaFaktura'}
+	<tr #{if ulaznaFaktura.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
+		<td value="${ulaznaFaktura.poslovnaGodina.id}" class = "poslovnaGodina">${ulaznaFaktura.poslovnaGodina.godina}</td>
+		<td value="${ulaznaFaktura.poslovniPartner.id}" class = "poslovniPartner">${ulaznaFaktura.poslovniPartner.preduzece}</td>
+		<td class = "brojFakture">${ulaznaFaktura.brojFakture}</td>
+		<td class = "datumFakture">${ulaznaFaktura.datumFakture}</td>
+		<td class = "datumValute">${ulaznaFaktura.datumValute}</td>
+		<td class = "ukupanRabat">${ulaznaFaktura.ukupanRabat}</td>
+		<td class = "ukupanIznosBezPDV">${ulaznaFaktura.ukupanIznosBezPDV}</td>
+		<td class = "ukupanPDV">${ulaznaFaktura.ukupanPDV}</td>
+		<td class = "ukupnoZaPlacanje">${ulaznaFaktura.ukupnoZaPlacanje}</td>
+		<td class = "preostaliIznos">${ulaznaFaktura.preostaliIznos}</td>
+		<td class = "IDfakture">${ulaznaFaktura.IDfakture}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${ulaznaFaktura.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -160,7 +160,7 @@ function remove(id)
 	
 		<form action=${action} method="post">
 		
-				#{field 'ulfak.id'}
+				#{field 'ulaznaFaktura.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
@@ -201,55 +201,55 @@ function remove(id)
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.brojFakt'}
+				#{field 'ulaznaFaktura.brojFakt'}
 					<label for = "${field.id}">Broj fakture</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.datFakt'}
+				#{field 'ulaznaFaktura.datFakt'}
 					<label for = "${field.id}">Datum fakture</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.datVal'}
+				#{field 'ulaznaFaktura.datVal'}
 					<label for = "${field.id}">Datum Valute</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.ukRabat'}
+				#{field 'ulaznaFaktura.ukRabat'}
 					<label for = "${field.id}">Ukupan rabat</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.ukIzBezPDV'}
+				#{field 'ulaznaFaktura.ukIzBezPDV'}
 					<label for = "${field.id}">Ukupan iznos bez PDV</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.ukPDV'}
+				#{field 'ulaznaFaktura.ukPDV'}
 					<label for = "${field.id}">Ukupan PDV</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.ukZaPlacanje'}
+				#{field 'ulaznaFaktura.ukZaPlacanje'}
 					<label for = "${field.id}">Ukupno za palacanje</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.preostIznos'}
+				#{field 'ulaznaFaktura.preostIznos'}
 					<label for = "${field.id}">Preostali iznos</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulfak.IDfakt'}
+				#{field 'ulaznaFaktura.IDfakt'}
 					<label for = "${field.id}">ID fakture</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
