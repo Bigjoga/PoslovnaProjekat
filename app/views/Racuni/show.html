@@ -21,6 +21,20 @@ function GetURLParameter(sParam)
     }
 }
 
+function vreme(vre)
+{
+	var niz_datuma=vre.split("-");
+    godina=niz_datuma[0];
+    mesec = niz_datuma[1];
+    
+    niz_dana = niz_datuma[2].split(" ");
+    dan = niz_dana[0];
+    
+    totalan_datum = godina +"-"+mesec+"-"+dan;
+    console.log(totalan_datum);
+    return totalan_datum;
+}
+
 $(document).ready(function(){
 	var zaPrikazivanjeStoTreba = 0;
 	$("#drzavaPickup").click(function(){
@@ -32,8 +46,15 @@ $(document).ready(function(){
 
 function sync(item){
 	IDracuna = item.find(".IDracuna").html()
+	datumOtvaranja = item.find(".datumOtvaranja").html()
+    datumZatvaranja = item.find(".datumzatvaranja").html()
 	bankval = item.find(".banka1").attr("value");
     id = item.find(".id").html()
+		
+    $("#racun_datumOtvaranja").val(vreme(datumOtvaranja));
+	if(datumZatvaranja!="")
+		{
+		}
     
     $("#racun_IDracuna").val(IDracuna);
     $("#banka1").val(bankval)
@@ -77,12 +98,16 @@ function remove(id)
 <table class="TabelaForme">
 	<tr class = "header">
 	   <th>ID racuna</th> 
+	   <th>Datum otvaranja</th> 
+	   <th>Datum zatvaranja</th>
 	   <th>Banka</th>
 	</tr>
 	
 #{list items:racuni, as:'racun'}
 	<tr #{if racun.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
 		<td class = "IDracuna">${racun.IDracuna}</td>
+		<td class = "datumOtvaranja">${racun.datumOtvaranja}</td>
+		<td class = "datumZatvaranja">${racun.datumZatvaranja}</td>
 		<td value="${racun.banka1.id}" class = "banka1">${racun.banka1.naziv}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${racun.id}</td>
 	</tr>
@@ -115,6 +140,18 @@ function remove(id)
 				#{field 'racun.IDracuna'}
 					<label for = "${field.id}">ID Racuna</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'racun.datumOtvaranja'}
+					<label for = "${field.id}">Datum otvaranja</label>
+					<input type = "date" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'racun.datumZatvaranja'}
+					<label for = "${field.id}">Datum zatvaranja</label>
+					<input type = "date" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
