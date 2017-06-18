@@ -19,7 +19,7 @@ public class IzlazneFakture extends Controller {
 			mode = "edit";
 		render(izlaznaFaktura,poslovniPartner,mode,selectedIndex,poslovnaGodina);
 	}
-	
+	/*
 	public static void nextMehanizam(Long id)
 	{	 
 		PoslovniPartner poslovniPartner = PoslovniPartner.findById(id);
@@ -42,22 +42,22 @@ public class IzlazneFakture extends Controller {
 		Long idZaPrikaz = id;
 		renderTemplate("IzlazneFakture/show.html",poslovniPartneri,izlFaktura,mode,0,idZaPrikaz);	
 	}
+	*/
 	
-	
-	public static void create(IzlaznaFaktura izlFaktura, Long poslovniPartner)
+	public static void create(IzlaznaFaktura izlaznaFaktura, Long poslovniPartner)
 	{
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
-		izlFaktura.poslovniPartner = partner;
-		izlFaktura.save();
-		show("add",izlFaktura.id);
+		izlaznaFaktura.poslovniPartner = partner;
+		izlaznaFaktura.save();
+		show("add",izlaznaFaktura.id);
 	}	
 	
-	public static void edit(IzlaznaFaktura izlFaktura, Long poslovniPartner)
+	public static void edit(IzlaznaFaktura izlfak, Long poslovniPartner)
 	{
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
-		izlFaktura.poslovniPartner = partner;
-		izlFaktura.save();
-		show("edit",izlFaktura.id);
+		izlfak.poslovniPartner = partner;
+		izlfak.save();
+		show("edit",izlfak.id);
 	}
 	
 	public static void delete(Long id)

@@ -18,7 +18,7 @@ public class Bank1 extends Controller{
 			mode = "edit";
 		render(banka1,naseljenoMesto,mode,selectedIndex);
 	}
-	/*
+	
 	public static void nextMehanizam(Long id)
 	{	 
 		NaseljenoMesto naseljenoMesto = NaseljenoMesto.findById(id);
@@ -28,7 +28,7 @@ public class Bank1 extends Controller{
 		
 		for(Banka1 bnk : bank1)
 		{
-			if(bnk.getNaseljenoMesto().id == naseljenoMesto.id)
+			if(bnk.naseljenoMesto.id == naseljenoMesto.id)
 			{
 				bank1ZaPrikaz.add(bnk);
 			}
@@ -41,7 +41,7 @@ public class Bank1 extends Controller{
 		Long idZaPrikaz = id;
 		renderTemplate("Bank1/show.html",naseljenaMesta,bank1,mode,0,idZaPrikaz);	
 	}
-	*/
+	
 	public static void create(Banka1 bank1, Long naseljenoMesto)
 	{
 		NaseljenoMesto naselje = NaseljenoMesto.findById(naseljenoMesto);
