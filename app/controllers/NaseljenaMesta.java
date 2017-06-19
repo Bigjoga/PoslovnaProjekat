@@ -19,13 +19,14 @@ public class NaseljenaMesta extends Controller{
 	}
 	
 	public static void nextMehanizam(Long id)
+
 	{
-	
+
 		Drzava drz = Drzava.findById(id);
 		List<NaseljenoMesto> naseljenaMesta = NaseljenoMesto.findAll();
 		List<NaseljenoMesto> mestaZaPrikaz = new ArrayList<NaseljenoMesto>();
 		List<Drzava> drzave = Drzava.findAll();
-		
+
 		for(NaseljenoMesto nm : naseljenaMesta)
 		{
 			if(nm.drzava.id == drz.id)

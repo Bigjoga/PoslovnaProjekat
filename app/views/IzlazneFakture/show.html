@@ -126,18 +126,18 @@ function remove(id)
 	   <th>ID fakture</th>
 	</tr>
 #{list items:izlaznaFaktura, as:'izlaznaFaktura'}
-	<tr #{if izlfak.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
+	<tr #{if izlaznaFaktura.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
 		<td value="${izlaznaFaktura.poslovnaGodina.id}" class = "poslovnaGodina">${izlaznaFaktura.poslovnaGodina.godina}</td>
-		<td value="${izlaznaFaktura.poslovniPartner.id}" class = "poslovniPartner">${izlaznaFaktura.poslovniPartner.preduzece}</td>
-		<td class = "brojFakture">${izlaznaFaktura.brojFakt}</td>
-		<td class = "datumFakture">${izlaznaFaktura.datFakt}</td>
-		<td class = "datumValute">${izlaznaFaktura.datVal}</td>
-		<td class = "ukupanRabat">${izlaznaFaktura.ukRabat}</td>
-		<td class = "ukupanIznosBezPDV">${izlaznaFaktura.ukIzBezPDV}</td>
-		<td class = "ukupanPDV">${izlaznaFaktura.ukPDV}</td>
-		<td class = "ukupnoZaPlacanje">${izlaznaFaktura.ukZaPlacanje}</td>
-		<td class = "preostaliIznos">${izlaznaFaktura.preostIznos}</td>
-		<td class = "IDfakture">${izlaznaFaktura.IDfakt}</td>
+		<td value="${izlaznaFaktura.poslovniPartner.id}" class = "poslovniPartner">${izlaznaFaktura.poslovniPartner.preduzece.naziv}</td>
+		<td class = "brojFakture">${izlaznaFaktura.brojFakture}</td>
+		<td class = "datumFakture">${izlaznaFaktura.datumFakture}</td>
+		<td class = "datumValute">${izlaznaFaktura.datumValute}</td>
+		<td class = "ukupanRabat">${izlaznaFaktura.ukupanRabat}</td>
+		<td class = "ukupanIznosBezPDV">${izlaznaFaktura.ukupanIznosBezPDV}</td>
+		<td class = "ukupanPDV">${izlaznaFaktura.ukupanPDV}</td>
+		<td class = "ukupnoZaPlacanje">${izlaznaFaktura.ukupnoZaPlacanje}</td>
+		<td class = "preostaliIznos">${izlaznaFaktura.preostaliIznos}</td>
+		<td class = "IDfakture">${izlaznaFaktura.IDfakture}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${izlaznaFaktura.id}</td>
 	</tr>
 #{/list}
@@ -201,55 +201,55 @@ function remove(id)
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.brojFakt'}
+				#{field 'izlaznaFaktura.brojFakture'}
 					<label for = "${field.id}">Broj fakture</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.datFakt'}
+				#{field 'izlaznaFaktura.datumFakture'}
 					<label for = "${field.id}">Datum fakture</label>
 					<input type = "date" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.datVal'}
+				#{field 'izlaznaFaktura.datumValute'}
 					<label for = "${field.id}">Datum Valute</label>
 					<input type = "date" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.ukRabat'}
+				#{field 'izlaznaFaktura.ukupanRabat'}
 					<label for = "${field.id}">Ukupan rabat</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.ukIzBezPDV'}
+				#{field 'izlaznaFaktura.ukupanIznosBezPDV'}
 					<label for = "${field.id}">Ukupan iznos bez PDV</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.ukPDV'}
+				#{field 'izlaznaFaktura.ukupanPDV'}
 					<label for = "${field.id}">Ukupan PDV</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.ukZaPlacanje'}
+				#{field 'izlaznaFaktura.ukupnoZaPlacanje'}
 					<label for = "${field.id}">Ukupno za palacanje</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.preostIznos'}
+				#{field 'izlaznaFaktura.preostaliIznos'}
 					<label for = "${field.id}">Preostali iznos</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'izlaznaFaktura.IDfakt'}
+				#{field 'izlaznaFaktura.IDfakture'}
 					<label for = "${field.id}">ID fakture</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}

@@ -1,7 +1,5 @@
 package controllers;
 
-import java.sql.Date;
-import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,35 +45,15 @@ public class UlazneFakture extends Controller {
 	}
 	*/
 	
-	public static void create(UlaznaFaktura ulaznaFaktura, Long poslovniPartner, Long poslovnaGodina, int datumFakture, int datumValute)
+	public static void create(UlaznaFaktura ulaznaFaktura, Long poslovniPartner, Long poslovnaGodina)
 	{
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
 		PoslovnaGodina godina = PoslovnaGodina.findById(poslovnaGodina);
 		ulaznaFaktura.poslovniPartner = partner;
 		ulaznaFaktura.poslovnaGodina = godina;
 		
-		/*	imao sam neki kod pomocu kojeg sam uspeo da dodam red u tabelu
-		 *  to sam obrisao odavde jer jednostavno ne radi to sto treba (dodaje samo neku 1969. ili 1970. god)
-		 *  zato sto ovaj parametar datumFakture nije ispravan nikad
-		 *  ako sad pokrenes ovaj kod, videces u terminalu da ti iznad greske ispisuje ovo iz 65. i 67. reda:
-		 *  datumFakture1.1 = 0 i datumFakture1.2 = 0
-		 * */
-		
-		// ne radi jer je datumFakture uvek jednak nuli
-		/*
-		System.out.println("datumFakture1.1 = "+datumFakture);
-		String datumF = Integer.toString(datumFakture);
-		System.out.println("datumFakture1.2 = "+datumF);
-		int danF = Integer.parseInt(datumF.substring(0,2));
-		int mesecF = Integer.parseInt(datumF.substring(3,5));
-		int godinaF = Integer.parseInt(datumF.substring(6,10));
-		Date datumF1 = new Date(godinaF,mesecF,danF);
-		Date datumV1 = new Date(godinaF,mesecF,danF);
-		//
-		
-		ulaznaFaktura.datumFakture = datumF1;
-		ulaznaFaktura.datumValute = datumF1;	// trebalo bi odraditi za datumValute sve kao i datumFakture...
-		*/
+		// uneti datum u formatu "godina-mesec-dan". npr. 2017-9-25 ili 1914-6-3
+
 		ulaznaFaktura.save();
 		show("add",ulaznaFaktura.id);
 	}	

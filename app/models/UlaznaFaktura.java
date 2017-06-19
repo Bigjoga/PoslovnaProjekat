@@ -24,7 +24,7 @@ public class UlaznaFaktura extends Model {
 	public PoslovniPartner poslovniPartner;
 	
 	@Column(nullable = false, length=5)
-	public String brojFakture;
+	public Integer brojFakture;
 	
 	@Column(nullable = false)
 	public Date datumFakture;
@@ -52,7 +52,7 @@ public class UlaznaFaktura extends Model {
 
 	public UlaznaFaktura(List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFakture,
 			PoslovnaGodina poslovnaGodina, PoslovniPartner poslovniPartner,
-			String brojFakture, Date datumFakture, Date datumValute,
+			Integer brojFakture, Date datumFakture, Date datumValute,
 			Float ukupanRabat, Float ukupanIznosBezPDV, Float ukupanPDV,
 			Float ukupnoZaPlacanje, Float preostaliIznos, String iDfakture) {
 		super();

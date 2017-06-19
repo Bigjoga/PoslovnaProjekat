@@ -1,11 +1,10 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import models.PoslovniPartner;
 import models.IzlaznaFaktura;
 import models.PoslovnaGodina;
+import models.PoslovniPartner;
 import play.mvc.Controller;
 
 public class IzlazneFakture extends Controller {
@@ -44,10 +43,15 @@ public class IzlazneFakture extends Controller {
 	}
 	*/
 	
-	public static void create(IzlaznaFaktura izlaznaFaktura, Long poslovniPartner)
+	public static void create(IzlaznaFaktura izlaznaFaktura, Long poslovniPartner, Long poslovnaGodina, int datumFakture, int datumValute)
 	{
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
+		PoslovnaGodina godina = PoslovnaGodina.findById(poslovnaGodina);
 		izlaznaFaktura.poslovniPartner = partner;
+		izlaznaFaktura.poslovnaGodina = godina;
+		
+		// uneti datum u formatu "godina-mesec-dan". npr. 2017-9-25 ili 1914-6-3
+
 		izlaznaFaktura.save();
 		show("add",izlaznaFaktura.id);
 	}	
