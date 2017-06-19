@@ -62,6 +62,7 @@ public class UlazneFakture extends Controller {
 		 * */
 		
 		// ne radi jer je datumFakture uvek jednak nuli
+		/*
 		System.out.println("datumFakture1.1 = "+datumFakture);
 		String datumF = Integer.toString(datumFakture);
 		System.out.println("datumFakture1.2 = "+datumF);
@@ -74,7 +75,7 @@ public class UlazneFakture extends Controller {
 		
 		ulaznaFaktura.datumFakture = datumF1;
 		ulaznaFaktura.datumValute = datumF1;	// trebalo bi odraditi za datumValute sve kao i datumFakture...
-		
+		*/
 		ulaznaFaktura.save();
 		show("add",ulaznaFaktura.id);
 	}	
