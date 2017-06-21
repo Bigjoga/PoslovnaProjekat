@@ -47,6 +47,27 @@ public class UlazneFakture extends Controller {
 	
 	public static void create(UlaznaFaktura ulaznaFaktura, Long poslovniPartner, Long poslovnaGodina)
 	{
+		validation.required(ulaznaFaktura.brojFakture);
+		validation.required(ulaznaFaktura.ukupanRabat);
+		validation.required(ulaznaFaktura.ukupanIznosBezPDV);
+		validation.required(ulaznaFaktura.ukupanPDV);
+		validation.required(ulaznaFaktura.ukupnoZaPlacanje);
+		validation.required(ulaznaFaktura.preostaliIznos);
+		validation.required(ulaznaFaktura.IDfakture);
+		validation.maxSize(ulaznaFaktura.brojFakture, 5);
+		validation.maxSize(ulaznaFaktura.ukupanRabat, 3);
+		validation.maxSize(ulaznaFaktura.ukupanIznosBezPDV, 20);
+		validation.maxSize(ulaznaFaktura.ukupanPDV, 3);
+		validation.maxSize(ulaznaFaktura.ukupnoZaPlacanje, 20);
+		validation.maxSize(ulaznaFaktura.preostaliIznos, 20);
+		validation.maxSize(ulaznaFaktura.IDfakture, 25);
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
 		PoslovnaGodina godina = PoslovnaGodina.findById(poslovnaGodina);
 		ulaznaFaktura.poslovniPartner = partner;
@@ -60,6 +81,27 @@ public class UlazneFakture extends Controller {
 	
 	public static void edit(UlaznaFaktura ulaznaFaktura, Long poslovniPartner)
 	{
+		validation.required(ulaznaFaktura.brojFakture);
+		validation.required(ulaznaFaktura.ukupanRabat);
+		validation.required(ulaznaFaktura.ukupanIznosBezPDV);
+		validation.required(ulaznaFaktura.ukupanPDV);
+		validation.required(ulaznaFaktura.ukupnoZaPlacanje);
+		validation.required(ulaznaFaktura.preostaliIznos);
+		validation.required(ulaznaFaktura.IDfakture);
+		validation.maxSize(ulaznaFaktura.brojFakture, 5);
+		validation.maxSize(ulaznaFaktura.ukupanRabat, 3);
+		validation.maxSize(ulaznaFaktura.ukupanIznosBezPDV, 20);
+		validation.maxSize(ulaznaFaktura.ukupanPDV, 3);
+		validation.maxSize(ulaznaFaktura.ukupnoZaPlacanje, 20);
+		validation.maxSize(ulaznaFaktura.preostaliIznos, 20);
+		validation.maxSize(ulaznaFaktura.IDfakture, 25);
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
 		ulaznaFaktura.poslovniPartner = partner;
 		ulaznaFaktura.save();

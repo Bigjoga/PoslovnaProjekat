@@ -43,14 +43,34 @@ public class IzlazneFakture extends Controller {
 	}
 	*/
 	
-	public static void create(IzlaznaFaktura izlaznaFaktura, Long poslovniPartner, Long poslovnaGodina, int datumFakture, int datumValute)
+	public static void create(IzlaznaFaktura izlaznaFaktura, Long poslovniPartner, Long poslovnaGodina)//, int datumFakture, int datumValute)
 	{
+		validation.required(izlaznaFaktura.brojFakture);
+		validation.required(izlaznaFaktura.ukupanRabat);
+		validation.required(izlaznaFaktura.ukupanIznosBezPDV);
+		validation.required(izlaznaFaktura.ukupanPDV);
+		validation.required(izlaznaFaktura.ukupnoZaPlacanje);
+		validation.required(izlaznaFaktura.preostaliIznos);
+		validation.required(izlaznaFaktura.IDfakture);
+		validation.maxSize(izlaznaFaktura.brojFakture, 5);
+		validation.maxSize(izlaznaFaktura.ukupanRabat, 3);
+		validation.maxSize(izlaznaFaktura.ukupanIznosBezPDV, 20);
+		validation.maxSize(izlaznaFaktura.ukupanPDV, 3);
+		validation.maxSize(izlaznaFaktura.ukupnoZaPlacanje, 20);
+		validation.maxSize(izlaznaFaktura.preostaliIznos, 20);
+		validation.maxSize(izlaznaFaktura.IDfakture, 25);
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
+		
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
 		PoslovnaGodina godina = PoslovnaGodina.findById(poslovnaGodina);
 		izlaznaFaktura.poslovniPartner = partner;
 		izlaznaFaktura.poslovnaGodina = godina;
-		
-		// uneti datum u formatu "godina-mesec-dan". npr. 2017-9-25 ili 1914-6-3
 
 		izlaznaFaktura.save();
 		show("add",izlaznaFaktura.id);
@@ -58,6 +78,27 @@ public class IzlazneFakture extends Controller {
 	
 	public static void edit(IzlaznaFaktura izlfak, Long poslovniPartner)
 	{
+		validation.required(izlfak.brojFakture);
+		validation.required(izlfak.ukupanRabat);
+		validation.required(izlfak.ukupanIznosBezPDV);
+		validation.required(izlfak.ukupanPDV);
+		validation.required(izlfak.ukupnoZaPlacanje);
+		validation.required(izlfak.preostaliIznos);
+		validation.required(izlfak.IDfakture);
+		validation.maxSize(izlfak.brojFakture, 5);
+		validation.maxSize(izlfak.ukupanRabat, 3);
+		validation.maxSize(izlfak.ukupanIznosBezPDV, 20);
+		validation.maxSize(izlfak.ukupanPDV, 3);
+		validation.maxSize(izlfak.ukupnoZaPlacanje, 20);
+		validation.maxSize(izlfak.preostaliIznos, 20);
+		validation.maxSize(izlfak.IDfakture, 25);
+		if (validation.hasErrors()) {
+			for (play.data.validation.Error error : validation.errors()) {
+				System.out.println(error.message());
+				validation.keep();
+				show("add",null);
+			}
+		}
 		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
 		izlfak.poslovniPartner = partner;
 		izlfak.save();

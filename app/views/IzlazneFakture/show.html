@@ -51,28 +51,28 @@ $(document).ready(function(){
 function sync(item){
     posgodval = item.find(".poslovnaGodina").attr("value");
     pospartval = item.find(".poslovniPartner").attr("value");
-	brojFakt = item.find(".brojFakture").html()
-	datFakt = item.find(".datumFakture").html()
-	datVal = item.find(".datumValute").html()
-	ukRabat = item.find(".ukupanRabat").html()
-	ukIzBezPDV = item.find(".ukupanIznosBezPDV").html()
-	ukPDV = item.find(".ukupanPDV").html()
-	ukZaPlacanje = item.find(".ukupnoZaPlacanje").html()
-	preostIznos = item.find(".preostaliIznos").html()
-	IDfakt = item.find(".IDfakture").html()
+    brojFakture = item.find(".brojFakture").html()
+	datumFakture = item.find(".datumFakture").html()
+	datumValute = item.find(".datumValute").html()
+	ukupanRabat = item.find(".ukupanRabat").html()
+	ukupanIznosBezPDV = item.find(".ukupanIznosBezPDV").html()
+	ukupanPDV = item.find(".ukupanPDV").html()
+	ukupnoZaPlacanje = item.find(".ukupnoZaPlacanje").html()
+	preostaliIznos = item.find(".preostaliIznos").html()
+	IDfakture = item.find(".IDfakture").html()
     id = item.find(".id").html()
     
     $("#poslovnaGodina").val(posgodval);
     $("#poslovniPartner").val(pospartval);
-    $("#izlaznaFaktura_brojFakt").val(brojFakt);
-    $("#izlaznaFaktura_datFakt").val(datFakt);
-    $("#izlaznaFaktura_datVal").val(datVal);
-    $("#izlaznaFaktura_ukRabat").val(ukRabat);
-    $("#izlaznaFaktura_ukIzBezPDV").val(ukIzBezPDV);
-    $("#izlaznaFaktura_ukPDV").val(ukPDV);
-    $("#izlaznaFaktura_ukZaPlacanje").val(ukZaPlacanje);
-    $("#izlaznaFaktura_preostIznos").val(preostIznos);
-    $("#izlaznaFaktura_IDfakt").val(IDfakt);
+    $("#izlaznaFaktura_brojFakture").val(brojFakture);
+    $("#izlaznaFaktura_datumFakture").val(datumFakture);
+    $("#izlaznaFaktura_datumValute").val(datumValute);
+    $("#izlaznaFaktura_ukupanRabat").val(ukupanRabat);
+    $("#izlaznaFaktura_ukupanIznosBezPDV").val(ukupanIznosBezPDV);
+    $("#izlaznaFaktura_ukupanPDV").val(ukupanPDV);
+    $("#izlaznaFaktura_ukupnoZaPlacanje").val(ukupnoZaPlacanje);
+    $("#izlaznaFaktura_preostaliIznos").val(preostaliIznos);
+    $("#izlaznaFaktura_IDfakture").val(IDfakture);
     $("#izlaznaFaktura_id").val(id);
 }
 
