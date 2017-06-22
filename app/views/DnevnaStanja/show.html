@@ -33,6 +33,11 @@ $(document).ready(function(){
 	
 });
 
+function importFromXML()
+{
+	$(location).attr('href','/DnevnaStanja/importFromXML?id='+id);
+}
+
 function sync(item){
 	oznaka = item.find(".nm_oznaka").html()
     naziv = item.find(".nm_naziv").html()
@@ -61,7 +66,7 @@ function sync(item){
   <li><a  id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{DnevnaStanja.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
-  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="#" id = "importFromXML"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
 

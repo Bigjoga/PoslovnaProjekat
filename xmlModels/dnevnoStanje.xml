@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DnevnoStanjeXML>
+	<DnevnoStanje>
+    	<datumIzvoda>2017-06-26</datumIzvoda>
+    	<novoStanje>10254.5</novoStanje>
+    	<prethodnoStanje>4587.5</prethodnoStanje>
+    	<rezervisano>0</rezervisano>
+    	<stanjeNaTeret>1324.5</stanjeNaTeret>
+    	<stanjeUKorist>4651.9</stanjeUKorist>
+    	<racun>1</racun>
+	</DnevnoStanje>
+	<DnevnoStanje>
+    	<datumIzvoda>2017-06-26</datumIzvoda>
+    	<novoStanje>10254.5</novoStanje>
+    	<prethodnoStanje>4587.5</prethodnoStanje>
+    	<rezervisano>0</rezervisano>
+    	<stanjeNaTeret>1324.5</stanjeNaTeret>
+    	<stanjeUKorist>4651.9</stanjeUKorist>
+    	<racun>2</racun>
+	</DnevnoStanje>
+</DnevnoStanjeXML>

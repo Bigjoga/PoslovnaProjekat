@@ -1,10 +1,17 @@
 package controllers;
 
+import java.io.File;
+import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
 import models.DnevnoStanje;
 import models.Racun;
 import play.mvc.Controller;
-
-import java.util.List;
+import xmlModels.DnevnoStanjeXML;
 
 public class DnevnaStanja extends Controller{
 
@@ -42,4 +49,36 @@ public class DnevnaStanja extends Controller{
 		dnevnoStanje.save();
 		show("add",dnevnoStanje.id);
 	}
+	
+	public static void importFromXML() throws JAXBException{
+		JAXBContext jc = JAXBContext.newInstance(DnevnoStanjeXML.class);
+
+        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        DnevnoStanjeXML fosterHome = (DnevnoStanjeXML) unmarshaller.unmarshal(new File("xmlModels\\dnevnoStanje.xml"));
+
+        Marshaller marshaller = jc.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.marshal(fosterHome, System.out);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
