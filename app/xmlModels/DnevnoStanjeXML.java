@@ -27,3 +27,4 @@ public class DnevnoStanjeXML {
 		this.dnevnaStanja = dnevnaStanja;
 	}
 }
+

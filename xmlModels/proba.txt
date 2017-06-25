@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FosterHome>
+    <spisakDnevhihStanja>
+
+        <DnevnoStanje>
+                
+ 		<datumIzvoda>2017-06-24</datumIzvoda> 
+                <novoStanje>200</novoStanje>
+		<prethodnoStanje>100</prethodnoStanje>
+		<rezervisano>true</rezervisano>	
+		<stanjeNaTeret>4000</stanjeNaTeret>
+		<stanjeUKorist>1000</stanjeUKorist>
+		<racun>123</racun>
+        </DnevnoStanje>
+    
+
+	<DnevnoStanje>
+                
+ 		<datumIzvoda>2017-06-25</datumIzvoda> 
+                <novoStanje>200</novoStanje>
+		<prethodnoStanje>100</prethodnoStanje>
+		<rezervisano>true</rezervisano>	
+		<stanjeNaTeret>4000</stanjeNaTeret>
+		<stanjeUKorist>1000</stanjeUKorist>
+		<racun>456</racun>
+        </DnevnoStanje>
+
+	<DnevnoStanje>
+                
+ 		<datumIzvoda>2017-06-26</datumIzvoda> 
+                <novoStanje>200</novoStanje>
+		<prethodnoStanje>100</prethodnoStanje>
+		<rezervisano>true</rezervisano>	
+		<stanjeNaTeret>4000</stanjeNaTeret>
+		<stanjeUKorist>1000</stanjeUKorist>
+		<racun>789</racun>
+        </DnevnoStanje>
+
+
+    </spisakDnevhihStanja>
+</FosterHome>

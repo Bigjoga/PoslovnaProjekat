@@ -18,40 +18,33 @@ import play.db.jpa.Model;
 @Entity
 public class DnevnoStanje extends Model {
 
-	@XmlElement(name="datumIzvoda")
 	@Column(nullable = false, length=10)
 	public Date datumIzvoda;
 	
-	@XmlElement(name="novoStanje")
 	@Column(nullable = false, length=20)
 	public Float novoStanje;
 	
-	@XmlElement(name="prethodnoStanje")
 	@Column(nullable = false, length=20)
 	public Float prethodnoStanje;
 	
-	@XmlElement(name="rezervisano")
 	@Column
 	public Boolean rezervisano;
 	
-	@XmlElement(name="stanjeNaTeret")
 	@Column(length=20)
 	public Float stanjeNaTeret;
 	
-	@XmlElement(name="stanjeUKorist")
 	@Column(length=20)
 	public Float stanjeUKorist;
 	
-	@XmlElement(name="racun")
 	@ManyToOne
 	public Racun racun;
 	
-	@OneToMany(mappedBy="DnevnoStanje")
-	public List<StavkaIzvoda> stavkaIzvoda;
+	//@OneToMany(mappedBy="DnevnoStanje")
+	//public List<StavkaIzvoda> stavkaIzvoda;
 	
 	public DnevnoStanje(Racun racun, Date datumIzvoda, Float prethodnoStanje,
 			Float stanjeUKorist, Float stanjeNaTeret, Float novoStanje,
-			Boolean rezervisano, List<StavkaIzvoda> stavkaIzvoda) {
+			Boolean rezervisano){//, List<StavkaIzvoda> stavkaIzvoda) {
 		super();
 		this.racun = racun;
 		this.datumIzvoda = datumIzvoda;
@@ -60,7 +53,7 @@ public class DnevnoStanje extends Model {
 		this.stanjeNaTeret = stanjeNaTeret;
 		this.novoStanje = novoStanje;
 		this.rezervisano = rezervisano;
-		this.stavkaIzvoda = stavkaIzvoda;
+		//this.stavkaIzvoda = stavkaIzvoda;
 	}
 
 	public Date getDatumIzvoda() {
@@ -118,7 +111,7 @@ public class DnevnoStanje extends Model {
 	public void setRacun(Racun racun) {
 		this.racun = racun;
 	}
-
+/*
 	public List<StavkaIzvoda> getStavkaIzvoda() {
 		return stavkaIzvoda;
 	}
@@ -126,6 +119,6 @@ public class DnevnoStanje extends Model {
 	public void setStavkaIzvoda(List<StavkaIzvoda> stavkaIzvoda) {
 		this.stavkaIzvoda = stavkaIzvoda;
 	}
-
+*/
      
 }
