@@ -1,11 +1,19 @@
 package controllers;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import models.IzlaznaFaktura;
 import models.PoslovnaGodina;
 import models.PoslovniPartner;
 import play.mvc.Controller;
+import xmlModels.Family2;
+import xmlModels.IzlazneFaktureExport;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 public class IzlazneFakture extends Controller {
 	
@@ -118,5 +126,85 @@ public class IzlazneFakture extends Controller {
 		String mode = "edit";
 		renderTemplate("Bank1/show.html", izlaznaFaktura, mode);
 	}
-
+	
+	public static void XMLexport()
+	{
+		List<IzlaznaFaktura> listaIzlaznihFaktura = IzlaznaFaktura.findAll();
+		ArrayList<Family2> pravaLista = new ArrayList<Family2>();
+		
+		for(int i=0; i<listaIzlaznihFaktura.size(); i++)
+		{
+			Family2 fam = new Family2(
+					listaIzlaznihFaktura.get(i).brojFakture, 
+					listaIzlaznihFaktura.get(i).datumFakture.toString(), 
+					listaIzlaznihFaktura.get(i).datumValute.toString(), 
+					listaIzlaznihFaktura.get(i).ukupanRabat, 
+					listaIzlaznihFaktura.get(i).ukupanIznosBezPDV, 
+					listaIzlaznihFaktura.get(i).ukupanPDV, 
+					listaIzlaznihFaktura.get(i).ukupnoZaPlacanje, 
+					listaIzlaznihFaktura.get(i).preostaliIznos, 
+					listaIzlaznihFaktura.get(i).IDfakture, 
+					listaIzlaznihFaktura.get(i).poslovnaGodina.godina, 
+					listaIzlaznihFaktura.get(i).poslovniPartner.preduzece.naziv);
+			
+			pravaLista.add(fam);
+		}
+		
+		/*
+		IzlazneFaktureExport izlaznaFaktura = new IzlazneFaktureExport();
+		//izlaznaFaktura.setIzlaznaFaktura(IzlaznaFaktura.findAll());
+		//employees.setEmployees(new ArrayList<Employee>());
+		izlaznaFaktura.setIzlaznaFaktura(IzlaznaFaktura.findAll());
+		
+		System.out.println("----------------------------------------");
+		System.out.println(izlaznaFaktura.getIzlaznaFaktura());
+		*/
+		
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(IzlaznaFaktura.class);
+		    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			System.out.println("PROSAO ================ 1");
+		    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		    System.out.println("PROSAO ================ 2");
+		    //Marshal the employees list in console
+		    jaxbMarshaller.marshal(pravaLista, System.out);
+		    System.out.println("PROSAO ================ 3");
+		    //Marshal the employees list in file
+		    jaxbMarshaller.marshal(pravaLista, new File("xmlModels\\export-file.xml"));
+		    System.out.println("PROSAO ================ 4");
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
