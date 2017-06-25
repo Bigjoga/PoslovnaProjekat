@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FosterHome>
+    <spisakUlaznihFaktura>
+
+        <UlaznaFaktura>
+		<poslovnaGodina>2013</poslovnaGodina>
+		<poslovniPartner>1</poslovniPartner>
+		<brojFakture>2</brojFakture>
+		<datumFakture>2017-06-24</datumFakture>
+		<datumValute>2017-06-24</datumValute>
+		<ukupanRabat>10</ukupanRabat>
+		<ukupanIznosBezPDV>10</ukupanIznosBezPDV>
+		<ukupanPDV>10</ukupanPDV>
+		<ukupnoZaPlacanje>20</ukupnoZaPlacanje>
+		<preostaliIznos>110</preostaliIznos>
+		<IDfakture>2</IDfakture>
+        </UlaznaFaktura>
+    
+
+	<UlaznaFaktura>
+ 		<poslovnaGodina>2014</poslovnaGodina>
+		<poslovniPartner>2</poslovniPartner>
+		<brojFakture>100</brojFakture>
+		<datumFakture>2017-06-25</datumFakture>
+		<datumValute>2017-06-25</datumValute>
+		<ukupanRabat>100</ukupanRabat>
+		<ukupanIznosBezPDV>50</ukupanIznosBezPDV>
+		<ukupanPDV>20</ukupanPDV>
+		<ukupnoZaPlacanje>30</ukupnoZaPlacanje>
+		<preostaliIznos>100</preostaliIznos>
+		<IDfakture>3</IDfakture>
+        </UlaznaFaktura>
+    </spisakUlaznihFaktura>
+</FosterHome>

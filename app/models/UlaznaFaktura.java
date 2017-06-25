@@ -70,5 +70,24 @@ public class UlaznaFaktura extends Model {
 		IDfakture = iDfakture;
 	}
 	
+	public UlaznaFaktura(
+			PoslovnaGodina poslovnaGodina, PoslovniPartner poslovniPartner,
+			Integer brojFakture, Date datumFakture, Date datumValute,
+			Float ukupanRabat, Float ukupanIznosBezPDV, Float ukupanPDV,
+			Float ukupnoZaPlacanje, Float preostaliIznos, String iDfakture) {
+		super();
+		this.poslovnaGodina = poslovnaGodina;
+		this.poslovniPartner = poslovniPartner;
+		this.brojFakture = brojFakture;
+		this.datumFakture = datumFakture;
+		this.datumValute = datumValute;
+		this.ukupanRabat = ukupanRabat;
+		this.ukupanIznosBezPDV = ukupanIznosBezPDV;
+		this.ukupanPDV = ukupanPDV;
+		this.ukupnoZaPlacanje = ukupnoZaPlacanje;
+		this.preostaliIznos = preostaliIznos;
+		IDfakture = iDfakture;
+	}
+	
 	
 }

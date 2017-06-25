@@ -1,13 +1,21 @@
 package controllers;
 
+import java.io.File;
+import java.text.ParseException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import models.PoslovnaGodina;
 import models.PoslovniPartner;
 import models.UlaznaFaktura;
 import play.mvc.Controller;
+import xmlModels.FosterHome;
 
 public class UlazneFakture extends Controller {
 	
@@ -121,5 +129,86 @@ public class UlazneFakture extends Controller {
 		String mode = "edit";
 		renderTemplate("Bank1/show.html", ulaznaFaktura, mode);
 	}
+	
+	public static void importFromXML() throws JAXBException, ParseException{
+		JAXBContext jc = JAXBContext.newInstance(FosterHome.class);
+        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        FosterHome fosterHome = (FosterHome) unmarshaller.unmarshal(new File("xmlModels\\ulazneFakture.txt"));
+        Marshaller marshaller = jc.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        
+        System.out.println("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+---");
+        
+        for(int j=0;j<fosterHome.getFamilies1().size();j++){
+        	System.out.println(fosterHome.getFamilies1().get(j).getBrojFakture());
+        	System.out.println(fosterHome.getFamilies1().get(j).getDatumFakture());
+        	System.out.println(fosterHome.getFamilies1().get(j).getDatumValute());
+        	System.out.println(fosterHome.getFamilies1().get(j).getUkupanRabat());
+        	System.out.println(fosterHome.getFamilies1().get(j).getUkupanIznosBezPDV());
+        	System.out.println(fosterHome.getFamilies1().get(j).getUkupanPDV());
+        	System.out.println(fosterHome.getFamilies1().get(j).getUkupnoZaPlacanje());
+        	System.out.println(fosterHome.getFamilies1().get(j).getPreostaliIznos());
+        	System.out.println(fosterHome.getFamilies1().get(j).getIDfakture());
+        	System.out.println(fosterHome.getFamilies1().get(j).getPoslovnaGodina());
+        	System.out.println(fosterHome.getFamilies1().get(j).getPoslovniPartner());
+        	
+        	Date datumFakture = java.sql.Date.valueOf(fosterHome.getFamilies1().get(j).getDatumFakture());
+        	Date datumValute = java.sql.Date.valueOf(fosterHome.getFamilies1().get(j).getDatumValute());
+        	
+        	PoslovnaGodina pg = null;
+        	PoslovniPartner pp = null;
+        	List<PoslovnaGodina> svePoslovneGodine = PoslovnaGodina.findAll();
+        	List<PoslovniPartner> sviPoslovniPartneri = PoslovniPartner.findAll();
+        	
+        	for(int i=0; i<svePoslovneGodine.size();i++){
+        		if(svePoslovneGodine.get(i).IDgodine.toString().equals(fosterHome.getFamilies1().get(j).getPoslovnaGodina())){
+        			pg=svePoslovneGodine.get(i);
+        			System.out.println("pokupio");
+        			System.out.println(pg.godina);
+        		}
+        	}
+        	
+        	for(int i=0; i<sviPoslovniPartneri.size();i++){
+        		if(sviPoslovniPartneri.get(i).id.toString().equals(fosterHome.getFamilies1().get(j).poslovniPartner)){
+        			pp=sviPoslovniPartneri.get(i);
+        			System.out.println("pokupio");
+        			System.out.println(pp.preduzece);
+        		}
+        		
+        		
+        	}
+        	
+        	UlaznaFaktura ul= new UlaznaFaktura(
+        			pg,
+        			pp, 
+        			fosterHome.getFamilies1().get(j).getIDfakture(), 
+        			datumFakture, 
+        			datumValute, 
+        			fosterHome.getFamilies1().get(j).getUkupanRabat(), 
+        			fosterHome.getFamilies1().get(j).getUkupanIznosBezPDV(), 
+        			fosterHome.getFamilies1().get(j).getUkupanPDV(), 
+        			fosterHome.getFamilies1().get(j).getUkupnoZaPlacanje(), 
+        			fosterHome.getFamilies1().get(j).getPreostaliIznos(), 
+        			fosterHome.getFamilies1().get(j).getIDfakture().toString());
+        	
+        	ul.save();
+    		
+        	
+        }
+        show("add", null);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

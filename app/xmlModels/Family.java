@@ -2,6 +2,7 @@ package xmlModels;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Family {
 
-    @XmlElement(name="datumIzvoda")
+	@XmlElement(name="datumIzvoda")
     private String datumIzvoda;
     
     @XmlElement(name="novoStanje")
@@ -29,8 +30,8 @@ public class Family {
     
     @XmlElement(name="racun")
     private Integer racun;
-
-	public String getDatumIzvoda() {
+    
+    public String getDatumIzvoda() {
 		return datumIzvoda;
 	}
 
@@ -84,5 +85,5 @@ public class Family {
 
 	public void setRacun(Integer racun) {
 		this.racun = racun;
-	}   
+	}
 }
