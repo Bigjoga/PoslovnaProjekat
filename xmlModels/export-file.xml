@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listaStavkiIzvoda>
+    <stavkaIzvoda>
+        <dnevnoStanje>2017-06-24</dnevnoStanje>
+        <poslovniPartner>Telenor DOO</poslovniPartner>
+        <brojStavke>1</brojStavke>
+        <duznikNalagodavac>Barajevac</duznikNalagodavac>
+        <svrhaPlacanja>dug</svrhaPlacanja>
+        <poverilacPrimalac>Gajic</poverilacPrimalac>
+        <datumPrijema>2017-06-26</datumPrijema>
+        <datumValute>2017-06-26</datumValute>
+        <modelZaduzenja>321</modelZaduzenja>
+        <pozivNaBrojZaduzenja>321</pozivNaBrojZaduzenja>
+        <racunPoverioca>123</racunPoverioca>
+        <modelOdobrenja>123</modelOdobrenja>
+        <pozivNaBrojOdobrenja>123</pozivNaBrojOdobrenja>
+        <hitno>true</hitno>
+        <iznos>1000.0</iznos>
+        <tipGreske>1</tipGreske>
+        <status>a</status>
+    </stavkaIzvoda>
+    <stavkaIzvoda>
+        <dnevnoStanje>2017-06-25</dnevnoStanje>
+        <poslovniPartner>MTS</poslovniPartner>
+        <brojStavke>2</brojStavke>
+        <duznikNalagodavac>Gajic</duznikNalagodavac>
+        <svrhaPlacanja>potraznja</svrhaPlacanja>
+        <poverilacPrimalac>Barajevac</poverilacPrimalac>
+        <datumPrijema>2017-06-29</datumPrijema>
+        <datumValute>2017-06-30</datumValute>
+        <modelZaduzenja>9877</modelZaduzenja>
+        <pozivNaBrojZaduzenja>12453</pozivNaBrojZaduzenja>
+        <racunPoverioca>655</racunPoverioca>
+        <modelOdobrenja>7898</modelOdobrenja>
+        <pozivNaBrojOdobrenja>45</pozivNaBrojOdobrenja>
+        <hitno>true</hitno>
+        <iznos>500.0</iznos>
+        <tipGreske>0</tipGreske>
+        <status>b</status>
+    </stavkaIzvoda>
+</listaStavkiIzvoda>

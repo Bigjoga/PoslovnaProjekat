@@ -16,15 +16,15 @@ public class StavkaIzvoda extends Model{
 	@OneToMany(mappedBy="stavkaIzvoda")
 	public List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFakture;
 	
-	@ManyToOne
-	public DnevnoStanje DnevnoStanje;
-	
-	@ManyToOne
-	public PoslovniPartner poslovniPartner;
-	
 	@OneToMany(mappedBy="stavkaIzvoda")
 	public List<ZatvaranjeIzlazneFakture> zatvaranjeIzlazneFakture;
 	
+	@ManyToOne
+	public DnevnoStanje dnevnoStanje;
+	
+	@ManyToOne
+	public PoslovniPartner poslovniPartner;
+
 	@Column(nullable = false, unique=true)
 	public Integer brojStavke;
 	
@@ -44,7 +44,7 @@ public class StavkaIzvoda extends Model{
 	public Date datumValute;
 	
 	@Column(length=2)
-	public Number modelZaduzenja;
+	public Integer modelZaduzenja;
 	
 	@Column(length=20)
 	public String pozivNaBrojZaduzenja;
@@ -53,7 +53,7 @@ public class StavkaIzvoda extends Model{
 	public String racunPoverioca;
 	
 	@Column(length=2)
-	public Number modelOdobrenja;
+	public Integer modelOdobrenja;
 	
 	@Column(length=20)
 	public String pozivNaBrojOdobrenja;
@@ -65,7 +65,7 @@ public class StavkaIzvoda extends Model{
 	public Float iznos;
 	
 	@Column(nullable = false, length=1)
-	public Number tipGreske;
+	public Integer tipGreske;
 	
 	@Column(length=1)
 	public String status;
@@ -75,12 +75,12 @@ public class StavkaIzvoda extends Model{
 			List<ZatvaranjeIzlazneFakture> zatvaranjeIzlazneFakture,
 			Integer brojStavke, String DuznikNalagodavac,
 			String svrhaPlacanja, String PoverilacPrimalac,
-			Date datumPrijema, Date datumValute, Number modelZaduzenja,
-			String pozivNaBrojZaduzenja, String racunPoverioca, Number modelOdobrenja,
-			String pozivNaBrojOdobrenja, Boolean hitno, Float iznos, Number tipGreske, String status) {
+			Date datumPrijema, Date datumValute, Integer modelZaduzenja,
+			String pozivNaBrojZaduzenja, String racunPoverioca, Integer modelOdobrenja,
+			String pozivNaBrojOdobrenja, Boolean hitno, Float iznos, Integer tipGreske, String status) {
 		super();
 		this.zatvaranjeUlazneFakture = zatvaranjeUlazneFakture;
-		DnevnoStanje = dnevnoStanje;
+		this.dnevnoStanje = dnevnoStanje;
 		this.poslovniPartner = poslovniPartner;
 		this.zatvaranjeIzlazneFakture = zatvaranjeIzlazneFakture;
 		this.brojStavke = brojStavke;
