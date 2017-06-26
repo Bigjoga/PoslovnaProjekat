@@ -8,6 +8,8 @@ import models.PoslovnaGodina;
 import models.Preduzece;
 import play.mvc.Controller;
 
+//POSLOVNE GODINE KOMPLETNO ODRADJENE, SVE RADI!
+
 public class PoslovneGodine  extends Controller{
 	
 	public static void show(String mode, Long selectedId)

@@ -36,8 +36,8 @@ public class Logovanje extends Controller{
 				session.put("radnik_sifra", k.sifra);
 				session.put("radnik_id", k.id);
 				
-			    mode = "add";
-			    renderTemplate("Drzave/show.html", mode);
+			    //mode = "edit";
+			    renderTemplate("Drzave/show.html", "login");
 				return;
 			}
 			else{

@@ -49,31 +49,43 @@ $(document).ready(function(){
 
 
 function sync(item){
-    posgodval = item.find(".poslovnaGodina").attr("value");
+    dnevnostaval = item.find(".dnevnoStanje").attr("value");
     pospartval = item.find(".poslovniPartner").attr("value");
-    brojFakture = item.find(".brojFakture").html()
-	datumFakture = item.find(".datumFakture").html()
+    brojStavke = item.find(".brojStavke").html()
+	DuznikNalagodavac = item.find(".DuznikNalagodavac").html()
+	svrhaPlacanja = item.find(".svrhaPlacanja").html()
+	PoverilacPrimalac = item.find(".PoverilacPrimalac").html()
+	datumPrijema = item.find(".datumPrijema").html()
 	datumValute = item.find(".datumValute").html()
-	ukupanRabat = item.find(".ukupanRabat").html()
-	ukupanIznosBezPDV = item.find(".ukupanIznosBezPDV").html()
-	ukupanPDV = item.find(".ukupanPDV").html()
-	ukupnoZaPlacanje = item.find(".ukupnoZaPlacanje").html()
-	preostaliIznos = item.find(".preostaliIznos").html()
-	IDfakture = item.find(".IDfakture").html()
+	modelZaduzenja = item.find(".modelZaduzenja").html()
+	pozivNaBrojZaduzenja = item.find(".pozivNaBrojZaduzenja").html()
+	racunPoverioca = item.find(".racunPoverioca").html()
+	modelOdobrenja = item.find(".modelOdobrenja").html()
+	pozivNaBrojOdobrenja = item.find(".pozivNaBrojOdobrenja").html()
+	hitno = item.find(".hitno").html()
+	iznos = item.find(".iznos").html()
+	tipGreske = item.find(".tipGreske").html()
+	status = item.find(".status").html()
     id = item.find(".id").html()
     
-    $("#poslovnaGodina").val(posgodval);
+    $("#dnevnoStanje").val(dnevnostaval);
     $("#poslovniPartner").val(pospartval);
-    $("#ulaznaFakturatura_brojFakture").val(brojFakture);
-    $("#ulaznaFaktura_datumFakture").val(datumFakture);
-    $("#ulaznaFaktura_datumValute").val(datumValute);
-    $("#ulaznaFaktura_ukupanRabat").val(ukupanRabat);
-    $("#ulaznaFaktura_ukupanIznosBezPDV").val(ukupanIznosBezPDV);
-    $("#ulaznaFaktura_ukupanPDV").val(ukupanPDV);
-    $("#ulaznaFaktura_ukupnoZaPlacanje").val(ukupnoZaPlacanje);
-    $("#ulaznaFaktura_preostaliIznos").val(preostaliIznos);
-    $("#ulaznaFaktura_IDfakture").val(IDfakture);
-    $("#ulaznaFaktura_id").val(id);
+    $("#stavkeIzvoda_brojStavke").val(brojStavke);
+    $("#stavkeIzvoda_DuznikNalagodavac").val(DuznikNalagodavac);
+    $("#stavkeIzvoda_svrhaPlacanja").val(svrhaPlacanja);
+    $("#stavkeIzvoda_PoverilacPrimalac").val(PoverilacPrimalac);
+    $("#stavkeIzvoda_datumPrijema").val(datumPrijema);
+    $("#stavkeIzvoda_datumValute").val(datumValute);
+    $("#stavkeIzvoda_modelZaduzenja").val(modelZaduzenja);
+    $("#stavkeIzvoda_pozivNaBrojZaduzenja").val(pozivNaBrojZaduzenja);
+    $("#stavkeIzvoda_racunPoverioca").val(racunPoverioca);
+    $("#stavkeIzvoda_modelOdobrenja").val(modelOdobrenja);
+    $("#stavkeIzvoda_pozivNaBrojOdobrenja").val(pozivNaBrojOdobrenja);
+    $("#stavkeIzvoda_hitno").val(hitno);
+    $("#stavkeIzvoda_iznos").val(iznos);
+    $("#stavkeIzvoda_tipGreske").val(tipGreske);
+    $("#stavkeIzvoda_status").val(status);
+    $("#stavkeIzvoda_id").val(id);
 }
 
 function remove(id)
@@ -81,7 +93,7 @@ function remove(id)
 	var answer = confirm("Are you sure you want to delete?");
 	if(answer)
 		{
-			$(location).attr('href','/UlazneFakture/delete?id='+id);
+			$(location).attr('href','/StavkeIzvoda/delete?id='+id);
 		}
 	else
 		{
@@ -94,15 +106,15 @@ function remove(id)
 
 <p>
 <ul>
-  <li><a href="@{UlazneFakture.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
-  <li><a href="@{UlazneFakture.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{StavkeIzvoda.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{StavkeIzvoda.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
   <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
   <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
-  <li><a href="@{UlazneFakture.show("add",null)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="@{StavkeIzvoda.show("add",null)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
   <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
@@ -133,7 +145,7 @@ function remove(id)
 	</tr>
 #{list items:stavkaIzvoda, as:'stavkeIzvoda'}
 	<tr #{if stavkeIzvoda.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
-		<td value="${stavkeIzvoda.dnevnoStanje.id}" class = "poslovnaGodina">${stavkeIzvoda.dnevnoStanje.datumIzvoda}</td>
+		<td value="${stavkeIzvoda.dnevnoStanje.id}" class = "dnevnoStanje">${stavkeIzvoda.dnevnoStanje.datumIzvoda}</td>
 		<td value="${stavkeIzvoda.poslovniPartner.id}" class = "poslovniPartner">${stavkeIzvoda.poslovniPartner.preduzece.naziv}</td>
 		<td class = "brojStavke">${stavkeIzvoda.brojStavke}</td>
 		<td class = "DuznikNalagodavac">${stavkeIzvoda.DuznikNalagodavac}</td>
@@ -157,7 +169,7 @@ function remove(id)
 
 		#{set 'action'}
 		  #{if mode == 'add'}
-		    @{UlazneFakture.create()}
+		    @{StavkeIzvoda.create()}
 		  #{/if}
 		#{/set}
 
@@ -166,7 +178,7 @@ function remove(id)
 	
 		<form action=${action} method="post">
 		
-				#{field 'ulaznaFaktura.id'}
+				#{field 'stavkeIzvoda.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
@@ -174,8 +186,8 @@ function remove(id)
 				#{field 'dnevnoStanje'}
 					<label for = "${field.id}">Dnevno stanje</label>
 					<select name = "${field.name}" id = "${field.id}"/>
-					#{list items:poslovnaGodina, as:'posGodina'}
-					<option value = "${posGodina.id}">${posGodina.godina}</option>
+					#{list items:dnevnoStanje, as:'dnevnaStanja'}
+					<option value = "${dnevnaStanja.id}">${dnevnaStanja.datumIzvoda}</option>
 					#{/list}
 					</select>
 					
@@ -207,58 +219,92 @@ function remove(id)
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.brojFakture'}
-					<label for = "${field.id}">Broj fakture</label>
+				#{field 'stavkeIzvoda.brojStavke'}
+					<label for = "${field.id}">Broj stavke</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.datumFakture'}
-					<label for = "${field.id}">Datum fakture</label>
+				#{field 'stavkeIzvoda.DuznikNalagodavac'}
+					<label for = "${field.id}">Duznik</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'stavkeIzvoda.svrhaPlacanja'}
+					<label for = "${field.id}">Svrha placanja</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'stavkeIzvoda.PoverilacPrimalac'}
+					<label for = "${field.id}">Poverilac</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'stavkeIzvoda.datumPrijema'}
+					<label for = "${field.id}">Datum prijema</label>
 					<input type = "date" name = "${field.name}" id = "${field.id}"/>
-					<!-- bio je type="date"  -->
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.datumValute'}
-					<label for = "${field.id}">Datum Valute</label>
+				#{field 'stavkeIzvoda.datumValute'}
+					<label for = "${field.id}">Datum valute</label>
 					<input type = "date" name = "${field.name}" id = "${field.id}"/>
-					<!-- bio je type="date"  -->
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.ukupanRabat'}
-					<label for = "${field.id}">Ukupan rabat</label>
+				#{field 'stavkeIzvoda.modelZaduzenja'}
+					<label for = "${field.id}">Model zaduzenja</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.ukupanIznosBezPDV'}
-					<label for = "${field.id}">Ukupan iznos bez PDV</label>
+				#{field 'stavkeIzvoda.pozivNaBrojZaduzenja'}
+					<label for = "${field.id}">Poziv na broj zaduzenja</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.ukupanPDV'}
-					<label for = "${field.id}">Ukupan PDV</label>
+				#{field 'stavkeIzvoda.racunPoverioca'}
+					<label for = "${field.id}">Racun poverioca</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.ukupnoZaPlacanje'}
-					<label for = "${field.id}">Ukupno za palacanje</label>
+				#{field 'stavkeIzvoda.modelOdobrenja'}
+					<label for = "${field.id}">Model odobrenja</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.preostaliIznos'}
-					<label for = "${field.id}">Preostali iznos</label>
+				#{field 'stavkeIzvoda.pozivNaBrojOdobrenja'}
+					<label for = "${field.id}">Poziv na broj odobrenja</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'ulaznaFaktura.IDfakture'}
-					<label for = "${field.id}">ID fakture</label>
+				#{field 'stavkeIzvoda.hitno'}
+					<label for = "${field.id}">Hitno</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'stavkeIzvoda.iznos'}
+					<label for = "${field.id}">Iznos</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'stavkeIzvoda.tipGreske'}
+					<label for = "${field.id}">Tip greske</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'stavkeIzvoda.status'}
+					<label for = "${field.id}">Status</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
@@ -276,21 +322,19 @@ function remove(id)
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Poslovne godine koje se nalaze u bazi su:
+      	Dnevna stanja koje se nalaze u bazi su:
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">
 		<tr class = "header">
-		   <th>ID godine</th> 
-		   <th>Godina</th>
-		   <th>Zakljucena</th> 
+		   <th>Datum izvoda</th> 
+		   <th>Racun</th> 
 		</tr>
-		#{list items:poslovnaGodina, as:'poslovnaGodina'}
+		#{list items:dnevnaStanja, as:'dnevnoStanje'}
 		<tr>
-			<td class = "IDgodine">${poslovnaGodina.IDgodine}</td>
-			<td class = "godina">${poslovnaGodina.godina}</td>
-			<td class = "zakljucena">${poslovnaGodina.zakljucena}</td>
-			<td style = "visibility: hidden; max-width: 0px" class = "pg_id">${poslovnaGodina.id}</td>
+			<td class = "datumIzvoda">${dnevnoStanje.datumIzvoda}</td>
+			<td value="${dnevnoStanje.racun.id}" class = "racun">${dnevnoStanje.racun.IDracuna}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "pg_id">${dnevnoStanje.id}</td>
 		</tr>
 		#{/list}
 		</table>

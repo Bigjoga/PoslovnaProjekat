@@ -52,8 +52,8 @@ function sync(item){
     posgodval = item.find(".poslovnaGodina").attr("value");
     pospartval = item.find(".poslovniPartner").attr("value");
     brojFakture = item.find(".brojFakture").html()
-	datumFakture = item.find(".datumFakture").html()
-	datumValute = item.find(".datumValute").html()
+	datumFakture = item.find(".uf_datumFakture").html()
+	datumValute = item.find(".uf_datumValute").html()
 	ukupanRabat = item.find(".ukupanRabat").html()
 	ukupanIznosBezPDV = item.find(".ukupanIznosBezPDV").html()
 	ukupanPDV = item.find(".ukupanPDV").html()
@@ -64,7 +64,7 @@ function sync(item){
     
     $("#poslovnaGodina").val(posgodval);
     $("#poslovniPartner").val(pospartval);
-    $("#ulaznaFakturatura_brojFakture").val(brojFakture);
+    $("#ulaznaFaktura_brojFakture").val(brojFakture);
     $("#ulaznaFaktura_datumFakture").val(datumFakture);
     $("#ulaznaFaktura_datumValute").val(datumValute);
     $("#ulaznaFaktura_ukupanRabat").val(ukupanRabat);
@@ -130,8 +130,8 @@ function remove(id)
 		<td value="${ulaznaFaktura.poslovnaGodina.id}" class = "poslovnaGodina">${ulaznaFaktura.poslovnaGodina.godina}</td>
 		<td value="${ulaznaFaktura.poslovniPartner.id}" class = "poslovniPartner">${ulaznaFaktura.poslovniPartner.preduzece.naziv}</td>
 		<td class = "brojFakture">${ulaznaFaktura.brojFakture}</td>
-		<td class = "datumFakture">${ulaznaFaktura.datumFakture}</td>
-		<td class = "datumValute">${ulaznaFaktura.datumValute}</td>
+		<td class = "uf_datumFakture">${ulaznaFaktura.datumFakture}</td>
+		<td class = "uf_datumValute">${ulaznaFaktura.datumValute}</td>
 		<td class = "ukupanRabat">${ulaznaFaktura.ukupanRabat}</td>
 		<td class = "ukupanIznosBezPDV">${ulaznaFaktura.ukupanIznosBezPDV}</td>
 		<td class = "ukupanPDV">${ulaznaFaktura.ukupanPDV}</td>

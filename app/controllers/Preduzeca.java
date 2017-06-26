@@ -8,6 +8,8 @@ import models.Preduzece;
 import models.Racun;
 import play.mvc.Controller;
 
+//PREDUZECA KOMPLETNO ODRADJENA, SVE RADI!
+
 public class Preduzeca extends Controller{
 
 	public static void show(String mode, Long selectedId)

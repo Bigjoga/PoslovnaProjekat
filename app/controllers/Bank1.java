@@ -8,6 +8,8 @@ import models.Drzava;
 import models.NaseljenoMesto;
 import play.mvc.Controller;
 
+//BANKA KOMPLETNO ODRADJENA, SVE RADI!
+
 public class Bank1 extends Controller{
 	
 	public static void show(String mode, Long selectedIndex)
@@ -23,23 +25,24 @@ public class Bank1 extends Controller{
 	{	 
 		NaseljenoMesto naseljenoMesto = NaseljenoMesto.findById(id);
 		List<NaseljenoMesto> naseljenaMesta = NaseljenoMesto.findAll();
-		List<Banka1> bank1 = Banka1.findAll();
+		List<Banka1> banka1 = Banka1.findAll();
 		List<Banka1> bank1ZaPrikaz = new ArrayList<Banka1>();
 		
-		for(Banka1 bnk : bank1)
+		for(Banka1 bnk : banka1)
 		{
-			if(bnk.naseljenoMesto.id == naseljenoMesto.id)
+			if(bnk.naseljenoMesto.naziv.equals(naseljenoMesto.naziv))
 			{
+				System.out.println("USAOOOOOOOOOOOOOOOOOOOOOOOOO");
 				bank1ZaPrikaz.add(bnk);
 			}
 		}
 		
 		String mode = "edit";
-		bank1.clear();
-		bank1.addAll(bank1ZaPrikaz);
+		banka1.clear();
+		banka1.addAll(bank1ZaPrikaz);
 		
 		Long idZaPrikaz = id;
-		renderTemplate("Bank1/show.html",naseljenaMesta,bank1,mode,0,idZaPrikaz);	
+		renderTemplate("Bank1/show.html",naseljenaMesta,banka1,mode,0,idZaPrikaz);	
 	}
 	
 	public static void create(Banka1 bank1, Long naseljenoMesto)

@@ -6,6 +6,8 @@ import models.PoslovniPartner;
 import models.Preduzece;
 import play.mvc.Controller;
 
+//POSLOVNI PARTNERI KOMPLETNO ODRADJENI, SVE RADI!
+
 public class PoslovniPartneri extends Controller{
 
 	public static void show(String mode, Long selectedIndex)

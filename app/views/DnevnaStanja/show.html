@@ -39,16 +39,22 @@ function importFromXML()
 }
 
 function sync(item){
-	oznaka = item.find(".nm_oznaka").html()
-    naziv = item.find(".nm_naziv").html()
-    postanskiBroj = item.find(".nm_postanskiBroj").html()
-    id = item.find(".nm_id").html()
+	datumIzvoda = item.find(".datumIzvoda").html()
+	prethodnoStanje = item.find(".prethodnoStanje").html()
+	stanjeUKorist = item.find(".stanjeUKorist").html()
+	stanjeNaTeret = item.find(".stanjeNaTeret").html()
+	novoStanje = item.find(".novoStanje").html()
+	rezervisano = item.find(".rezervisano").html()
+	racval = item.find(".racun").attr("value");
+    id = item.find(".id").html()
+    
     $("#dnevnoStanje_datumIzvoda").val(datumIzvoda);
     $("#dnevnoStanje_prethodnoStanje").val(prethodnoStanje);
     $("#dnevnoStanje_stanjeUKorist").val(stanjeUKorist);
     $("#dnevnoStanje_stanjeNaTeret").val(stanjeNaTeret);
     $("#dnevnoStanje_novoStanje").val(novoStanje);
     $("#dnevnoStanje_rezervisano").val(rezervisano);
+    $("#racun").val(racval);
     $("#dnevnoStanje_id").val(id);
 }
 
@@ -84,14 +90,14 @@ function sync(item){
 	   <th>Racun</th>
 	</tr>
 #{list items:dnevnaStanja, as:'dnevnoStanje'}
-	<tr #{if dnevnoStanje.id == selectedIndex} class = "highlighted" #{/if}>
+	<tr #{if dnevnoStanje.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
 		<td class = "datumIzvoda">${dnevnoStanje.datumIzvoda}</td>
 		<td class = "prethodnoStanje">${dnevnoStanje.prethodnoStanje}</td>
 		<td class = "stanjeUKorist">${dnevnoStanje.stanjeUKorist}</td>
 		<td class = "stanjeNaTeret">${dnevnoStanje.stanjeNaTeret}</td>
 		<td class = "novoStanje">${dnevnoStanje.novoStanje}</td>
 		<td class = "rezervisano">${dnevnoStanje.rezervisano}</td>
-		<td class = "racun">${dnevnoStanje.racun.IDracuna}</td>
+		<td value="${dnevnoStanje.racun.id}" class = "racun">${dnevnoStanje.racun.IDracuna}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${dnevnoStanje.id}</td>
 	</tr>
 #{/list}
@@ -185,7 +191,7 @@ function sync(item){
       <!-- Modal content-->
       <div class="modal-content">
       <div class="modal-header">
-      	Racuni
+      	Racuni koji se nalaze u sistemu:
       </div>
       <div class="modal-body">
 	    <table style = "padding:2em">
@@ -196,6 +202,7 @@ function sync(item){
 		#{list items:racuni, as:'racun'}
 		<tr>
 			<td class = "IDracuna">${racun.IDracuna}</td>
+			<td value="${racun.banka1.id}" class = "racun">${racun.banka1.naziv}</td>
 			<td style = "visibility: hidden; max-width: 0px" class = "dr_id">${racun.id}</td>
 		</tr>
 		#{/list}

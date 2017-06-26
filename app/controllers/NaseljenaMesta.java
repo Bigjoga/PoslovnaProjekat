@@ -7,6 +7,8 @@ import play.mvc.Controller;
 import models.Drzava;
 import models.NaseljenoMesto;
 
+//NASELJENO MESTO KOMPLETNO ODRADJENA, SVE RADI!
+
 public class NaseljenaMesta extends Controller{
 
 	public static void show(String mode, Long selectedIndex)

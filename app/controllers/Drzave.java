@@ -5,6 +5,8 @@ import java.util.List;
 import models.Drzava;
 import play.mvc.Controller;
 
+//DRZAVA KOMPLETNO ODRADJENA, SVE RADI!
+
 public class Drzave extends Controller{
 	
 	public static void show(String mode, Long selectedIndex)

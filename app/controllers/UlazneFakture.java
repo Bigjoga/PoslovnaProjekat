@@ -17,6 +17,9 @@ import models.UlaznaFaktura;
 import play.mvc.Controller;
 import xmlModels.FosterHome;
 
+//SYNC POGLEDATI ZA DATUM FAKTURE I VALUTE!
+//SVE OSTALO RADI!
+
 public class UlazneFakture extends Controller {
 	
 	public static void show(String mode, Long selectedIndex)

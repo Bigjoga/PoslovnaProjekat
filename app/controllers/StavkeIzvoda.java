@@ -28,10 +28,20 @@ public class StavkeIzvoda extends Controller{
 		render(stavkaIzvoda, poslovniPartner, dnevnoStanje, mode, selectedIndex);
 	}
 	
+	public static void create(StavkaIzvoda stavkeIzvoda, Long poslovniPartner, Long dnevnoStanje)
+	{
+		PoslovniPartner partner = PoslovniPartner.findById(poslovniPartner);
+		DnevnoStanje dnevno = DnevnoStanje.findById(dnevnoStanje);
+		
+		stavkeIzvoda.poslovniPartner = partner;
+		stavkeIzvoda.dnevnoStanje = dnevno;
+		stavkeIzvoda.save();
+		show("add", stavkeIzvoda.id);
+	}
 	
-	public static void exportXML(){
-		
-		
+	
+	public static void exportXML()
+	{
 		ArrayList<StavkaIzvodaExport> sveStavke= new ArrayList<StavkaIzvodaExport>();
 		List<StavkaIzvoda> stavka= StavkaIzvoda.findAll();
 		
@@ -66,8 +76,7 @@ public class StavkeIzvoda extends Controller{
 					
 			sveStavke.add(s);
 		}
-		
-		
+
 		ListaStavkiIzvodaExport epl= new ListaStavkiIzvodaExport();
 		epl.setEmployees(sveStavke);
 		
@@ -87,8 +96,6 @@ public class StavkeIzvoda extends Controller{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 	
 }

@@ -9,6 +9,8 @@ import models.Banka1;
 import models.Racun;
 import play.mvc.Controller;
 
+//RACUNI KOMPLETNO ODRADJENI, SVE RADI!
+
 public class Racuni extends Controller{
 
 	public static void show(String mode, Long selectedIndex)

@@ -17,16 +17,16 @@ import xmlModels.FosterHome;
 
 public class DnevnaStanja extends Controller{
 
-	public static void show(String mode, Long selectedId)
+	public static void show(String mode, Long selectedIndex)
 	{
 		List<Racun> racuni = Racun.findAll();
 		List<DnevnoStanje> dnevnaStanja = DnevnoStanje.findAll();
 		if(mode == null || mode.equals(""))
 			mode = "edit";
-		render(racuni,dnevnaStanja,mode,selectedId);
+		render(racuni,dnevnaStanja,mode,selectedIndex);
 	}
 	
-	public static void create(DnevnoStanje dnevnoStanje, Long racuni)
+	public static void create(DnevnoStanje dnevnoStanje, Long racun)
 	{
 		validation.required(dnevnoStanje.datumIzvoda);
 		validation.required(dnevnoStanje.prethodnoStanje);
@@ -46,11 +46,14 @@ public class DnevnaStanja extends Controller{
 				show("add",null);
 			}
 		}
-		Racun racunii = Racun.findById(racuni);
-		dnevnoStanje.racun = racunii;
+		
+		Racun racuni = Racun.findById(racun);
+		dnevnoStanje.racun = racuni;
 		dnevnoStanje.save();
 		show("add",dnevnoStanje.id);
 	}
+	
+	
 	
 	public static void importFromXML() throws JAXBException, ParseException{
 		JAXBContext jc = JAXBContext.newInstance(FosterHome.class);
