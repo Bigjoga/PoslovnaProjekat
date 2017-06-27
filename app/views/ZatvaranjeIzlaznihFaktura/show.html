@@ -1,0 +1,195 @@
+#{extends 'standardForm.html' /}
+#{set title:'Izlazne fakture' /}
+
+#{set 'prikazani'}
+	idZaPrikaz
+	#{/set}
+
+<script>
+
+function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
+
+
+$(document).ready(function(){
+	var zaPrikazivanjeStoTreba = 0;
+	//alert(GetURLParameter('id'));
+	//zaPrikazivanjeStoTreba = GetURLParameter('id');
+	//alert(zaPrikazivanjeStoTreba)
+	$("#posgodPickup").click(function(){
+		id1 = $(".highlighted").find(".pg_id").html();
+		$("select").val(id1);
+		$('#posgodModal').modal('toggle');
+	});
+});
+
+$(document).ready(function(){
+	var zaPrikazivanjeStoTreba = 0;
+	//alert(GetURLParameter('id'));
+	//zaPrikazivanjeStoTreba = GetURLParameter('id');
+	//alert(zaPrikazivanjeStoTreba)
+	$("#posparPickup").click(function(){
+		id2 = $(".highlighted").find(".pp_id").html();
+		$("select").val(id2);
+		$('#posparModal').modal('toggle');
+	});
+});
+
+
+
+function sync(item){
+    posgodval = item.find(".poslovnaGodina").attr("value");
+    pospartval = item.find(".poslovniPartner").attr("value");
+    brojFakture = item.find(".brojFakture").html()
+	datumFakture = item.find(".datumFakture").html()
+	datumValute = item.find(".datumValute").html()
+	ukupanRabat = item.find(".ukupanRabat").html()
+	ukupanIznosBezPDV = item.find(".ukupanIznosBezPDV").html()
+	ukupanPDV = item.find(".ukupanPDV").html()
+	ukupnoZaPlacanje = item.find(".ukupnoZaPlacanje").html()
+	preostaliIznos = item.find(".preostaliIznos").html()
+	IDfakture = item.find(".IDfakture").html()
+    id = item.find(".id").html()
+    
+    $("#poslovnaGodina").val(posgodval);
+    $("#poslovniPartner").val(pospartval);
+    $("#izlaznaFaktura_brojFakture").val(brojFakture);
+    $("#izlaznaFaktura_datumFakture").val(datumFakture);
+    $("#izlaznaFaktura_datumValute").val(datumValute);
+    $("#izlaznaFaktura_ukupanRabat").val(ukupanRabat);
+    $("#izlaznaFaktura_ukupanIznosBezPDV").val(ukupanIznosBezPDV);
+    $("#izlaznaFaktura_ukupanPDV").val(ukupanPDV);
+    $("#izlaznaFaktura_ukupnoZaPlacanje").val(ukupnoZaPlacanje);
+    $("#izlaznaFaktura_preostaliIznos").val(preostaliIznos);
+    $("#izlaznaFaktura_IDfakture").val(IDfakture);
+    $("#izlaznaFaktura_id").val(id);
+}
+
+function remove(id)
+{
+	var answer = confirm("Are you sure you want to delete?");
+	if(answer)
+		{
+			$(location).attr('href','/ZatvaranjeIzlaznihFaktura/delete?id='+id);
+		}
+	else
+		{
+		
+		}
+}
+</script>
+
+
+
+<p>
+<ul>
+  <li><a href="@{ZatvaranjeIzlaznihFaktura.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{ZatvaranjeIzlaznihFaktura.show("edit",null)}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{ZatvaranjeIzlaznihFaktura.show("add",null)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+<div class = "container-fluid">
+<h1>Zatvaranje izlazne fakture</h1>
+
+<table class="TabelaForme">
+	<tr class = "header">
+	   <th>Datum</th>
+	   <th>Izlazna faktura</th>
+	   
+	   
+	</tr>
+#{list items:zatvaranje, as:'zat'}
+	<tr #{if zat.id == selectedIndex} class = "highlighted trww" #{/if} class="trww">
+		<td class = "datumFakture">${zat.datum}</td>
+		<td value="${zat.izlaznaFaktura.IDfakture}" class = "poslovnaGodina">${zat.izlaznaFaktura.IDfakture}</td>
+		
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${zat.id}</td>
+	</tr>
+#{/list}
+</table>
+
+		#{set 'action'}
+		  
+		#{/set}
+
+
+<!-- Modal -->
+  <div class="modal fade" id="posgodModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Poslovne godine koje se nalaze u bazi su:
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>ID godine</th> 
+		   <th>Godina</th>
+		   <th>Zakljucena</th> 
+		</tr>
+		#{list items:poslovnaGodina, as:'poslovnaGodina'}
+		<tr>
+			<td class = "IDgodine">${poslovnaGodina.IDgodine}</td>
+			<td class = "godina">${poslovnaGodina.godina}</td>
+			<td class = "zakljucena">${poslovnaGodina.zakljucena}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "pg_id">${poslovnaGodina.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "posgodPickup" type = "button" value = "izbor"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+   
+  <div class="modal fade" id="posparModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Poslovni partneri koji se nalaze u bazi su:
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Naziv preduzeca</th>
+		</tr>
+		#{list items:poslovniPartner, as:'poslovniPartner'}
+		<tr>
+			<td class = "preduzece">${poslovniPartner.preduzece.naziv}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "pp_id">${poslovniPartner.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "posparPickup" type = "button" value = "izbor"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+</div>
+</div>

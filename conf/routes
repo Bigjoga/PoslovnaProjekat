@@ -12,7 +12,7 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 
 # Home page
-GET		/Racuni									Racuni.show();
+GET		/Application							Application.index();
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

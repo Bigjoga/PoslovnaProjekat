@@ -88,6 +88,12 @@ function remove(id)
 		
 		}
 }
+
+
+function pickAFile()
+{
+	$(location).attr('href','/UlazneFakture/pickAFile');
+}
 </script>
 
 
@@ -104,7 +110,8 @@ function remove(id)
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{UlazneFakture.show("add",null)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
-  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="@{UlazneFakture.show("zatvaranje",null)}" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="#" id = "pickAFile">Ucitavanje fajla<img src="@{'/public/images/read.png'}"/></a></li>
 </ul>
 </p>
 
@@ -149,6 +156,9 @@ function remove(id)
 		  #{/if}
 		  #{elseif mode == 'edit'}
 		    @{UlazneFakture.edit()}
+		  #{/elseif}
+		  #{elseif mode == 'zatvaranje'}
+		    @{UlazneFakture.zatvaranje()}
 		  #{/elseif}
 		  #{else}
 		    @{UlazneFakture.filter()}

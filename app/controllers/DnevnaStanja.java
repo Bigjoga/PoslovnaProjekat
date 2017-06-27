@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -53,8 +55,67 @@ public class DnevnaStanja extends Controller{
 		show("add",dnevnoStanje.id);
 	}
 	
-	
-	
+	public static void pickAFile() throws JAXBException, ParseException{
+		
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("XML and TXT files", "txt", "xml");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(null);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " +
+                    chooser.getSelectedFile().getName());
+        }	
+		
+		JAXBContext jc = JAXBContext.newInstance(FosterHome.class);
+        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        FosterHome fosterHome = (FosterHome) unmarshaller.unmarshal(new File(chooser.getSelectedFile().getPath()));
+        Marshaller marshaller = jc.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        
+        
+        System.out.println("------------------------------>>");
+        
+        
+        for(int j=0;j<fosterHome.getFamilies().size();j++){
+        	
+        	 System.out.println(fosterHome.getFamilies().get(j).getDatumIzvoda());
+             System.out.println(fosterHome.getFamilies().get(j).getNovoStanje());
+             System.out.println(fosterHome.getFamilies().get(j).getPrethodnoStanje());
+             System.out.println(fosterHome.getFamilies().get(j).getRezervisano());
+             System.out.println(fosterHome.getFamilies().get(j).getStanjeNaTeret());
+             System.out.println(fosterHome.getFamilies().get(j).getStanjeUKorist());
+             System.out.println(fosterHome.getFamilies().get(j).getRacun());
+            
+             
+		        Date datum= java.sql.Date.valueOf(fosterHome.getFamilies().get(j).getDatumIzvoda());
+		        Racun rac=null;
+		        List<Racun> sviracuni=Racun.findAll();
+		        for(int i =0 ;i<sviracuni.size();i++){
+		        	
+		        	if(sviracuni.get(i).IDracuna.toString().equals(fosterHome.getFamilies().get(j).getRacun().toString()) ){
+		        		System.out.println(sviracuni.get(i)+" = " + fosterHome.getFamilies().get(j).getRacun());
+		        		rac=sviracuni.get(i);
+		        		System.out.println(rac.IDracuna);
+		        		
+		        		DnevnoStanje ds= new DnevnoStanje
+				        		(rac,
+				        		datum,
+				        		fosterHome.getFamilies().get(j).getPrethodnoStanje(), 
+				        		fosterHome.getFamilies().get(j).getStanjeUKorist(),
+				        		fosterHome.getFamilies().get(j).getStanjeNaTeret(),
+				        		fosterHome.getFamilies().get(j).getNovoStanje(), 
+				        		fosterHome.getFamilies().get(j).getRezervisano());
+				       
+				        ds.save();
+				        System.out.println("dodao sam ");
+				        
+		        	}
+		        	
+		        }
+        }		
+        show("add",null);   
+	}
+	/*
 	public static void importFromXML() throws JAXBException, ParseException{
 		JAXBContext jc = JAXBContext.newInstance(FosterHome.class);
         Unmarshaller unmarshaller = jc.createUnmarshaller();
@@ -105,6 +166,7 @@ public class DnevnaStanja extends Controller{
         }		
         show("add",null);   
 	}
+	*/
 }
 
 

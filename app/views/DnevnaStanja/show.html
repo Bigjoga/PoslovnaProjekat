@@ -33,9 +33,9 @@ $(document).ready(function(){
 	
 });
 
-function importFromXML()
+function pickAFile()
 {
-	$(location).attr('href','/DnevnaStanja/importFromXML?id='+id);
+	$(location).attr('href','/UlazneFakture/pickAFile');
 }
 
 function sync(item){
@@ -59,7 +59,6 @@ function sync(item){
 }
 
 </script>
-
 <p>
 <ul>
   <li><a href="@{DnevnaStanja.show("search",null)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
@@ -72,7 +71,7 @@ function sync(item){
   <li><a  id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{DnevnaStanja.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
-  <li><a href="#" id = "importFromXML"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+   <li><a href="#" id = "pickAFile">Ucitavanje fajla<img src="@{'/public/images/read.png'}"/></a></li>
 </ul>
 </p>
 

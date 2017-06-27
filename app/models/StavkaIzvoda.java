@@ -13,12 +13,6 @@ import play.db.jpa.Model;
 @Entity
 public class StavkaIzvoda extends Model{
 	
-	@OneToMany(mappedBy="stavkaIzvoda")
-	public List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFakture;
-	
-	@OneToMany(mappedBy="stavkaIzvoda")
-	public List<ZatvaranjeIzlazneFakture> zatvaranjeIzlazneFakture;
-	
 	@ManyToOne
 	public DnevnoStanje dnevnoStanje;
 	
@@ -70,19 +64,15 @@ public class StavkaIzvoda extends Model{
 	@Column(length=1)
 	public String status;
 	
-	public StavkaIzvoda(List<ZatvaranjeUlazneFakture> zatvaranjeUlazneFakture,
-			models.DnevnoStanje dnevnoStanje, PoslovniPartner poslovniPartner,
-			List<ZatvaranjeIzlazneFakture> zatvaranjeIzlazneFakture,
+	public StavkaIzvoda(models.DnevnoStanje dnevnoStanje, PoslovniPartner poslovniPartner,
 			Integer brojStavke, String DuznikNalagodavac,
 			String svrhaPlacanja, String PoverilacPrimalac,
 			Date datumPrijema, Date datumValute, Integer modelZaduzenja,
 			String pozivNaBrojZaduzenja, String racunPoverioca, Integer modelOdobrenja,
 			String pozivNaBrojOdobrenja, Boolean hitno, Float iznos, Integer tipGreske, String status) {
 		super();
-		this.zatvaranjeUlazneFakture = zatvaranjeUlazneFakture;
 		this.dnevnoStanje = dnevnoStanje;
 		this.poslovniPartner = poslovniPartner;
-		this.zatvaranjeIzlazneFakture = zatvaranjeIzlazneFakture;
 		this.brojStavke = brojStavke;
 		this.DuznikNalagodavac = DuznikNalagodavac;
 		this.svrhaPlacanja = svrhaPlacanja;
