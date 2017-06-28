@@ -4,7 +4,9 @@ import java.io.File;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -17,6 +19,10 @@ import models.PoslovnaGodina;
 import models.PoslovniPartner;
 import models.UlaznaFaktura;
 import models.ZatvaranjeUlazneFakture;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import play.Play;
 import play.mvc.Controller;
 import xmlModels.FosterHome;
 
@@ -273,17 +279,38 @@ public class UlazneFakture extends Controller {
 	}
 	*/
 
+	
+	//direktan eksport u pdf
+
+	public void exportToPdf(Long id, Long selectedIndex) {
+
+//		List<PoslovniPartner> poslovniPartner = PoslovniPartner.findAll();
+//		List<PoslovnaGodina> poslovnaGodina = PoslovnaGodina.findAll();
+		List<UlaznaFaktura> ulaznaFaktura = UlaznaFaktura.findAll();
+		String mode = "edit";
+		
+		try {
+			Map parametri = new HashMap<>();
+			parametri.put("idFakture", id);
+
+			String file = imeIzvestaja1("KnjigaUlaznihFaktura.jasper");
+			
+//			JasperPrint jp = (JasperPrint)JasperFillManager.fillReport(getClass().getResource("/jaspers/KnjigaUlaznihFaktura.jasper").openStream(), null, play.db.DB.getConnection());
+			JasperPrint jp = (JasperPrint)JasperFillManager.fillReport("C:/Users/Mutic/JaspersoftWorkspace/MyReports/KnjigaUlaznihFaktura.jasper", parametri, play.db.DB.getConnection());
+			JasperExportManager.exportReportToPdfFile(jp, imeIzvestaja1("upamtiNatasuKUF") + ".pdf");
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+	//		render(ulaznaFaktura,poslovniPartner,mode,selectedIndex,poslovnaGodina);
+			renderTemplate("UlazneFakture/show.html", ulaznaFaktura, mode);
+		}
+	}
+
+	public static String imeIzvestaja1(String ime) {
+		return Play.applicationPath + File.separator + "jaspers" + File.separator + ime;
+	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
