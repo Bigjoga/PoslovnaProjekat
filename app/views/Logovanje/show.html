@@ -24,6 +24,9 @@ function GetURLParameter(sParam)
 
 </script>
 
+	<div align=right>
+      		<a href="http://localhost:9000" id = "Home page">Home page</a>
+	</div>
 <div class = "container-fluid">
 <h1>Logovanje</h1>
 
@@ -32,10 +35,9 @@ function GetURLParameter(sParam)
 @{Logovanje.login()} 
 #{/if} 
 #{/set}
-  
+
 <div class = "panel">
 	<p>
-	
 		<form action = "${action}">
 		
 				#{field 'korisnik.id'}

@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -19,6 +18,7 @@ import models.PoslovnaGodina;
 import models.PoslovniPartner;
 import models.UlaznaFaktura;
 import models.ZatvaranjeUlazneFakture;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -288,17 +288,28 @@ public class UlazneFakture extends Controller {
 //		List<PoslovnaGodina> poslovnaGodina = PoslovnaGodina.findAll();
 		List<UlaznaFaktura> ulaznaFaktura = UlaznaFaktura.findAll();
 		String mode = "edit";
-		
+		HashMap hm = new HashMap();
+		HashMap hm2 = null;
+
+
 		try {
-			Map parametri = new HashMap<>();
-			parametri.put("idFakture", id);
-
-			String file = imeIzvestaja1("KnjigaUlaznihFaktura.jasper");
+	    	String jrxmlFileName = "C:/Users/Mutic/JaspersoftWorkspace/MyReports/KnjigaUlaznihFaktura.jrxml";
+		    String jasperFileName = "C:/Users/Mutic/JaspersoftWorkspace/MyReports/KnjigaUlaznihFaktura.jasper";
+			String pdfFileName = "C:/Users/Mutic/JaspersoftWorkspace/MyReports/KnjigaUlaznihFaktura.pdf";
+			JasperCompileManager.compileReportToFile(jrxmlFileName, jasperFileName);
 			
-//			JasperPrint jp = (JasperPrint)JasperFillManager.fillReport(getClass().getResource("/jaspers/KnjigaUlaznihFaktura.jasper").openStream(), null, play.db.DB.getConnection());
-			JasperPrint jp = (JasperPrint)JasperFillManager.fillReport("C:/Users/Mutic/JaspersoftWorkspace/MyReports/KnjigaUlaznihFaktura.jasper", parametri, play.db.DB.getConnection());
-			JasperExportManager.exportReportToPdfFile(jp, imeIzvestaja1("upamtiNatasuKUF") + ".pdf");
-
+			hm = new HashMap();
+		    hm.put("ID", "123");
+		    hm.put("DATENAME", "April 2006");
+		    System.out.println("000000000");
+ 		    // Generate jasper print
+ 		    JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperFileName, hm, play.db.DB.getConnection());
+System.out.println("1111111111");
+ 		    // Export pdf file
+ 		    JasperExportManager.exportReportToPdfFile(jprint, pdfFileName);
+		   
+		    System.out.println("Done exporting reports to pdf");
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

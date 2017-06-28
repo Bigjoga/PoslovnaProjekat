@@ -1,5 +1,5 @@
 #{extends 'standardForm.html' /}
-#{set title:'Izlazne fakture' /}
+#{set title:'Zatvaranje ulazne fakture' /}
 
 #{set 'prikazani'}
 	idZaPrikaz
@@ -64,16 +64,16 @@ function sync(item){
     
     $("#poslovnaGodina").val(posgodval);
     $("#poslovniPartner").val(pospartval);
-    $("#izlaznaFaktura_brojFakture").val(brojFakture);
-    $("#izlaznaFaktura_datumFakture").val(datumFakture);
-    $("#izlaznaFaktura_datumValute").val(datumValute);
-    $("#izlaznaFaktura_ukupanRabat").val(ukupanRabat);
-    $("#izlaznaFaktura_ukupanIznosBezPDV").val(ukupanIznosBezPDV);
-    $("#izlaznaFaktura_ukupanPDV").val(ukupanPDV);
-    $("#izlaznaFaktura_ukupnoZaPlacanje").val(ukupnoZaPlacanje);
-    $("#izlaznaFaktura_preostaliIznos").val(preostaliIznos);
-    $("#izlaznaFaktura_IDfakture").val(IDfakture);
-    $("#izlaznaFaktura_id").val(id);
+    $("#ulaznaFaktura_brojFakture").val(brojFakture);
+    $("#ulaznaFaktura_datumFakture").val(datumFakture);
+    $("#ulaznaFaktura_datumValute").val(datumValute);
+    $("#ulaznaFaktura_ukupanRabat").val(ukupanRabat);
+    $("#ulaznaFaktura_ukupanIznosBezPDV").val(ukupanIznosBezPDV);
+    $("#ulaznaFaktura_ukupanPDV").val(ukupanPDV);
+    $("#ulaznaFaktura_ukupnoZaPlacanje").val(ukupnoZaPlacanje);
+    $("#ulaznaFaktura_preostaliIznos").val(preostaliIznos);
+    $("#ulaznaFaktura_IDfakture").val(IDfakture);
+    $("#laznaFaktura_id").val(id);
 }
 
 function remove(id)
@@ -91,6 +91,9 @@ function remove(id)
 </script>
 
 
+	<div align=right>
+      		<a href="http://localhost:9000" id = "Home page">Home page</a>
+	</div>
 
 <p>
 <ul>
@@ -109,12 +112,12 @@ function remove(id)
 </p>
 
 <div class = "container-fluid">
-<h1>Zatvaranje ulaznih fakture</h1>
+<h1>Zatvaranje ulazne fakture</h1>
 
 <table class="TabelaForme">
 	<tr class = "header">
 	   <th>Datum</th>
-	   <th>Izlazna faktura</th>
+	   <th>Ulazna faktura</th>
 	   
 	   
 	</tr>
